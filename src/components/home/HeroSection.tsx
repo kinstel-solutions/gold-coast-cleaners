@@ -1,25 +1,20 @@
-import Image from 'next/image';
 import { Check, Phone } from 'lucide-react';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '../ui/button';
 import { QuoteDialog } from '../QuoteDialog';
 import { SITE_PHONE_HREF } from '@/lib/constants';
 
 export function HeroSection() {
-  const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-living-room');
-
   return (
-    <section className="relative h-[80vh] min-h-[500px] max-h-[700px] w-full">
-      {heroImage && (
-        <Image
-          src={heroImage.imageUrl}
-          alt={heroImage.description}
-          fill
-          className="object-cover"
-          priority
-          data-ai-hint={heroImage.imageHint}
-        />
-      )}
+    <section className="relative h-[80vh] min-h-[500px] max-h-[700px] w-full overflow-hidden">
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover"
+      >
+        <source src="/Bond_Cleaning_Hero_Video_Generated.mp4" type="video/mp4" />
+      </video>
       <div className="absolute inset-0 bg-black/60" />
       <div className="relative h-full flex items-center">
         <div className="container text-white">
