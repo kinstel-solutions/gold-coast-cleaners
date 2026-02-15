@@ -28,10 +28,10 @@ export function WhyChooseUs() {
       <div className="container">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Why Choose James Bond Cleaners?
+            Why Choose Bond Cleaning Gold Coast?
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            At James Bond Cleaners, we understand the importance of leaving your
+            At Bond Cleaning Gold Coast, we understand the importance of leaving your
             property spotless. Our experienced team follows a strict real
             estate–approved cleaning checklist to ensure your property meets
             inspection standards.

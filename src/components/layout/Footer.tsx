@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Gem, Mail, MapPin, Phone } from 'lucide-react';
+import { Sparkles, Mail, MapPin, Phone } from 'lucide-react';
 import {
   NAVIGATION_LINKS,
   OPENING_HOURS,
@@ -24,7 +24,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-              <Gem className="h-6 w-6 text-primary" />
+              <Sparkles className="h-6 w-6 text-primary" />
               <span>{SITE_NAME}</span>
             </Link>
             <p className="text-muted-foreground">

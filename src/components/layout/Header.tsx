@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  Gem,
+  Sparkles,
   Menu,
   Phone,
 } from 'lucide-react';
@@ -64,7 +64,7 @@ export function Header() {
           href="/"
           className="mr-6 flex items-center gap-2 font-bold text-lg"
         >
-          <Gem className="h-6 w-6 text-primary" />
+          <Sparkles className="h-6 w-6 text-primary" />
           <span className="hidden sm:inline-block">{SITE_NAME}</span>
         </Link>
 
@@ -93,7 +93,7 @@ export function Header() {
                   href="/"
                   className="flex items-center gap-2 text-lg font-semibold"
                 >
-                  <Gem className="h-6 w-6 text-primary" />
+                  <Sparkles className="h-6 w-6 text-primary" />
                   <span className="sr-only">{SITE_NAME}</span>
                 </Link>
                 {navLinks}

@@ -5,7 +5,7 @@ import { CtaStrip } from '@/components/home/CtaStrip';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Spring & Deep Cleaning Service Gold Coast | James Bond Cleaners',
+    title: 'Spring & Deep Cleaning Service Gold Coast | Bond Cleaning Gold Coast',
     description: 'Comprehensive deep cleaning and spring cleaning services on the Gold Coast. Perfect for a seasonal refresh or a complete home reset. Book your detailed clean today!',
 };
 

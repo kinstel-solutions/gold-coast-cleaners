@@ -5,7 +5,7 @@ import { CtaStrip } from '@/components/home/CtaStrip';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Carpet Steam Cleaning Gold Coast | James Bond Cleaners',
+    title: 'Carpet Steam Cleaning Gold Coast | Bond Cleaning Gold Coast',
     description: 'Professional carpet steam cleaning on the Gold Coast. We remove tough stains, dirt, and odours, perfect for end-of-lease requirements. Get a fresh, clean carpet today!',
 };
 

@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Professional Bond Cleaning Gold Coast | James Bond Cleaners',
+    title: 'Professional Bond Cleaning Gold Coast | Bond Cleaning Gold Coast',
     description: 'Specialised end-of-lease and bond cleaning in Gold Coast. We follow a real estate-approved checklist to help you secure your full bond refund. Get a free quote!',
 };
 

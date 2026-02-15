@@ -1,8 +1,8 @@
-export const SITE_NAME = 'James Bond Cleaners';
-export const SITE_PHONE_NUMBER = '1300 007 007';
-export const SITE_PHONE_HREF = 'tel:1300007007';
-export const SITE_EMAIL = 'contact@jamesbondcleaners.com.au';
-export const SITE_EMAIL_HREF = 'mailto:contact@jamesbondcleaners.com.au';
+export const SITE_NAME = 'Bond Cleaning Gold Coast';
+export const SITE_PHONE_NUMBER = '1300 123 456';
+export const SITE_PHONE_HREF = 'tel:1300123456';
+export const SITE_EMAIL = 'contact@bondcleaninggoldcoast.com.au';
+export const SITE_EMAIL_HREF = 'mailto:contact@bondcleaninggoldcoast.com.au';
 
 export const NAVIGATION_LINKS = [
   { name: 'Home', href: '/' },

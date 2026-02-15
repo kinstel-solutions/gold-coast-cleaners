@@ -10,7 +10,7 @@ import { FloatingCallButton } from '@/components/layout/FloatingCallButton';
 const inter = Inter({ subsets: ['latin'], variable: '--font-body' });
 
 export const metadata: Metadata = {
-  title: 'James Bond Cleaners | Trusted Bond Cleaning on the Gold Coast',
+  title: 'Bond Cleaning Gold Coast | Trusted Bond Cleaning on the Gold Coast',
   description:
     'Professional end-of-lease cleaning on the Gold Coast that helps you secure your full bond refund. Reliable, detail-oriented, and real estate-approved.',
   keywords: [
