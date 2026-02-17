@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Header } from '@/components/layout/Header';
@@ -8,12 +8,14 @@ import { Toaster } from '@/components/ui/toaster';
 import { FloatingCallButton } from '@/components/layout/FloatingCallButton';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-body' });
+const outfit = Outfit({ subsets: ['latin'], variable: '--font-heading' });
 
 export const metadata: Metadata = {
-  title: 'Bond Cleaning Gold Coast | Trusted Bond Cleaning on the Gold Coast',
+  title: 'James Bond Cleaning | Trusted Bond Cleaning on the Gold Coast',
   description:
     'Professional end-of-lease cleaning on the Gold Coast that helps you secure your full bond refund. Reliable, detail-oriented, and real estate-approved.',
   keywords: [
+    'James Bond Cleaning',
     'Bond Cleaning Gold Coast',
     'End of Lease Cleaning Gold Coast',
     'Exit Cleaning Gold Coast',
@@ -32,7 +34,8 @@ export default function RootLayout({
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',
-          inter.variable
+          inter.variable,
+          outfit.variable
         )}
       >
         <Header />

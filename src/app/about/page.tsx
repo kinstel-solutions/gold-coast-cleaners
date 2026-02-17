@@ -44,7 +44,7 @@ export default function AboutPage() {
               Your Trusted Local Cleaning Partner in Gold Coast
             </h1>
             <p className="mt-6 text-lg text-muted-foreground">
-              Bond Cleaning Gold Coast was founded with a commitment to delivering
+              James Bond Cleaning was founded with a commitment to delivering
               reliable and high-quality cleaning services across the Gold Coast.
               With years of industry experience, our team understands the high
               standards required by property managers and landlords for end-of-lease inspections.

@@ -5,8 +5,8 @@ import { SITE_EMAIL, SITE_EMAIL_HREF, SITE_PHONE_HREF, SITE_PHONE_NUMBER, OPENIN
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Contact Us | Bond Cleaning Gold Coast',
-    description: 'Get a free quote for bond, carpet, or spring cleaning on the Gold Coast. Contact Bond Cleaning Gold Coast via our form, phone, or email. We\'re ready to help!',
+    title: 'Contact Us | James Bond Cleaning',
+    description: 'Get a free quote for bond, carpet, or spring cleaning on the Gold Coast. Contact James Bond Cleaning via our form, phone, or email. We\'re ready to help!',
 };
 
 export default function ContactPage() {

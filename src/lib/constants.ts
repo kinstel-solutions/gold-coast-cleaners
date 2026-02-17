@@ -1,15 +1,13 @@
-export const SITE_NAME = 'Bond Cleaning Gold Coast';
+export const SITE_NAME = 'James Bond Cleaning';
 export const SITE_PHONE_NUMBER = '1300 123 456';
 export const SITE_PHONE_HREF = 'tel:1300123456';
-export const SITE_EMAIL = 'contact@bondcleaninggoldcoast.com.au';
-export const SITE_EMAIL_HREF = 'mailto:contact@bondcleaninggoldcoast.com.au';
+export const SITE_EMAIL = 'contact@jamesbondcleaning.com.au';
+export const SITE_EMAIL_HREF = 'mailto:contact@jamesbondcleaning.com.au';
 
 export const NAVIGATION_LINKS = [
   { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
-  { name: 'Bond Cleaning', href: '/bond-cleaning' },
-  { name: 'Carpet Cleaning', href: '/carpet-cleaning' },
-  { name: 'Spring Cleaning', href: '/spring-cleaning' },
+  { name: 'Services', href: '#' },
   { name: 'Contact', href: '/contact' },
 ];
 
