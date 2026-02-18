@@ -21,13 +21,13 @@ export function HeroSection() {
         <div className="container px-4 md:px-6 pt-36 md:pt-0 pb-12 md:pb-0 h-full md:h-auto overflow-y-auto md:overflow-visible">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
             
-            {/* Right Column: Quote Form (Form First on Mobile) */}
-            <div className="w-full max-w-md mx-auto lg:ml-auto animate-in fade-in slide-in-from-right-8 duration-1000 delay-200 order-1 lg:order-2">
+            {/* Right Column: Quote Form (Form Second on Mobile) */}
+            <div className="w-full max-w-md mx-auto lg:ml-auto animate-in fade-in slide-in-from-right-8 duration-1000 delay-200 order-2">
               <HeroQuoteForm />
             </div>
 
-            {/* Left Column: Text Content (Text Second on Mobile) */}
-            <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-1000 order-2 lg:order-1 text-center lg:text-left mx-auto lg:mx-0">
+            {/* Left Column: Text Content (Text First on Mobile) */}
+            <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-1000 order-1 text-center lg:text-left mx-auto lg:mx-0">
               <div className="backdrop-blur-sm bg-black/40 border border-white/10 p-6 md:p-10 rounded-3xl shadow-2xl">
                 <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 drop-shadow-lg leading-tight">
                   Gold Coast’s Trusted <span className="text-accent bg-clip-text text-transparent bg-gradient-to-r from-accent to-white">Bond Cleaning</span> Experts

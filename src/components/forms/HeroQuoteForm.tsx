@@ -68,8 +68,8 @@ export function HeroQuoteForm() {
   }
 
   return (
-    <div className="w-full bg-white rounded-xl shadow-2xl p-6 border border-gray-100">
-      <h3 className="text-xl font-bold text-gray-900 mb-4">Get a Free Quote</h3>
+    <div className="w-full backdrop-blur-sm bg-black/40 border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl">
+      <h3 className="text-xl font-bold text-white mb-4">Get a Free Quote</h3>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
@@ -78,7 +78,7 @@ export function HeroQuoteForm() {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Full Name" className="bg-gray-50" {...field} />
+                  <Input placeholder="Full Name" className="bg-white/5 border-white/10 text-white placeholder:text-white/60 focus:bg-white/10 focus:border-accent" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -92,7 +92,7 @@ export function HeroQuoteForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Email Address" className="bg-gray-50" {...field} />
+                    <Input placeholder="Email Address" className="bg-white/5 border-white/10 text-white placeholder:text-white/60 focus:bg-white/10 focus:border-accent" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -104,7 +104,7 @@ export function HeroQuoteForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Phone Number" className="bg-gray-50" {...field} />
+                    <Input placeholder="Phone Number" className="bg-white/5 border-white/10 text-white placeholder:text-white/60 focus:bg-white/10 focus:border-accent" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -131,13 +131,13 @@ export function HeroQuoteForm() {
                           field.onChange(newValue);
                         }}
                         className={cn(
-                          "cursor-pointer rounded-lg border-2 p-3 flex flex-col items-center justify-center gap-2 text-center transition-all duration-200 h-24",
+                          "cursor-pointer rounded-lg border p-3 flex flex-col items-center justify-center gap-2 text-center transition-all duration-200 h-24",
                           isSelected
-                            ? "border-primary bg-primary/5 text-primary shadow-sm"
-                            : "border-gray-100 hover:border-primary/30 bg-white text-gray-600 hover:bg-gray-50"
+                            ? "border-accent bg-accent/20 text-accent shadow-sm"
+                            : "border-white/10 hover:border-accent/50 bg-white/5 text-white/80 hover:bg-white/10"
                         )}
                       >
-                        <service.icon className={cn("h-6 w-6", isSelected ? "text-primary" : "text-gray-400")} />
+                        <service.icon className={cn("h-6 w-6", isSelected ? "text-accent" : "text-white/60")} />
                         <span className="text-xs font-semibold leading-tight">{service.label}</span>
                       </div>
                     );
@@ -160,7 +160,7 @@ export function HeroQuoteForm() {
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel className="text-xs text-muted-foreground font-normal">
+                  <FormLabel className="text-xs text-white/70 font-normal">
                     I agree to the <span className="underline cursor-pointer">Terms & Conditions</span> and <span className="underline cursor-pointer">Privacy Policy</span>.
                   </FormLabel>
                   <FormMessage />
@@ -169,7 +169,7 @@ export function HeroQuoteForm() {
             )}
           />
 
-          <Button type="submit" className="w-full text-lg font-bold py-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all">
+          <Button type="submit" className="w-full text-lg font-bold py-6 shadow-lg shadow-accent/20 hover:shadow-accent/40 transition-all">
             Get Free Quote
           </Button>
         </form>
