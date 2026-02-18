@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Mail, MapPin, Phone, Clock } from 'lucide-react';
 import { QuoteForm } from '@/components/forms/QuoteForm';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -28,7 +29,9 @@ export default function ContactPage() {
                 <CardTitle className="text-2xl">Request a Quote Online</CardTitle>
               </CardHeader>
               <CardContent>
-                <QuoteForm />
+                <Suspense fallback={<div>Loading form...</div>}>
+                  <QuoteForm />
+                </Suspense>
               </CardContent>
             </Card>
           </div>
