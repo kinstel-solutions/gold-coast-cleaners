@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { QuoteForm } from './forms/QuoteForm';
+import { HeroQuoteForm } from './forms/HeroQuoteForm';
 
 type QuoteDialogProps = {
   trigger: React.ReactNode;
@@ -31,7 +31,7 @@ export function QuoteDialog({ trigger }: QuoteDialogProps) {
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">
-          <QuoteForm onSuccess={() => setIsOpen(false)} />
+          <HeroQuoteForm />
         </div>
       </DialogContent>
     </Dialog>
