@@ -65,7 +65,7 @@ export function WhyChooseUs() {
           </div>
 
           <div ref={contentRef}>
-            <div className={`text-left mb-12 fill-mode-both ${contentInView ? 'animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200 opacity-100' : 'opacity-0'}`}>
+            <div className={`text-left mb-12 fill-mode-both ${contentInView ? 'animate-in fade-in slide-in-from-right-8 duration-700 delay-200 opacity-100' : 'opacity-0'}`}>
               <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6 font-heading text-slate-900 leading-[1.1]">
                 Why Choose <span className="text-primary">James Bond Cleaning</span>?
               </h2>
@@ -80,7 +80,7 @@ export function WhyChooseUs() {
                 <Card 
                   key={feature.name} 
                   className={`group border border-primary/20 shadow-sm hover:shadow-2xl hover:border-primary/40 transition-all duration-500 rounded-2xl bg-gradient-to-br from-white/80 to-primary/10 backdrop-blur-md overflow-hidden hover:-translate-y-1 fill-mode-both ${contentInView ? 'animate-in fade-in slide-in-from-bottom-8 opacity-100' : 'opacity-0'}`}
-                  style={{ animationDelay: `${(index + 1) * 100}ms`, animationDuration: '700ms' }}
+                  style={{ animationDelay: `${(index + 1) * 300}ms`, animationDuration: '100ms' }}
                 >
                   <CardContent className="p-6 flex flex-col items-start gap-4 text-left relative">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700" />

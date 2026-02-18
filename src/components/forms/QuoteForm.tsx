@@ -48,22 +48,25 @@ const quoteSchema = z.object({
   message: z.string().optional(),
 });
 
+import { useSearchParams } from 'next/navigation';
+
 export function QuoteForm({
   onSuccess,
 }: {
   onSuccess?: () => void;
 }) {
   const { toast } = useToast();
+  const searchParams = useSearchParams();
   const initialState: QuoteFormState = { message: '', success: false };
   const [state, formAction] = useFormState(submitQuote, initialState);
 
   const form = useForm<z.infer<typeof quoteSchema>>({
     resolver: zodResolver(quoteSchema),
     defaultValues: {
-      name: '',
-      phone: '',
-      email: '',
-      message: '',
+      name: searchParams.get('name') || '',
+      phone: searchParams.get('phone') || '',
+      email: searchParams.get('email') || '',
+      message: searchParams.get('services') ? `Interested in: ${searchParams.get('services')}` : '',
     },
   });
 
