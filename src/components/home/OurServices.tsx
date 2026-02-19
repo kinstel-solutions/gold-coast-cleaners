@@ -52,7 +52,7 @@ export function OurServices() {
               <Card
                 key={service.title}
                 className={`group flex flex-col overflow-hidden border-none shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 rounded-3xl bg-card/50 backdrop-blur-sm fill-mode-both ${gridInView ? 'animate-in fade-in slide-in-from-bottom-12 opacity-100' : 'opacity-0'}`}
-                style={{ animationDelay: `${(index + 1) * 150}ms`, animationDuration: '700ms' }}
+                style={{ animationDelay: `${(index + 1) * 100}ms`, animationDuration: '700ms' }}
               >
                 {image && (
                   <div className="relative h-64 w-full overflow-hidden">

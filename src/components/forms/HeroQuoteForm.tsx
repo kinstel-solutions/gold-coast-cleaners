@@ -78,7 +78,7 @@ export function HeroQuoteForm() {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Full Name" className="bg-white/5 border-white/10 text-white placeholder:text-white/60 focus:bg-white/10 focus:border-accent" {...field} />
+                  <Input placeholder="Full Name" className="bg-white/10 border-white/20 text-white placeholder:text-white/80 focus:bg-white/20 focus:border-accent" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -92,7 +92,7 @@ export function HeroQuoteForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Email Address" className="bg-white/5 border-white/10 text-white placeholder:text-white/60 focus:bg-white/10 focus:border-accent" {...field} />
+                    <Input placeholder="Email Address" className="bg-white/10 border-white/20 text-white placeholder:text-white/80 focus:bg-white/20 focus:border-accent" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -104,7 +104,7 @@ export function HeroQuoteForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Phone Number" className="bg-white/5 border-white/10 text-white placeholder:text-white/60 focus:bg-white/10 focus:border-accent" {...field} />
+                    <Input placeholder="Phone Number" className="bg-white/10 border-white/20 text-white placeholder:text-white/80 focus:bg-white/20 focus:border-accent" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -134,10 +134,10 @@ export function HeroQuoteForm() {
                           "cursor-pointer rounded-lg border p-3 flex flex-col items-center justify-center gap-2 text-center transition-all duration-200 h-24",
                           isSelected
                             ? "border-accent bg-accent/20 text-accent shadow-sm"
-                            : "border-white/10 hover:border-accent/50 bg-white/5 text-white/80 hover:bg-white/10"
+                            : "border-white/20 hover:border-accent/50 bg-white/10 text-white hover:bg-white/20"
                         )}
                       >
-                        <service.icon className={cn("h-6 w-6", isSelected ? "text-accent" : "text-white/60")} />
+                        <service.icon className={cn("h-6 w-6", isSelected ? "text-accent" : "text-white/80")} />
                         <span className="text-xs font-semibold leading-tight">{service.label}</span>
                       </div>
                     );
@@ -160,7 +160,7 @@ export function HeroQuoteForm() {
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel className="text-xs text-white/70 font-normal">
+                  <FormLabel className="text-xs text-white/90 font-normal">
                     I agree to the <span className="underline cursor-pointer">Terms & Conditions</span> and <span className="underline cursor-pointer">Privacy Policy</span>.
                   </FormLabel>
                   <FormMessage />

@@ -22,7 +22,7 @@ export function HeroSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
             
             {/* Right Column: Quote Form (Form Second on Mobile) */}
-            <div className="w-full max-w-md mx-auto lg:ml-auto animate-in fade-in slide-in-from-right-8 duration-1000 delay-200 order-2">
+            <div className="w-full max-w-md mx-auto lg:ml-auto animate-in fade-in slide-in-from-right-8 duration-1000 delay-100 order-2">
               <HeroQuoteForm />
             </div>
 

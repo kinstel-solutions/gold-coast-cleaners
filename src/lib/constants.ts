@@ -34,7 +34,7 @@ export const SERVICES = [
   },
 ];
 
-export const SERVICE_AREA_SUBURBS = [
+export const SERVICE_AREA_GOLD_COAST = [
   'Southport',
   'Surfers Paradise',
   'Robina',
@@ -47,6 +47,19 @@ export const SERVICE_AREA_SUBURBS = [
   'Palm Beach',
   'Nerang',
   'Ashmore',
+];
+
+export const SERVICE_AREA_BRISBANE = [
+  'Brisbane City',
+  'South Brisbane',
+  'Fortitude Valley',
+  'Kangaroo Point',
+  'New Farm',
+  'West End',
+  'Spring Hill',
+  'Milton',
+  'Paddington',
+  'Red Hill',
 ];
 
 export const OPENING_HOURS = {
