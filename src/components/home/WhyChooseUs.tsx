@@ -79,8 +79,8 @@ export function WhyChooseUs() {
               {features.map((feature, index) => (
                 <Card 
                   key={feature.name} 
-                  className={`group border border-primary/20 shadow-sm hover:shadow-2xl hover:border-primary/40 transition-all duration-500 rounded-2xl bg-gradient-to-br from-white/80 to-primary/10 backdrop-blur-md overflow-hidden hover:-translate-y-1 fill-mode-both ${contentInView ? 'animate-in fade-in slide-in-from-bottom-8 opacity-100' : 'opacity-0'}`}
-                  style={{ animationDelay: `${(index + 1) * 200}ms`, animationDuration: '100ms' }}
+                  className={`group border border-primary/20 shadow-sm hover:shadow-2xl hover:border-primary/40 transition-all duration-500 rounded-2xl bg-gradient-to-br from-white/80 to-primary/10 backdrop-blur-md overflow-hidden hover:-translate-y-1 fill-mode-both ${contentInView ? 'animate-in fade-in slide-in-from-bottom-8 duration-500 opacity-100' : 'opacity-0'}`}
+                  style={{ animationDelay: `${index * 400 + 200}ms` }}
                 >
                   <CardContent className="p-6 flex flex-col items-start gap-4 text-left relative">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700" />
