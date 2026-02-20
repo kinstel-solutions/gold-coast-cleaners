@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import { SiteLogo } from '@/components/SiteLogo';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import {
   NAVIGATION_LINKS,
@@ -25,14 +25,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-              <div className="relative h-10 w-32">
-                <Image
-                  src="/logos/JBcleaning-logo-NoBG%207%20(1).svg"
-                  alt={SITE_NAME}
-                  fill
-                  className="object-contain"
-                />
-              </div>
+              <SiteLogo className="h-32" zoom={1.5} />
             </Link>
             <p className="text-muted-foreground">
               Your trusted partner for reliable and professional cleaning

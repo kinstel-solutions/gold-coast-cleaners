@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { SiteLogo } from '@/components/SiteLogo';
 import {
   Menu,
   Phone,
@@ -62,20 +62,13 @@ export function Header() {
         {/* Logo Section */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 font-bold text-xl group"
+          className=""
         >
-          <div className="relative h-10 w-40 transition-transform duration-300 group-hover:scale-105">
-            <Image
-              src="/logos/JBcleaning-logo-NoBG%207%20(1).svg"
-              alt={SITE_NAME}
-              fill
-              className={cn(
-                "object-contain transition-all duration-300",
-                !showSolidBackground && "brightness-0 invert"
-              )}
-              priority
-            />
-          </div>
+          <SiteLogo
+            className="absolute top-4 left-4 w-48 h-20 transition-transform duration-300 group-hover:scale-105"
+            priority
+            zoom={2}
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -175,14 +168,7 @@ export function Header() {
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <div className="flex flex-col h-full">
                 <div className="flex items-center gap-2 mb-8">
-                  <div className="relative h-10 w-32">
-                    <Image
-                      src="/logos/JBcleaning-logo-NoBG%207%20(1).svg"
-                      alt={SITE_NAME}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
+                  <SiteLogo className="h-10" />
                 </div>
                 
                 <nav className="flex flex-col gap-2">
