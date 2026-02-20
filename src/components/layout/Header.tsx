@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
-  Sparkles,
   Menu,
   Phone,
   Calendar,
@@ -64,15 +64,18 @@ export function Header() {
           href="/"
           className="flex items-center gap-2.5 font-bold text-xl group"
         >
-          <div className="bg-primary/10 p-2 rounded-xl group-hover:bg-primary/20 transition-colors">
-            <Sparkles className="h-6 w-6 text-primary" />
+          <div className="relative h-10 w-40 transition-transform duration-300 group-hover:scale-105">
+            <Image
+              src="/logos/JBcleaning-logo-NoBG%207%20(1).svg"
+              alt={SITE_NAME}
+              fill
+              className={cn(
+                "object-contain transition-all duration-300",
+                !showSolidBackground && "brightness-0 invert"
+              )}
+              priority
+            />
           </div>
-          <span className={cn(
-            "hidden sm:inline-block font-heading tracking-tight",
-            showSolidBackground ? "text-slate-900" : "text-white drop-shadow-md"
-          )}>
-            {SITE_NAME}
-          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -172,10 +175,14 @@ export function Header() {
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <div className="flex flex-col h-full">
                 <div className="flex items-center gap-2 mb-8">
-                  <div className="bg-primary/10 p-2 rounded-lg">
-                    <Sparkles className="h-6 w-6 text-primary" />
+                  <div className="relative h-10 w-32">
+                    <Image
+                      src="/logos/JBcleaning-logo-NoBG%207%20(1).svg"
+                      alt={SITE_NAME}
+                      fill
+                      className="object-contain"
+                    />
                   </div>
-                  <span className="font-bold text-lg font-heading text-slate-900">{SITE_NAME}</span>
                 </div>
                 
                 <nav className="flex flex-col gap-2">

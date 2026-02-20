@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Sparkles, Mail, MapPin, Phone } from 'lucide-react';
+import Image from 'next/image';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import {
   NAVIGATION_LINKS,
   OPENING_HOURS,
@@ -24,8 +25,14 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-              <Sparkles className="h-6 w-6 text-primary" />
-              <span>{SITE_NAME}</span>
+              <div className="relative h-10 w-32">
+                <Image
+                  src="/logos/JBcleaning-logo-NoBG%207%20(1).svg"
+                  alt={SITE_NAME}
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </Link>
             <p className="text-muted-foreground">
               Your trusted partner for reliable and professional cleaning
