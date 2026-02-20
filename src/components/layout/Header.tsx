@@ -65,7 +65,7 @@ export function Header() {
           className=""
         >
           <SiteLogo
-            className="absolute top-4 left-4 w-48 h-20 transition-transform duration-300 group-hover:scale-105"
+            className="absolute top-4 left-4 w-28 h-12 sm:w-32 sm:h-16 md:w-48 md:h-20 transition-transform duration-300 group-hover:scale-105"
             priority
             zoom={2}
           />
