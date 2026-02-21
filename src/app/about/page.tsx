@@ -36,8 +36,9 @@ export default function AboutPage() {
 
   return (
     <>
-    <div className="bg-card">
-      <div className="container py-16 sm:py-24">
+    <div className="bg-card pt-32 pb-16 sm:pt-40 sm:pb-24 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-primary/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
+      <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-primary">
@@ -55,7 +56,7 @@ export default function AboutPage() {
               that truly cares about helping you secure your bond.
             </p>
           </div>
-          <div className="relative h-80 lg:h-full rounded-lg overflow-hidden shadow-lg">
+          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl w-full">
             {aboutImage && (
               <Image
                 src={aboutImage.imageUrl}
@@ -69,8 +70,9 @@ export default function AboutPage() {
         </div>
       </div>
     </div>
-    <div className="py-16 sm:py-24">
-        <div className="container">
+    <div className="py-16 sm:py-24 bg-secondary/30 relative overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-accent/5 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2" />
+        <div className="container relative z-10">
             <div className="text-center max-w-3xl mx-auto">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
                 We Pride Ourselves On
@@ -78,13 +80,18 @@ export default function AboutPage() {
             </div>
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {values.map(value => (
-                    <Card key={value.title} className="text-center">
-                        <CardHeader>
-                            <value.icon className="h-12 w-12 text-primary mx-auto" />
-                        </CardHeader>
-                        <CardContent>
-                            <h3 className="text-lg font-semibold">{value.title}</h3>
-                            <p className="mt-2 text-muted-foreground text-sm">{value.description}</p>
+                    <Card key={value.title} className="group border border-primary/20 shadow-sm hover:shadow-2xl hover:border-primary/40 transition-all duration-500 rounded-2xl bg-gradient-to-br from-white/80 to-primary/10 backdrop-blur-md overflow-hidden hover:-translate-y-1">
+                        <CardContent className="p-6 flex flex-col items-center gap-4 text-center relative">
+                            <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700" />
+                            
+                            <div className="h-16 w-16 rounded-xl bg-accent/20 flex items-center justify-center transform group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300 z-10">
+                                <value.icon className="h-8 w-8 transition-colors duration-300 text-accent-foreground group-hover:text-white" />
+                            </div>
+                            <div className="z-10 flex flex-col items-center">
+                                <h3 className="font-bold text-xl text-slate-900 leading-tight group-hover:text-primary transition-colors">{value.title}</h3>
+                                <div className="mt-2 h-0.5 w-8 bg-primary/20 group-hover:w-full transition-all duration-500" />
+                                <p className="mt-4 text-slate-600 text-sm">{value.description}</p>
+                            </div>
                         </CardContent>
                     </Card>
                 ))}

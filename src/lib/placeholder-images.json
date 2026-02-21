@@ -8,75 +8,123 @@
     },
     {
       "id": "bond-cleaning",
-      "description": "A person meticulously cleaning a kitchen oven.",
-      "imageUrl": "https://images.unsplash.com/photo-1681718616298-5cfc1dab6dd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjbGVhbmluZyUyMGtpdGNoZW58ZW58MHx8fHwxNzcxMTQ4NDkxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "cleaning kitchen"
+      "description": "A professional cleaner in an empty, spotless modern apartment.",
+      "imageUrl": "/images/services/bond-cleaning.png",
+      "imageHint": "bond cleaning"
     },
     {
       "id": "carpet-cleaning",
-      "description": "Close-up of a professional steam cleaning a carpet.",
-      "imageUrl": "https://images.unsplash.com/photo-1675756544970-968f9e3f7ca5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjbGVhbmluZyUyMGNhcnBldHxlbnwwfHx8fDE3NzExNDg0OTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "cleaning carpet"
+      "description": "Professional steam cleaning a luxury carpet.",
+      "imageUrl": "/images/services/carpet-cleaning.png",
+      "imageHint": "carpet cleaning"
     },
     {
       "id": "spring-cleaning",
-      "description": "A sparkling clean bathroom with polished fixtures.",
-      "imageUrl": "https://images.unsplash.com/photo-1495468986598-4cd0d30c7805?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjbGVhbiUyMGJhdGhyb29tfGVufDB8fHx8MTc3MTE0MzI2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "clean bathroom"
+      "description": "Sunlight streaming into a beautifully organized and sparkling clean bedroom.",
+      "imageUrl": "/images/services/spring-cleaning.png",
+      "imageHint": "spring cleaning"
+    },
+    {
+      "id": "deep-cleaning",
+      "description": "A professional cleaner deep cleaning a luxury kitchen.",
+      "imageUrl": "/images/services/deep-cleaning.png",
+      "imageHint": "deep cleaning"
+    },
+    {
+      "id": "pest-control",
+      "description": "Professional pest control technician inspecting a home.",
+      "imageUrl": "/images/services/pest-control.png",
+      "imageHint": "pest control"
+    },
+    {
+      "id": "builder-cleaning",
+      "description": "Spotless newly constructed modern home after builders clean.",
+      "imageUrl": "/images/services/builder-cleaning.png",
+      "imageHint": "builder cleaning"
+    },
+    {
+      "id": "upholstery-cleaning",
+      "description": "Professional steam cleaning a luxury fabric sofa.",
+      "imageUrl": "/images/services/upholstery-cleaning.png",
+      "imageHint": "upholstery cleaning"
+    },
+    {
+      "id": "removalist",
+      "description": "Professional removalists loading a moving truck.",
+      "imageUrl": "/images/services/removalist.png",
+      "imageHint": "removalist"
+    },
+    {
+      "id": "painting",
+      "description": "Professional painter applying a fresh coat of paint.",
+      "imageUrl": "/images/services/painting.png",
+      "imageHint": "painting"
+    },
+    {
+      "id": "pressure-washing",
+      "description": "High pressure washing a concrete driveway.",
+      "imageUrl": "/images/services/pressure-washing.png",
+      "imageHint": "pressure washing"
+    },
+    {
+      "id": "pool-maintenance",
+      "description": "Crystal clear luxury swimming pool.",
+      "imageUrl": "/images/services/pool-maintenance.png",
+      "imageHint": "pool maintenance"
+    },
+    {
+      "id": "bond-cleaning-hero",
+      "description": "A professional cleaner in an empty, spotless modern apartment.",
+      "imageUrl": "/images/services/bond-cleaning.png",
+      "imageHint": "bond cleaning hero"
+    },
+    {
+      "id": "carpet-cleaning-hero",
+      "description": "Professional steam cleaning a luxury carpet.",
+      "imageUrl": "/images/services/carpet-cleaning.png",
+      "imageHint": "carpet cleaning hero"
+    },
+    {
+      "id": "spring-cleaning-hero",
+      "description": "Sunlight streaming into a beautifully organized and sparkling clean bedroom.",
+      "imageUrl": "/images/services/spring-cleaning.png",
+      "imageHint": "spring cleaning hero"
     },
     {
       "id": "how-it-works-quote",
       "description": "A person on a phone getting a quote.",
-      "imageUrl": "https://images.unsplash.com/photo-1470434767159-ac7bf1b43351?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwZXJzb24lMjBwaG9uZXxlbnwwfHx8fDE3NzExMDk3MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/how-it-works-1-quote.png",
       "imageHint": "person phone"
     },
     {
       "id": "how-it-works-confirm",
       "description": "A calendar with a confirmed booking.",
-      "imageUrl": "https://images.unsplash.com/photo-1649433391719-2e784576d044?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjYWxlbmRhciUyMGJvb2tpbmd8ZW58MHx8fHwxNzcxMDUzMTk4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/how-it-works-2-confirm.png",
       "imageHint": "calendar booking"
     },
     {
       "id": "how-it-works-clean",
       "description": "A professional cleaner mopping a floor.",
-      "imageUrl": "https://images.unsplash.com/photo-1762500824773-c171c77c29c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjbGVhbmVyJTIwbW9wcGluZ3xlbnwwfHx8fDE3NzExNDg0OTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/how-it-works-3-clean.png",
       "imageHint": "cleaner mopping"
     },
     {
       "id": "how-it-works-inspection",
       "description": "A person with a clipboard inspecting a clean room.",
-      "imageUrl": "https://images.unsplash.com/photo-1722619734320-9daad59bac19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxob21lJTIwaW5zcGVjdGlvbnxlbnwwfHx8fDE3NzExNDg0OTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/how-it-works-4-ready.png",
       "imageHint": "home inspection"
     },
     {
       "id": "about-us-team",
       "description": "A friendly team of professional cleaners smiling.",
-      "imageUrl": "https://images.unsplash.com/photo-1758599668299-beebedfabf7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjbGVhbmluZyUyMHRlYW18ZW58MHx8fHwxNzcxMTQ4NDkxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/why-choose-us-team.png",
       "imageHint": "cleaning team"
     },
     {
       "id": "cta-background",
       "description": "A beautiful, clean modern kitchen interior.",
-      "imageUrl": "https://images.unsplash.com/photo-1556037843-347ddff9f4b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjbGVhbiUyMGtpdGNoZW58ZW58MHx8fHwxNzcxMDYyNDk3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/cta-kitchen.png",
       "imageHint": "clean kitchen"
-    },
-    {
-      "id": "bond-cleaning-hero",
-      "description": "A wide shot of a pristine, empty apartment ready for inspection.",
-      "imageUrl": "https://images.unsplash.com/photo-1633334241769-c3c05b7281c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZW1wdHklMjBhcGFydG1lbnR8ZW58MHx8fHwxNzcxMTQ4NDkxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "empty apartment"
-    },
-    {
-      "id": "carpet-cleaning-hero",
-      "description": "A close up macro shot of clean carpet fibers.",
-      "imageUrl": "https://images.unsplash.com/photo-1597406462800-280ba190eb4c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2xlYW4lMjBjYXJwZXR8ZW58MHx8fHwxNzcxMTQ4NDkxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "clean carpet"
-    },
-    {
-      "id": "spring-cleaning-hero",
-      "description": "Sunlight streaming into a freshly cleaned bedroom.",
-      "imageUrl": "https://images.unsplash.com/photo-1613395804277-ff52684350ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjbGVhbiUyMGJlZHJvb218ZW58MHx8fHwxNzcxMTQ4NDkxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "clean bedroom"
     },
     {
       "id": "contact-hero",

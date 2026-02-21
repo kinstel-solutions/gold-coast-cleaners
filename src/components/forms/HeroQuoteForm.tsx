@@ -32,7 +32,7 @@ const formSchema = z.object({
 const serviceOptions = [
   { id: 'bond', label: 'Bond Clean', icon: Sparkles },
   { id: 'carpet', label: 'Carpet Clean', icon: Waves },
-  { id: 'spring', label: 'Spring Clean', icon: Sun },
+  { id: 'others', label: 'Others', icon: Sun },
 ];
 
 export function HeroQuoteForm() {

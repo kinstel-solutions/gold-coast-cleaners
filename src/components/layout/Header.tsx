@@ -31,7 +31,6 @@ import {
 } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
-import { QuoteDialog } from '../QuoteDialog';
 
 export function Header() {
   const pathname = usePathname();
@@ -136,19 +135,18 @@ export function Header() {
             </a>
           </Button>
 
-          <QuoteDialog
-            trigger={
-              <Button 
-                className={cn(
-                  "rounded-full shadow-lg transition-all hover:-translate-y-0.5",
-                  showSolidBackground ? "bg-primary hover:bg-primary/90" : "bg-white text-primary hover:bg-white/90"
-                )}
-              >
-                <Calendar className="mr-2 h-4 w-4" />
-                Book Now
-              </Button>
-            }
-          />
+          <Button 
+            asChild
+            className={cn(
+              "rounded-full shadow-lg transition-all hover:-translate-y-0.5",
+              showSolidBackground ? "bg-primary hover:bg-primary/90" : "bg-white text-primary hover:bg-white/90"
+            )}
+          >
+            <Link href="/contact">
+              <Calendar className="mr-2 h-4 w-4" />
+              Book Now
+            </Link>
+          </Button>
 
           {/* Mobile Menu */}
           <Sheet>

@@ -15,23 +15,69 @@ export const NAVIGATION_LINKS = [
 export const SERVICES = [
   {
     title: 'Bond Cleaning',
-    description:
-      'Complete end-of-lease cleaning tailored to real estate requirements.',
+    description: 'Complete end-of-lease cleaning tailored to real estate requirements.',
     href: '/services#bond-cleaning',
     imagePlaceholder: 'bond-cleaning',
   },
   {
-    title: 'Carpet Cleaning',
-    description: 'Deep steam cleaning to remove stains, dirt, and allergens.',
+    title: 'Carpet Steam Cleaning',
+    description: 'Deep steam cleaning to remove stains, dirt, and allergens from your carpets.',
     href: '/services#carpet-cleaning',
     imagePlaceholder: 'carpet-cleaning',
   },
   {
-    title: 'Spring / Deep Cleaning',
-    description:
-      'Comprehensive top-to-bottom cleaning for homes and rental properties.',
+    title: 'Spring Cleaning',
+    description: 'Comprehensive top-to-bottom cleaning to refresh your home.',
     href: '/services#spring-cleaning',
     imagePlaceholder: 'spring-cleaning',
+  },
+  {
+    title: 'Deep Cleaning',
+    description: 'Intensive cleaning to restore your property to a pristine condition.',
+    href: '/services#deep-cleaning',
+    imagePlaceholder: 'deep-cleaning',
+  },
+  {
+    title: 'Pest Control',
+    description: 'Professional pest management services to keep your home safe and bug-free.',
+    href: '/services#pest-control',
+    imagePlaceholder: 'pest-control',
+  },
+  {
+    title: 'Builder Cleaning',
+    description: 'Detailed post-construction cleaning to make your new space ready to move in.',
+    href: '/services#builder-cleaning',
+    imagePlaceholder: 'builder-cleaning',
+  },
+  {
+    title: 'Upholstery Cleaning',
+    description: 'Revitalize and protect your furniture with our expert upholstery cleaning.',
+    href: '/services#upholstery-cleaning',
+    imagePlaceholder: 'upholstery-cleaning',
+  },
+  {
+    title: 'Removalist',
+    description: 'Safe, reliable, and efficient moving services for a stress-free relocation.',
+    href: '/services#removalist',
+    imagePlaceholder: 'removalist',
+  },
+  {
+    title: 'Painting',
+    description: 'High-quality residential and commercial painting services to transform your space.',
+    href: '/services#painting',
+    imagePlaceholder: 'painting',
+  },
+  {
+    title: 'Pressure Washing',
+    description: 'Powerful exterior cleaning for driveways, pathways, and building facades.',
+    href: '/services#pressure-washing',
+    imagePlaceholder: 'pressure-washing',
+  },
+  {
+    title: 'Pool Maintenance',
+    description: 'Regular pool cleaning and balancing to keep your pool sparkling year-round.',
+    href: '/services#pool-maintenance',
+    imagePlaceholder: 'pool-maintenance',
   },
 ];
 

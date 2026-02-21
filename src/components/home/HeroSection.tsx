@@ -1,8 +1,8 @@
 import { Check, Phone, Calendar } from 'lucide-react';
 import { Button } from '../ui/button';
-import { QuoteDialog } from '../QuoteDialog';
 import { SITE_PHONE_HREF } from '@/lib/constants';
 import { HeroQuoteForm } from '../forms/HeroQuoteForm';
+import Link from 'next/link';
 
 export function HeroSection() {
   return (
@@ -82,17 +82,16 @@ export function HeroSection() {
 
                   {/* Only shown on smaller screens where the inline form is hidden */}
                   <div className="lg:hidden w-full sm:w-auto">
-                    <QuoteDialog
-                      trigger={
-                        <Button
-                          size="lg"
-                          className="w-full sm:w-auto rounded-full text-sm sm:text-base px-6 py-5 bg-accent hover:bg-accent/90 text-white transition-all hover:-translate-y-0.5"
-                        >
-                          <Calendar className="mr-2 h-4 w-4" />
-                          Get Free Quote
-                        </Button>
-                      }
-                    />
+                    <Button
+                      asChild
+                      size="lg"
+                      className="w-full sm:w-auto rounded-full text-sm sm:text-base px-6 py-5 bg-accent hover:bg-accent/90 text-white transition-all hover:-translate-y-0.5"
+                    >
+                      <Link href="/contact">
+                        <Calendar className="mr-2 h-4 w-4" />
+                        Get Free Quote
+                      </Link>
+                    </Button>
                   </div>
                 </div>
               </div>
