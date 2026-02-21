@@ -1,10 +1,10 @@
-import Image from 'next/image';
-import { cn } from '@/lib/utils';
-import { SITE_NAME } from '@/lib/constants';
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { SITE_NAME } from "@/lib/constants";
 
 /** Native logo canvas size — drives the locked aspect ratio. */
-const LOGO_WIDTH = 1024;
-const LOGO_HEIGHT = 682;
+const LOGO_WIDTH = 700;
+const LOGO_HEIGHT = 237;
 
 interface SiteLogoProps {
   /**
@@ -26,7 +26,7 @@ interface SiteLogoProps {
 
 export function SiteLogo({
   className,
-  zoom = 2.5,
+  zoom = 1,
   imageClassName,
   priority = false,
 }: SiteLogoProps) {
@@ -38,27 +38,22 @@ export function SiteLogo({
      *  - Caller controls visible height via `className` (e.g. "h-10").
      */
     <div
-      className={cn(
-        'relative overflow-hidden shrink-0',
-        `aspect-[${LOGO_WIDTH}/${LOGO_HEIGHT}]`,
-        className
-      )}
-    >
+      className={cn("relative overflow-hidden shrink-0", className)}
+      style={{ aspectRatio: `${LOGO_WIDTH} / ${LOGO_HEIGHT}` }}>
       {/*
        * Inner div: scaled up from the centre so the artwork fills the clip area,
        * removing the empty SVG canvas padding around the actual logo.
        */}
       <div
         className="absolute inset-0 origin-center"
-        style={{ transform: `scale(${zoom})` }}
-      >
+        style={{ transform: `scale(${zoom})` }}>
         <Image
-          src="/logos/JBcleaning-logo-NoBG%207%20(1).svg"
+          src="/logos/JBC-logo-noBG-primary-color-plain.svg"
           alt={SITE_NAME}
           fill
           className={cn(
-            'object-contain transition-all duration-300',
-            imageClassName
+            "object-contain transition-all duration-300",
+            imageClassName,
           )}
           priority={priority}
         />
