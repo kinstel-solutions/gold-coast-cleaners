@@ -22,10 +22,6 @@ import {
 } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { QuoteDialog } from "../QuoteDialog";
-} from '@/lib/constants';
-import { cn } from '@/lib/utils';
-import { useEffect, useState } from 'react';
 
 export function Header() {
   const pathname = usePathname();
