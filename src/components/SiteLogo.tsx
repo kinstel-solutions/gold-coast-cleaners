@@ -9,19 +9,24 @@ const LOGO_HEIGHT = 237;
 interface SiteLogoProps {
   /**
    * Pass ONLY a height class (e.g. "h-10", "h-14", "h-20").
-   * Width is computed automatically from the 1024 × 682 aspect ratio,
+   * Width is computed automatically from the locked aspect ratio,
    * so you never have to worry about distortion.
    */
   className?: string;
   /**
    * Scale factor that compensates for the SVG's internal whitespace.
-   * At 1× the raw artwork looks small; default 2.5 fills the clip area nicely.
-   * Tune up/down if the logo still appears too small or gets clipped.
+   * At 1× the raw artwork looks small; default 1 fills the clip area.
    */
   zoom?: number;
   /** Extra classes forwarded to the underlying next/image element. */
   imageClassName?: string;
   priority?: boolean;
+  /**
+   * 'light' → white logo  (for dark / transparent hero backgrounds).
+   * 'dark'  → black logo  (for white / solid backgrounds).
+   * Defaults to 'dark'.
+   */
+  variant?: "light" | "dark";
 }
 
 export function SiteLogo({
@@ -29,12 +34,21 @@ export function SiteLogo({
   zoom = 1,
   imageClassName,
   priority = false,
+  variant = "dark",
 }: SiteLogoProps) {
+  /**
+   * CSS filter tricks:
+   *  - 'dark'  → brightness(0)           = turns any colour fully black
+   *  - 'light' → brightness(0) invert(1) = black → white
+   */
+  const filterStyle =
+    variant === "light" ? "brightness(0) invert(1)" : "brightness(0)";
+
   return (
     /*
      * Outer div:
-     *  - `aspect-[1024/682]` locks width to (height × 1024/682) automatically.
-     *  - `overflow-hidden` clips the scaled-up inner image.
+     *  - Locks width to (height × LOGO_WIDTH/LOGO_HEIGHT) automatically.
+     *  - overflow-hidden clips the scaled-up inner image.
      *  - Caller controls visible height via `className` (e.g. "h-10").
      */
     <div
@@ -55,6 +69,7 @@ export function SiteLogo({
             "object-contain transition-all duration-300",
             imageClassName,
           )}
+          style={{ filter: filterStyle }}
           priority={priority}
         />
       </div>
