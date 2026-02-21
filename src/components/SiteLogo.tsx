@@ -48,7 +48,7 @@ export function SiteLogo({
         className="absolute inset-0 origin-center"
         style={{ transform: `scale(${zoom})` }}>
         <Image
-          src="/logos/JBC-logo-noBG-primary-color-plain.svg"
+          src="/logos/JBC-logo-colored.svg"
           alt={SITE_NAME}
           fill
           className={cn(
