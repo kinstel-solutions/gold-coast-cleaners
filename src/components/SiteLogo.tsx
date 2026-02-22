@@ -41,8 +41,8 @@ export function SiteLogo({
    *  - 'dark'  → brightness(0)           = turns any colour fully black
    *  - 'light' → brightness(0) invert(1) = black → white
    */
-  const filterStyle =
-    variant === "light" ? "brightness(0) invert(1)" : "brightness(0)";
+  const filterStyle = "";
+  // variant === "light" ? "invert(1)" : "";
 
   return (
     /*
@@ -62,7 +62,7 @@ export function SiteLogo({
         className="absolute inset-0 origin-center"
         style={{ transform: `scale(${zoom})` }}>
         <Image
-          src="/logos/JBC-logo-full-primary.svg"
+          src="/logos/logo-image-based-noBg.png"
           alt={SITE_NAME}
           fill
           className={cn(
