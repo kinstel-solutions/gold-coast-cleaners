@@ -55,7 +55,7 @@ export function Header() {
           <SiteLogo
             className="absolute top-1 left-4 w-28 h-12 sm:w-32 sm:h-16 md:w-48 md:h-20 transition-transform duration-300 group-hover:scale-105"
             priority
-            // zoom={2}
+            variant={showSolidBackground ? "dark" : "light"}
           />
         </Link>
 
@@ -130,13 +130,14 @@ export function Header() {
             </a>
           </Button>
 
-          <Button 
+          <Button
             asChild
             className={cn(
               "rounded-full shadow-lg transition-all hover:-translate-y-0.5",
-              showSolidBackground ? "bg-primary hover:bg-primary/90" : "bg-white text-primary hover:bg-white/90"
-            )}
-          >
+              showSolidBackground
+                ? "bg-primary hover:bg-primary/90"
+                : "bg-white text-primary hover:bg-white/90",
+            )}>
             <Link href="/contact">
               <Calendar className="mr-2 h-4 w-4" />
               Book Now
@@ -164,7 +165,10 @@ export function Header() {
               className="w-[300px] sm:w-[400px]">
               <div className="flex flex-col h-full">
                 <div className="flex items-center gap-2 mb-8">
-                  <SiteLogo className="h-10" />
+                  <SiteLogo
+                    className="h-10"
+                    variant="dark"
+                  />
                 </div>
 
                 <nav className="flex flex-col gap-2">

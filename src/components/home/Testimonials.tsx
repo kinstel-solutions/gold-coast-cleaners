@@ -81,7 +81,7 @@ export function Testimonials() {
               ? "animate-in fade-in slide-in-from-bottom-8 duration-700 opacity-100"
               : "opacity-0"
           }`}>
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent-foreground font-heading">
+          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent font-heading">
             What Our Clients Say
           </h2>
           <p className="text-xl text-muted-foreground/80 leading-relaxed">
