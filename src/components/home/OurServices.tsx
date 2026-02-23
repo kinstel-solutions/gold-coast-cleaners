@@ -42,7 +42,14 @@ export function OurServices() {
         <div
           ref={gridRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-          {SERVICES.map((service, index) => {
+          {SERVICES.filter(service => [
+            "Bond Cleaning",
+            "Carpet Steam Cleaning",
+            "Spring Cleaning",
+            "Pest Control",
+            "Oven & Barbeque Cleaning",
+            "Airbnb Cleaning"
+          ].includes(service.title)).map((service, index) => {
             const image = PlaceHolderImages.find(
               (img) => img.id === service.imagePlaceholder,
             );
