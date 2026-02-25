@@ -62,7 +62,7 @@ export function SiteLogo({
         className="absolute inset-0 origin-center"
         style={{ transform: `scale(${zoom})` }}>
         <Image
-          src="/logos/logo-image-based-noBg.png"
+          src="/logos/JBC-logo-JB-with-full-name-noBG.png"
           alt={SITE_NAME}
           fill
           className={cn(
