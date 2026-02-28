@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense } from 'react'; 
 import { Mail, MapPin, Phone, Clock } from 'lucide-react';
 import { QuoteForm } from '@/components/forms/QuoteForm';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';

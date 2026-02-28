@@ -98,10 +98,18 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
+        <div className="mt-8 border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
           <p>
             &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
           </p>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy" className="hover:text-primary transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-primary transition-colors">
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

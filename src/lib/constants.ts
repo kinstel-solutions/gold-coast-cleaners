@@ -1,8 +1,10 @@
 export const SITE_NAME = "James Bond Cleaning";
-export const SITE_PHONE_NUMBER = "1300 123 456";
-export const SITE_PHONE_HREF = "tel:1300123456";
-export const SITE_EMAIL = "contact@jamesbondcleaning.com.au";
-export const SITE_EMAIL_HREF = "mailto:contact@jamesbondcleaning.com.au";
+export const SITE_PHONE_NUMBER = "07 5620 1066";
+export const SITE_PHONE_HREF = "tel:0756201066";
+export const SITE_EMAIL = "support@jamesbondcleaning.au";
+export const SITE_EMAIL_HREF = "mailto:support@jamesbondcleaning.au";
+export const SITE_WHATSAPP_NUMBER = "+61485878343";
+export const SITE_WHATSAPP_HREF = "https://wa.me/61485878343";
 
 export const NAVIGATION_LINKS = [
   { name: "Home", href: "/" },
