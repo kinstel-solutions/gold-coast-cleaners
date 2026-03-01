@@ -4,7 +4,8 @@ export const SITE_PHONE_HREF = "tel:0756201066";
 export const SITE_EMAIL = "support@jamesbondcleaning.au";
 export const SITE_EMAIL_HREF = "mailto:support@jamesbondcleaning.au";
 export const SITE_WHATSAPP_NUMBER = "+61485878343";
-export const SITE_WHATSAPP_HREF = "https://wa.me/61485878343";
+export const SITE_WHATSAPP_HREF =
+  "https://wa.me/61485878343?text=Hi%2C%20I%20would%20like%20to%20get%20a%20quote%20for%20cleaning%20services.";
 
 export const NAVIGATION_LINKS = [
   { name: "Home", href: "/" },
