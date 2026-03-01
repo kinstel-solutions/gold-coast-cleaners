@@ -30,12 +30,14 @@ export function ServiceArea() {
           ref={headerRef}
           className={`text-center max-w-3xl mx-auto fill-mode-both ${headerInView ? "animate-in fade-in slide-in-from-bottom-8 duration-500 opacity-100" : "opacity-0"}`}>
           <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6 font-heading text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">
-            Proudly Serving Gold Coast & Brisbane
+            Gold Coast & Brisbane Cleaning Service Areas
           </h2>
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Our local team has in-depth knowledge of the Gold Coast and Brisbane
-            areas, ensuring we're always on time and familiar with the standards
-            of local real estate agencies.
+            If you need end of lease bond cleaning, spring cleaning, or pest
+            control, our local teams have in-depth knowledge of the Gold Coast
+            and Brisbane areas. We're stationed locally to ensure we're always
+            on time and familiar with the specific standards of your local real
+            estate agencies.
           </p>
         </div>
 
@@ -44,7 +46,9 @@ export function ServiceArea() {
           <div
             ref={gcContentRef}
             className={`fill-mode-both ${gcContentInView ? "animate-in fade-in slide-in-from-left-8 duration-500 opacity-100" : "opacity-0"}`}>
-            <h3 className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8">Gold Coast</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8">
+              Gold Coast
+            </h3>
             <div className="flex flex-wrap gap-2 sm:gap-3">
               {SERVICE_AREA_GOLD_COAST.map((suburb, index) => (
                 <Badge
@@ -94,7 +98,9 @@ export function ServiceArea() {
           <div
             ref={bneContentRef}
             className={`order-1 lg:order-2 fill-mode-both ${bneContentInView ? "animate-in fade-in slide-in-from-right-8 duration-500 opacity-100" : "opacity-0"}`}>
-            <h3 className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8">Brisbane</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8">
+              Brisbane
+            </h3>
             <div className="flex flex-wrap gap-2 sm:gap-3">
               {SERVICE_AREA_BRISBANE.map((suburb, index) => (
                 <Badge

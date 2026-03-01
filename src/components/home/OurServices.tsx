@@ -31,25 +31,28 @@ export function OurServices() {
           ref={headerRef}
           className={`text-center max-w-3xl mx-auto mb-10 sm:mb-16 transition-opacity duration-500 ${headerInView ? "animate-in fade-in slide-in-from-bottom-8 opacity-100" : "opacity-0"}`}>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight sm:text-5xl mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent pb-2">
-            Our Professional Cleaning Services
+            Expert Bond Cleaning, Spring Cleaning & Pest Control
           </h2>
           <p className="text-base sm:text-xl text-muted-foreground/80 leading-relaxed">
-            We offer a range of specialized cleaning services to meet your
-            needs, all performed to the highest standards.
+            Specializing in comprehensive bond cleaning, detailed spring
+            cleaning, and professional pest control for Gold Coast and Brisbane
+            properties.
           </p>
         </div>
 
         <div
           ref={gridRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-          {SERVICES.filter(service => [
-            "Bond Cleaning",
-            "Carpet Steam Cleaning",
-            "Spring Cleaning",
-            "Pest Control",
-            "Oven & BBQ Cleaning",
-            "AirBnB Cleaning"
-          ].includes(service.title)).map((service, index) => {
+          {SERVICES.filter((service) =>
+            [
+              "Bond Cleaning",
+              "Carpet Steam Cleaning",
+              "Spring Cleaning",
+              "Pest Control",
+              "Oven & BBQ Cleaning",
+              "AirBnB Cleaning",
+            ].includes(service.title),
+          ).map((service, index) => {
             const image = PlaceHolderImages.find(
               (img) => img.id === service.imagePlaceholder,
             );

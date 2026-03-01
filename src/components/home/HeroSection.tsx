@@ -41,15 +41,16 @@ export function HeroSection() {
             <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-500 order-1 text-center lg:text-left mx-auto lg:mx-0">
               <div className="backdrop-blur-sm bg-black/40 border border-white/10 p-4 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl shadow-2xl">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white mb-3 sm:mb-5 drop-shadow-lg leading-tight">
-                  Gold Coast&apos;s Trusted{" "}
+                  Bond Cleaning & Complete Property Care in{" "}
+                  <br className="hidden sm:block" />
                   <span className="bg-[length:200%_auto] animate-shimmer bg-clip-text text-transparent bg-gradient-to-r from-accent via-white to-accent">
-                    Bond Cleaning
-                  </span>{" "}
-                  Experts
+                    Gold Coast & Brisbane
+                  </span>
                 </h1>
                 <p className="text-sm sm:text-base md:text-lg text-white/90 mb-5 sm:mb-6 max-w-2xl leading-relaxed mx-auto lg:mx-0">
-                  Professional End-of-Lease Cleaning That Helps You Secure Your
-                  Full Bond Refund.
+                  Top-rated end of lease bond cleaning, spring cleaning, and
+                  pest control. Helping you secure your full bond refund,
+                  guaranteed.
                 </p>
                 <ul className="space-y-1.5 sm:space-y-3 mb-4 sm:mb-7 text-left">
                   {[
@@ -83,8 +84,6 @@ export function HeroSection() {
                       Call Now
                     </a>
                   </Button>
-
-
                 </div>
               </div>
             </div>
