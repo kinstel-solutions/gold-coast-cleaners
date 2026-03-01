@@ -1,14 +1,13 @@
-'use client';
+"use client";
 
-import { useFormState } from 'react-dom';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { useEffect } from 'react';
-import { CalendarIcon } from 'lucide-react';
-import { format } from 'date-fns';
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useEffect, useActionState } from "react";
+import { CalendarIcon } from "lucide-react";
+import { format } from "date-fns";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -16,57 +15,55 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
-import { submitQuote, type QuoteFormState } from '@/app/actions';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import { cn } from '@/lib/utils';
-import { Calendar } from '../ui/calendar';
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { submitQuote, type QuoteFormState } from "@/app/actions";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { cn } from "@/lib/utils";
+import { Calendar } from "../ui/calendar";
 
 const quoteSchema = z.object({
-  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
-  phone: z.string().min(8, { message: 'Please enter a valid phone number.' }),
-  email: z.string().email({ message: 'Please enter a valid email address.' }),
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  phone: z.string().min(8, { message: "Please enter a valid phone number." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
   propertyType: z.string({
-    required_error: 'Please select a property type.',
+    required_error: "Please select a property type.",
   }),
   bedrooms: z.string({
-    required_error: 'Please select the number of bedrooms.',
+    required_error: "Please select the number of bedrooms.",
   }),
   cleaningDate: z.date({
-    required_error: 'A preferred date is required.',
+    required_error: "A preferred date is required.",
   }),
   message: z.string().optional(),
 });
 
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 
-export function QuoteForm({
-  onSuccess,
-}: {
-  onSuccess?: () => void;
-}) {
+export function QuoteForm({ onSuccess }: { onSuccess?: () => void }) {
   const { toast } = useToast();
   const searchParams = useSearchParams();
-  const initialState: QuoteFormState = { message: '', success: false };
-  const [state, formAction] = useFormState(submitQuote, initialState);
+  const initialState: QuoteFormState = { message: "", success: false };
+  const [state, formAction] = useActionState(submitQuote, initialState);
 
   const form = useForm<z.infer<typeof quoteSchema>>({
     resolver: zodResolver(quoteSchema),
     defaultValues: {
-      name: searchParams.get('name') || '',
-      phone: searchParams.get('phone') || '',
-      email: searchParams.get('email') || '',
-      message: searchParams.get('services') ? `Interested in: ${searchParams.get('services')}` : '',
+      name: searchParams.get("name") || "",
+      phone: searchParams.get("phone") || "",
+      email: searchParams.get("email") || "",
+      message: searchParams.get("services")
+        ? `Interested in: ${searchParams.get("services")}`
+        : "",
     },
   });
 
@@ -74,30 +71,33 @@ export function QuoteForm({
     if (state.message) {
       if (state.success) {
         toast({
-          title: 'Success!',
+          title: "Success!",
           description: state.message,
         });
         form.reset();
         onSuccess?.();
       } else {
         toast({
-          title: 'Error',
+          title: "Error",
           description: state.message,
-          variant: 'destructive',
+          variant: "destructive",
         });
       }
     }
   }, [state, toast, form, onSuccess]);
-  
+
   return (
     <Form {...form}>
       <form
         action={formAction}
         className="space-y-4"
-        onSubmit={form.handleSubmit(
-          () => form.trigger().then(() => formAction(new FormData(form.control._formValues.ref.current)))
-        )}
-      >
+        onSubmit={form.handleSubmit(() =>
+          form
+            .trigger()
+            .then(() =>
+              formAction(new FormData(form.control._formValues.ref.current)),
+            ),
+        )}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField
             control={form.control}
@@ -106,7 +106,10 @@ export function QuoteForm({
               <FormItem>
                 <FormLabel>Full Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="John Doe" {...field} />
+                  <Input
+                    placeholder="John Doe"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -119,7 +122,10 @@ export function QuoteForm({
               <FormItem>
                 <FormLabel>Phone Number</FormLabel>
                 <FormControl>
-                  <Input placeholder="0400 123 456" {...field} />
+                  <Input
+                    placeholder="0400 123 456"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -133,7 +139,10 @@ export function QuoteForm({
             <FormItem>
               <FormLabel>Email Address</FormLabel>
               <FormControl>
-                <Input placeholder="you@example.com" {...field} />
+                <Input
+                  placeholder="you@example.com"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -148,8 +157,7 @@ export function QuoteForm({
                 <FormLabel>Property Type</FormLabel>
                 <Select
                   onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+                  defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Select property type" />
@@ -174,8 +182,7 @@ export function QuoteForm({
                 <FormLabel>Bedrooms</FormLabel>
                 <Select
                   onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+                  defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Select number of bedrooms" />
@@ -204,14 +211,13 @@ export function QuoteForm({
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
-                      variant={'outline'}
+                      variant={"outline"}
                       className={cn(
-                        'w-full pl-3 text-left font-normal',
-                        !field.value && 'text-muted-foreground'
-                      )}
-                    >
+                        "w-full pl-3 text-left font-normal",
+                        !field.value && "text-muted-foreground",
+                      )}>
                       {field.value ? (
-                        format(field.value, 'PPP')
+                        format(field.value, "PPP")
                       ) : (
                         <span>Pick a date</span>
                       )}
@@ -219,12 +225,18 @@ export function QuoteForm({
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="center" side="bottom" avoidCollisions>
+                <PopoverContent
+                  className="w-auto p-0"
+                  align="center"
+                  side="bottom"
+                  avoidCollisions>
                   <Calendar
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}
-                    disabled={(date) => date < new Date() || date < new Date('1900-01-01')}
+                    disabled={(date) =>
+                      date < new Date() || date < new Date("1900-01-01")
+                    }
                     initialFocus
                   />
                 </PopoverContent>
@@ -250,7 +262,10 @@ export function QuoteForm({
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" size="lg">
+        <Button
+          type="submit"
+          className="w-full"
+          size="lg">
           Submit Quote Request
         </Button>
       </form>
