@@ -23,8 +23,11 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+import { useSearchParams } from "next/navigation";
+
 export function DynamicQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
   const { toast } = useToast();
+  const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
 
   const [step, setStep] = useState(1);
@@ -36,6 +39,34 @@ export function DynamicQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   const [contactInfo, setContactInfo] = useState<Partial<ContactInfo>>({});
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const name = searchParams.get("name");
+    const email = searchParams.get("email");
+    const phone = searchParams.get("phone");
+    const services = searchParams.get("services");
+
+    if (name || email || phone) {
+      setContactInfo((prev) => ({
+        ...prev,
+        ...(name && { name }),
+        ...(email && { email }),
+        ...(phone && { phone }),
+      }));
+    }
+
+    if (services) {
+      const { SERVICE_ID_MAP } = require("@/config/services");
+      const urlIds = services.split(",");
+      const internalIds = urlIds
+        .map((id) => SERVICE_ID_MAP[id])
+        .filter(Boolean) as ServiceId[];
+
+      if (internalIds.length > 0) {
+        setServiceIds(internalIds);
+      }
+    }
+  }, [searchParams]);
 
   const priceRange =
     serviceIds.length > 0

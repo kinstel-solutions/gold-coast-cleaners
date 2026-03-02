@@ -383,3 +383,9 @@ export const SERVICE_CONFIGS: Record<ServiceId, ServiceConfig> = {
     ],
   },
 };
+
+export const SERVICE_ID_MAP: Record<string, ServiceId> = {
+  bond: "BOND_CLEANING",
+  carpet: "CARPET_STEAM_CLEANING",
+  others: "SPRING_CLEANING", // Default 'others' to Spring Cleaning as a placeholder
+};
