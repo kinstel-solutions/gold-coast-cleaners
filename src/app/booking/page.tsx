@@ -1,9 +1,9 @@
-import { Suspense } from 'react';
-import { QuoteForm } from '@/components/forms/QuoteForm';
+import { Suspense } from "react";
+import { DynamicQuoteForm } from "@/components/forms/quote/DynamicQuoteForm";
 
 export const metadata = {
-  title: 'Book Your Clean | James Bond Cleaning',
-  description: 'Finalize your booking request with James Bond Cleaning.',
+  title: "Book Your Clean | James Bond Cleaning",
+  description: "Finalize your booking request with James Bond Cleaning.",
 };
 
 export default function BookingPage() {
@@ -14,12 +14,13 @@ export default function BookingPage() {
           Complete Your Booking
         </h1>
         <p className="text-lg text-muted-foreground">
-          Please provide a few more details so we can give you an accurate quote and confirm your slot.
+          Please provide a few more details so we can give you an accurate quote
+          and confirm your slot.
         </p>
       </div>
       <div className="bg-card border rounded-xl shadow-sm p-6 md:p-8">
         <Suspense fallback={<div>Loading form...</div>}>
-          <QuoteForm />
+          <DynamicQuoteForm />
         </Suspense>
       </div>
     </div>

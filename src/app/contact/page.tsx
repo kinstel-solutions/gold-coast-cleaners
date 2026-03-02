@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
-import { QuoteForm } from "@/components/forms/QuoteForm";
+import { DynamicQuoteForm } from "@/components/forms/quote/DynamicQuoteForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   SITE_EMAIL,
@@ -45,7 +45,7 @@ export default function ContactPage() {
                   <div className="mt-2 h-0.5 w-12 bg-primary/20 group-hover:w-32 transition-all duration-500" />
                 </div>
                 <Suspense fallback={<div>Loading form...</div>}>
-                  <QuoteForm />
+                  <DynamicQuoteForm />
                 </Suspense>
               </CardContent>
             </Card>
