@@ -17,8 +17,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import { submitPartialLead } from "@/app/actions";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name is required." }),
@@ -54,6 +56,7 @@ export function HeroQuoteForm({
 }: HeroQuoteFormProps = {}) {
   const router = useRouter();
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -66,34 +69,60 @@ export function HeroQuoteForm({
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // In a real app, you might send this to an API route first to log the partial lead.
-    // We will hook this up to Resend soon.
-
-    if (redirectOnSubmit) {
-      toast({
-        title: "Quote Request Started",
-        description: "Redirecting you to complete your booking...",
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    try {
+      // Send the partial lead to Resend
+      const response = await submitPartialLead({
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        services: values.services,
       });
 
-      const params = new URLSearchParams();
-      params.set("name", values.name);
-      params.set("email", values.email);
-      params.set("phone", values.phone);
-      params.set("services", values.services.join(",")); // Comma separated for URL
+      if (!response.success) {
+        toast({
+          title: "Error",
+          description:
+            "There was an issue sending your details. Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
 
-      router.push(`/booking?${params.toString()}`);
-    } else {
+      if (redirectOnSubmit) {
+        toast({
+          title: "Quote Request Started",
+          description: "Redirecting you to complete your booking...",
+        });
+
+        const params = new URLSearchParams();
+        params.set("name", values.name);
+        params.set("email", values.email);
+        params.set("phone", values.phone);
+        params.set("services", values.services.join(",")); // Comma separated for URL
+
+        router.push(`/booking?${params.toString()}`);
+      } else {
+        toast({
+          title: "Message Sent",
+          description:
+            "We've received your request and will contact you shortly.",
+        });
+        form.reset();
+      }
+
+      if (onSuccess) {
+        onSuccess();
+      }
+    } catch (error) {
       toast({
-        title: "Quote Request Received",
-        description:
-          "We've received your request and will contact you shortly.",
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
       });
-      form.reset();
-    }
-
-    if (onSuccess) {
-      onSuccess();
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
