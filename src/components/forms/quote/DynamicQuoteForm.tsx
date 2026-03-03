@@ -21,6 +21,7 @@ import {
   Loader2,
   PhoneCall,
   ShieldCheck,
+  CheckCircle2,
 } from "lucide-react";
 
 import { useSearchParams } from "next/navigation";
@@ -31,6 +32,7 @@ export function DynamicQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
   const [isPending, startTransition] = useTransition();
 
   const [step, setStep] = useState(1);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [serviceIds, setServiceIds] = useState<ServiceId[]>([]);
   // Store data per service: { BOND_CLEANING: { bedrooms: 2 }, SPRING_CLEANING: { kitchens: 1 } }
   const [serviceData, setServiceData] = useState<
@@ -103,7 +105,8 @@ export function DynamicQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
   const handleNext = () => {
     if (currentStepKey === "service" && serviceIds.length === 0) {
       toast({
-        title: "Please select at least one service",
+        title: "Selection Required",
+        description: "Please select at least one service to continue.",
         variant: "destructive",
       });
       return;
@@ -136,7 +139,8 @@ export function DynamicQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
       }
       if (!valid) {
         toast({
-          title: "Please fill out all required fields.",
+          title: "Missing Information",
+          description: "Please fill out all required fields to proceed.",
           variant: "destructive",
         });
         return;
@@ -152,6 +156,14 @@ export function DynamicQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
     if (step > 1) {
       setStep((s) => s - 1);
     }
+  };
+
+  const handleReset = () => {
+    setStep(1);
+    setIsSubmitted(false);
+    setServiceIds([]);
+    setServiceData({});
+    setSelectedAddOns([]);
   };
 
   const handleSubmit = () => {
@@ -189,11 +201,15 @@ export function DynamicQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
     startTransition(async () => {
       const res = await submitQuote(payload);
       if (res.success) {
-        toast({ title: "Success", description: res.message });
+        toast({
+          title: "🎉 Request Sent Successfully!",
+          description: "Our team will be in touch shortly.",
+        });
+        setIsSubmitted(true);
         onSuccess?.();
       } else {
         toast({
-          title: "Error",
+          title: "Submission Error",
           description: res.message,
           variant: "destructive",
         });
@@ -209,6 +225,37 @@ export function DynamicQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
       }
     });
   };
+
+  if (isSubmitted) {
+    return (
+      <div className="w-full flex flex-col min-h-[500px] items-center justify-center py-12 px-4 text-center animate-in zoom-in duration-500">
+        <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 shadow-xl shadow-green-100/50">
+          <CheckCircle2 className="w-10 h-10" />
+        </div>
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
+          Request Received!
+        </h2>
+        <p className="text-lg text-slate-600 max-w-lg mb-8 leading-relaxed">
+          Thank you,{" "}
+          <span className="font-semibold text-slate-900">
+            {contactInfo.name}
+          </span>
+          . We've received your detailed booking request. Our team is reviewing
+          your requirements and will contact you via email or phone shortly to
+          confirm your booking.
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto">
+          <Button
+            size="lg"
+            onClick={handleReset}
+            className="w-full text-base font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all">
+            Submit Another Request
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col min-h-[500px] relative pb-20 sm:pb-0">

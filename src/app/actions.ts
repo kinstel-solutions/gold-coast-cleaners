@@ -12,6 +12,8 @@ const ADMIN_EMAILS = process.env.ADMIN_EMAILS
   ? process.env.ADMIN_EMAILS.split(",")
   : ["support@jamesbondcleaning.au", "kinstelsolutions@gmail.com"];
 const FROM_EMAIL = process.env.FROM_EMAIL || "support@jamesbondcleaning.au";
+const SENDER_NAME = "James Bond Cleaning";
+const FROM_STRING = `${SENDER_NAME} <${FROM_EMAIL}>`;
 
 export type ActionResponse = {
   message: string;
@@ -31,32 +33,56 @@ export async function submitPartialLead(payload: {
 
     // 1. Admin Notification
     await resend.emails.send({
-      from: FROM_EMAIL,
+      from: FROM_STRING,
       to: ADMIN_EMAILS,
       replyTo: email,
-      subject: `New Partial Lead: ${name}`,
+      subject: `New Quick Inquiry from ${name}`,
       html: `
-        <h2>New Inquiry from Website</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Interested Services:</strong> ${servicesStr}</p>
+        <div style="display:none;font-size:1px;color:#333333;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
+          New inquiry from ${name} for ${servicesStr}. Contact: ${phone}
+        </div>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+          <h2 style="color: #0c4a6e; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">New Inquiry from Website</h2>
+          <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <tr>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><strong>Name:</strong></td>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">${name}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><strong>Email:</strong></td>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">${email}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><strong>Phone:</strong></td>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">${phone}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><strong>Interested Services:</strong></td>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">${servicesStr}</td>
+            </tr>
+          </table>
+        </div>
       `,
     });
 
     // 2. Customer Auto-Responder
     await resend.emails.send({
-      from: FROM_EMAIL,
+      from: FROM_STRING,
       to: [email],
       subject: "Thank you for reaching out to James Bond Cleaning!",
       html: `
-        <h3>Hi ${name},</h3>
-        <p>Thank you for requesting a quote from James Bond Cleaning!</p>
-        <p>We have received your basic details and are reviewing your inquiry. If you haven't already, you can complete your full booking on our website to get a more accurate estimate.</p>
-        <p>We will be in touch with you shortly.</p>
-        <br/>
-        <p>Best regards,</p>
-        <p><strong>James Bond Cleaning Team</strong></p>
+        <div style="display:none;font-size:1px;color:#333333;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
+          We have received your inquiry. Our team is reviewing it and will contact you shortly.
+        </div>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6;">
+          <h3 style="color: #0c4a6e;">Hi ${name},</h3>
+          <p>Thank you for requesting a quote from James Bond Cleaning!</p>
+          <p>We have received your basic details and are reviewing your inquiry. If you haven't already, you can complete your full customized booking on our website to get an accurate estimate instantly.</p>
+          <p>Our team will be in touch with you shortly to assist.</p>
+          <br/>
+          <p>Best regards,</p>
+          <p><strong style="color: #0c4a6e;">James Bond Cleaning Team</strong></p>
+        </div>
       `,
     });
 
@@ -141,36 +167,49 @@ export async function submitQuote(
         : "None";
 
     const emailHtml = `
-      <h2>New Detailed Booking Request</h2>
-      
-      <h3>Customer Details</h3>
-      <p><strong>Name:</strong> ${bookingDetails.name}</p>
-      <p><strong>Email:</strong> ${bookingDetails.email}</p>
-      <p><strong>Phone:</strong> ${bookingDetails.phone}</p>
-      <p><strong>Property Type:</strong> ${bookingDetails.propertyType || "N/A"}</p>
-      <p><strong>Preferred Date:</strong> ${
-        bookingDetails.cleaningDate
-          ? new Date(bookingDetails.cleaningDate).toDateString()
-          : "N/A"
-      }</p>
-      <p><strong>Message:</strong> ${bookingDetails.message || "N/A"}</p>
-      
-      <h3>Estimated Price</h3>
-      <p><strong style="font-size: 1.2rem; color: #2563eb;">${serverPriceStr}</strong></p>
-      
-      <h3>Selected Services</h3>
-      ${servicesDesc}
-      
-      <h3>Selected Add-Ons</h3>
-      ${addOnsDesc}
+      <div style="display:none;font-size:1px;color:#333333;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
+        New detailed booking request from ${bookingDetails.name} for ${bookingDetails.propertyType || "cleaning"}. Estimated: ${serverPriceStr}.
+      </div>
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6;">
+        <h2 style="color: #0ea5e9; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">New Detailed Booking Request</h2>
+        
+        <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+          <h3 style="margin-top: 0; color: #0f172a;">Customer Details</h3>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr><td style="padding: 5px 0;"><strong>Name:</strong></td><td>${bookingDetails.name}</td></tr>
+            <tr><td style="padding: 5px 0;"><strong>Email:</strong></td><td>${bookingDetails.email}</td></tr>
+            <tr><td style="padding: 5px 0;"><strong>Phone:</strong></td><td>${bookingDetails.phone}</td></tr>
+            <tr><td style="padding: 5px 0;"><strong>Property Type:</strong></td><td>${bookingDetails.propertyType || "N/A"}</td></tr>
+            <tr><td style="padding: 5px 0;"><strong>Preferred Date:</strong></td><td>${
+              bookingDetails.cleaningDate
+                ? new Date(bookingDetails.cleaningDate).toDateString()
+                : "N/A"
+            }</td></tr>
+            <tr><td style="padding: 5px 0;"><strong>Message:</strong></td><td>${bookingDetails.message || "N/A"}</td></tr>
+          </table>
+        </div>
+        
+        <h3 style="color: #0f172a;">Estimated Price</h3>
+        <p><strong style="font-size: 1.4rem; color: #2563eb; background-color: #eff6ff; padding: 5px 10px; border-radius: 4px;">${serverPriceStr}</strong></p>
+        
+        <h3 style="color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Selected Services</h3>
+        <div style="margin-bottom: 20px;">
+          ${servicesDesc}
+        </div>
+        
+        <h3 style="color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Selected Add-Ons</h3>
+        <div style="margin-bottom: 20px;">
+          ${addOnsDesc}
+        </div>
+      </div>
     `;
 
     // Final Email to Admins
     await resend.emails.send({
-      from: FROM_EMAIL,
+      from: FROM_STRING,
       to: ADMIN_EMAILS,
       replyTo: bookingDetails.email,
-      subject: `New Booking Request from ${bookingDetails.name} - ${serverPriceStr}`,
+      subject: `New Booking Request: ${bookingDetails.name} - ${bookingDetails.propertyType || "Gold Coast"}`,
       html: emailHtml,
     });
 
