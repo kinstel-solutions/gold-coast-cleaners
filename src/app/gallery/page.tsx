@@ -64,7 +64,7 @@ export default async function GalleryPage() {
                         alt="Watermark"
                         width={150}
                         height={50}
-                        className="w-auto h-8 sm:h-10 drop-shadow-md brightness-0 invert opacity-90"
+                        className="w-auto h-8 sm:h-10 drop-shadow-md opacity-90"
                       />
                     </div>
                   </div>
