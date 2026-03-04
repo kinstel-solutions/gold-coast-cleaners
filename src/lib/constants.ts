@@ -206,6 +206,6 @@ export const SERVICE_AREA_BRISBANE = [
 ];
 
 export const OPENING_HOURS = {
-  days: "Monday - Saturday",
-  hours: "8:00 AM - 6:00 PM",
+  days: "Monday - Sunday",
+  hours: "6:00 AM - 7:00 PM",
 };

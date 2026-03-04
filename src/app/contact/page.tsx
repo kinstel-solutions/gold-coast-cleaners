@@ -20,10 +20,10 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="pt-32 pb-16 sm:pt-40 sm:pb-24 bg-secondary/30 relative overflow-hidden min-h-screen">
+    <div className="pt-32 sm:pt-40 bg-secondary/30 relative overflow-hidden min-h-screen flex flex-col">
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-primary/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-accent/5 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2" />
-      <div className="container relative z-10">
+      <div className="container relative z-10 flex-grow pb-16 sm:pb-24">
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl text-primary">
             Get in Touch
@@ -107,6 +107,21 @@ export default function ContactPage() {
             </Card>
           </div>
         </div>
+      </div>
+
+      {/* Full-width Map Section */}
+      <div className="w-full h-[350px] sm:h-[450px] relative mt-12 bg-slate-50 border-t border-slate-200">
+        <iframe
+          title="James Bond Cleaning Location on Google Maps"
+          src="https://maps.google.com/maps?q=18%20Cypress%20Avenue,%20Surfers%20Paradise%204217&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="absolute inset-0 w-full h-full grayscale-[0.1] hover:grayscale-0 transition-all duration-700"
+        />
       </div>
     </div>
   );
