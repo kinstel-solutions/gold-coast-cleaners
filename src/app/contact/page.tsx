@@ -8,6 +8,7 @@ import {
   SITE_PHONE_HREF,
   SITE_PHONE_NUMBER,
   OPENING_HOURS,
+  SITE_ADDRESS,
 } from "@/lib/constants";
 import type { Metadata } from "next";
 
@@ -74,10 +75,10 @@ export default function ContactPage() {
                       {SITE_EMAIL}
                     </span>
                   </a>
-                  <div className="flex items-center gap-3">
-                    <MapPin className="h-5 w-5 text-primary" />
+                  <div className="flex items-start gap-3">
+                    <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                     <span className="text-muted-foreground">
-                      Servicing the entire Gold Coast
+                      {SITE_ADDRESS}
                     </span>
                   </div>
                 </div>

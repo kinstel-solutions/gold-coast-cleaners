@@ -6,6 +6,12 @@ export const SITE_EMAIL_HREF = "mailto:support@jamesbondcleaning.au";
 export const SITE_WHATSAPP_NUMBER = "+61485878343";
 export const SITE_WHATSAPP_HREF =
   "https://wa.me/61485878343?text=Hi%2C%20I%20would%20like%20to%20get%20a%20quote%20for%20cleaning%20services.";
+export const SITE_ADDRESS =
+  "Unit 501, 18 Cypress Avenue, Surfers Paradise 4217";
+export const SITE_INSTAGRAM_HREF =
+  "https://www.instagram.com/jamesbondcleaning?igsh=cW9nNXk2OWZ1NzF5";
+export const SITE_FACEBOOK_HREF =
+  "https://www.facebook.com/share/1FtNkUCPgM/?mibextid=wwXIfr";
 
 export const NAVIGATION_LINKS = [
   { name: "Home", href: "/" },
