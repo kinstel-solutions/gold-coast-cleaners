@@ -58,7 +58,7 @@ export default async function GalleryPage() {
                       className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
-                    <div className="absolute bottom-0 left-0 w-full bg-slate-900/60 backdrop-blur-sm py-2 px-4 flex justify-center items-center pointer-events-none z-10 transition-opacity duration-300 group-hover:bg-slate-900/80">
+                    <div className="absolute bottom-0 left-0 w-full bg-slate-900/0 backdrop-blur-sm py-2 px-4 flex justify-center items-center pointer-events-none z-10 transition-opacity duration-300 group-hover:bg-slate-900/40">
                       <Image
                         src="/logos/JBC-logo-JB-with-full-name-noBG.png"
                         alt="Watermark"
