@@ -1,0 +1,28 @@
+name: Mirror to Client Repo
+
+on:
+  push:
+    branches:
+      - main  # Only triggers when you push to main
+
+jobs:
+  mirror-git:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
+
+      - name: Push to Client
+        run: |
+          # 1. Setup Git identity
+          git config --global user.email "bot@kinstel-solutions.com"
+          git config --global user.name "Kinstel Sync Bot"
+          
+          # 2. Add the client repository as a "remote"
+          # Using the token for authentication
+          git remote add client https://x-access-token:${{ secrets.CLIENT_REPO_TOKEN }}@github.com/jbcpl0601/gold-coast-cleaners.git
+          
+          # 3. Force push your main branch to the client's main branch
+          git push client main --force
