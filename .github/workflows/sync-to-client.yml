@@ -12,23 +12,21 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 
+          fetch-depth: 0
+          # This line is crucial: it prevents the default token from interfering
+          persist-credentials: false 
 
-      - name: Verify Secret and Sync
+      - name: Sync to Client
         env:
           SYNC_TOKEN: ${{ secrets.CLIENT_REPO_TOKEN }}
         run: |
-          # Diagnostic: Check if secret exists (won't print the actual token)
-          if [ -z "$SYNC_TOKEN" ]; then
-            echo "::error::Secret CLIENT_REPO_TOKEN is missing or empty in GitHub Settings!"
-            exit 1
-          fi
-
+          # 1. Setup Git identity
           git config --global user.email "bot@kinstel-solutions.com"
           git config --global user.name "Kinstel Sync Bot"
           
-          # Use the 'oauth2' username format which is more stable for Fine-grained PATs
-          git remote add client https://oauth2:$SYNC_TOKEN@github.com/jbcpl0601/gold-coast-cleaners.git
+          # 2. Add the client repository with the token embedded correctly
+          # We use the token as the 'username' for HTTPS auth
+          git remote add client https://x-access-token:$SYNC_TOKEN@github.com/jbcpl0601/gold-coast-cleaners.git
           
-          # Force push to ensure it overwrites the client's empty repo
+          # 3. Force push to the client's main branch
           git push client main --force
