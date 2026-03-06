@@ -6,6 +6,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { FloatingCallButton } from "@/components/layout/FloatingCallButton";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-heading" });
@@ -80,6 +82,8 @@ export default function RootLayout({
         <Footer />
         <FloatingCallButton />
         <Toaster />
+        <Analytics />
+        <GoogleAnalytics gaId="G-FLZ538CG8H" />
       </body>
     </html>
   );
