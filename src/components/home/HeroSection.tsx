@@ -55,6 +55,7 @@ export function HeroSection() {
                 <ul className="space-y-1.5 sm:space-y-3 mb-4 sm:mb-7 text-left">
                   {[
                     "100% Bond Back Focused",
+                    "7 days job guarantee",
                     "Experienced Local Cleaners",
                     "REIQ Approved Checklist",
                     "Flexible Booking",
