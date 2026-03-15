@@ -14,6 +14,7 @@ import {
   SITE_INSTAGRAM_HREF,
   SITE_FACEBOOK_HREF,
 } from "@/lib/constants";
+import { AgencyCredit } from "@/components/AgencyCredit";
 
 export function Footer() {
   const serviceLinks = SERVICES.map((service) => ({
@@ -137,6 +138,7 @@ export function Footer() {
               className="hover:text-primary transition-colors">
               Terms of Service
             </Link>
+            <AgencyCredit className="text-muted-foreground/60" />
           </div>
         </div>
       </div>
