@@ -67,76 +67,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Generate JSON-LD Schema for Local Business
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CleaningService",
-    name: "James Bond Cleaning",
-    image:
-      "https://jamesbondcleaning.au/logos/JBC-logo-JB-with-full-name-noBG.png",
-    "@id": "https://jamesbondcleaning.au/#organization",
-    url: "https://jamesbondcleaning.au",
-    telephone: "07 5620 1066",
-    email: "support@jamesbondcleaning.au",
-    priceRange: "$$",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Unit 501, 18 Cypress Avenue",
-      addressLocality: "Surfers Paradise",
-      addressRegion: "QLD",
-      postalCode: "4217",
-      addressCountry: "AU",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: -27.9996,
-      longitude: 153.4295,
-    },
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday",
-        ],
-        opens: "06:00",
-        closes: "19:00",
-      },
-    ],
-    areaServed: [
-      {
-        "@type": "City",
-        name: "Gold Coast",
-      },
-      {
-        "@type": "City",
-        name: "Brisbane",
-      },
-    ],
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Cleaning Services",
-      itemListElement: SERVICES.map((service, index) => ({
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: service.title,
-          description: service.description,
-          url: `https://jamesbondcleaning.au${service.href}`,
-        },
-      })),
-    },
-    sameAs: [
-      "https://www.facebook.com/share/1FtNkUCPgM/?mibextid=wwXIfr",
-      "https://www.instagram.com/jamesbondcleaning?igsh=cW9nNXk2OWZ1NzF5",
-    ],
-  };
-
   return (
     <html
       lang="en"
@@ -148,11 +78,6 @@ export default function RootLayout({
           outfit.variable,
           playfair.variable,
         )}>
-        {/* Inject JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
