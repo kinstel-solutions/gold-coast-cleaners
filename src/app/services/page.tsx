@@ -38,7 +38,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Our Services",
   description:
-    "Professional cleaning and maintenance services on the Gold Coast including bond cleaning, carpet cleaning, pest control, painting, and more.",
+    "Professional cleaning and maintenance services on the Gold Coast including bond cleaning, carpet cleaning, pest control service/flea treatment, painting, and more.",
 };
 
 const bondStandOuts = [
@@ -330,7 +330,7 @@ export default function ServicesPage() {
         <div className="relative h-full flex items-center justify-center text-center">
           <div className="container text-primary-foreground pt-16">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              Expert Bond Cleaning, Spring Cleaning & Pest Control
+              Expert Bond Cleaning, Spring Cleaning & Pest Control Service/Flea Treatment
             </h1>
             <p className="mt-4 mx-auto max-w-3xl text-lg md:text-xl text-primary-foreground/90">
               Explore our comprehensive range of cleaning and maintenance
@@ -365,8 +365,8 @@ export default function ServicesPage() {
         },
         {
           id: "pest-control",
-          title: "Pest Control",
-          desc: "Protect your home from unwanted guests with our professional pest control services. We offer safe, reliable treatments to keep your property bug-free.",
+          title: "Pest Control Service/Flea Treatment",
+          desc: "Protect your home from unwanted guests with our professional pest control service/flea treatment. We offer safe, reliable treatments to keep your property bug-free.",
           features: pestControlFeatures,
           img: getImage("pest-control"),
         },

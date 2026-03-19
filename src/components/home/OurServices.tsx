@@ -31,11 +31,11 @@ export function OurServices() {
           ref={headerRef}
           className={`text-center max-w-3xl mx-auto mb-10 sm:mb-16 transition-opacity duration-500 ${headerInView ? "animate-in fade-in slide-in-from-bottom-8 opacity-100" : "opacity-0"}`}>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight sm:text-5xl mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent pb-2">
-            Expert Bond Cleaning, Spring Cleaning & Pest Control
+            Expert Bond Cleaning, Spring Cleaning & Pest Control Service/Flea Treatment
           </h2>
           <p className="text-base sm:text-xl text-muted-foreground/80 leading-relaxed">
             Specializing in comprehensive bond cleaning, detailed spring
-            cleaning, and professional pest control for Gold Coast and Brisbane
+            cleaning, and professional pest control service/flea treatment for Gold Coast and Brisbane
             properties.
           </p>
         </div>
@@ -48,7 +48,7 @@ export function OurServices() {
               "Bond Cleaning",
               "Carpet Steam Cleaning",
               "Spring Cleaning",
-              "Pest Control",
+              "Pest Control Service/Flea Treatment",
               "Oven & BBQ Cleaning",
               "AirBnB Cleaning",
             ].includes(service.title),

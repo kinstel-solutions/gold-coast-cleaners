@@ -152,7 +152,7 @@ export const COMMON_FIELDS = {
 export const COMMON_ADDONS = {
   pest_control: {
     id: "pest_control",
-    label: "Pest Control",
+    label: "Pest Control Service/Flea Treatment",
     description: "Professional pest management.",
   },
   carpet_cleaning: {
@@ -273,7 +273,7 @@ export const SERVICE_CONFIGS: Record<ServiceId, ServiceConfig> = {
   },
   PEST_CONTROL: {
     id: "PEST_CONTROL",
-    name: "Pest Control",
+    name: "Pest Control Service/Flea Treatment",
     supportsInstantPricing: true,
     allowedAddOns: [],
     fields: [COMMON_FIELDS.bedrooms], // To estimate size

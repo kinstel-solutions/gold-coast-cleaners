@@ -13,8 +13,10 @@ import { SERVICES } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Bond Cleaning Gold Coast & Brisbane | James Bond Cleaning",
   description:
-    "Top-rated end of lease bond cleaning, spring cleaning, and pest control across the Gold Coast and Brisbane. 100% bond back guarantee.",
+    "Top-rated end of lease bond cleaning, spring cleaning, and pest control service/flea treatment across the Gold Coast and Brisbane. 100% bond back guarantee.",
 };
+
+import { StatsSection } from "@/components/home/StatsSection";
 
 export default function Home() {
   const jsonLd = {
@@ -99,6 +101,7 @@ export default function Home() {
       <ServiceArea />
       <HowItWorks />
       <Testimonials />
+      <StatsSection />
       <CtaStrip />
     </>
   );

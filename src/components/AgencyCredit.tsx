@@ -15,10 +15,9 @@ export function AgencyCredit({ className = "", ...props }: AgencyCreditProps) {
       rel="noopener noreferrer"
       aria-label="Designed and developed by Kinstel Solutions"
       title="Kinstel Solutions"
-      className={`hover:text-gray-500 transition-colors ${className}`}
+      className={`transition-colors ${className}`}
       {...props}>
-      Designed & Developed by <span className="text-[#daa520]">K</span>
-      {"instel Solutions"}
+      Designed & Developed by Kinstel Solutions
     </a>
   );
 }

@@ -124,10 +124,14 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <p>
-            &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
-          </p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col md:flex-row gap-2 md:gap-4 text-center md:text-left">
+            <p>
+              Copyright &copy; {new Date().getFullYear()} jamesbondcleaningptyltd. All Rights Reserved.
+            </p>
+            <span className="hidden md:inline text-muted-foreground/40">|</span>
+            <p>ABN: 94694137874</p>
+          </div>
+          <div className="flex flex-col md:flex-row items-center gap-4">
             <Link
               href="/privacy"
               className="hover:text-primary transition-colors">
@@ -138,7 +142,7 @@ export function Footer() {
               className="hover:text-primary transition-colors">
               Terms of Service
             </Link>
-            <AgencyCredit className="text-muted-foreground/60" />
+            <AgencyCredit className="text-card select-none cursor-default hover:text-card pointer-events-none" />
           </div>
         </div>
       </div>

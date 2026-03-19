@@ -5,10 +5,7 @@ import { HeroQuoteForm } from "../forms/HeroQuoteForm";
 
 export function HeroSection() {
   return (
-    // h-[100dvh] = hard cap at true viewport height (dvh accounts for mobile browser chrome).
-    // overflow-hidden ensures nothing bleeds outside.
-    // flex flex-col so the spacer + content stack vertically within the fixed height.
-    <section className="relative min-h-[100dvh] lg:h-[100dvh] w-full overflow-auto lg:overflow-hidden flex flex-col">
+    <section className="relative min-h-[100dvh] w-full flex flex-col overflow-hidden">
       {/* Background video */}
       <video
         autoPlay
@@ -29,7 +26,7 @@ export function HeroSection() {
       <div className="relative h-20 sm:h-24 shrink-0" />
 
       {/* Content — flex-1 fills the remaining viewport below the spacer */}
-      <div className="relative flex-1 flex items-center py-6 lg:py-0">
+      <div className="relative flex-1 flex items-center py-8 lg:py-12">
         <div className="container px-4 md:px-6 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center w-full">
             {/* Right Column: Quote Form — hidden on mobile, side-by-side on lg+ */}
@@ -49,7 +46,7 @@ export function HeroSection() {
                 </h1>
                 <p className="text-sm sm:text-base md:text-lg text-white/90 mb-5 sm:mb-6 max-w-2xl leading-relaxed mx-auto lg:mx-0">
                   Top-rated end of lease bond cleaning, spring cleaning, and
-                  pest control. Helping you secure your full bond refund,
+                  pest control service/flea treatment. Helping you secure your full bond refund,
                   guaranteed.
                 </p>
                 <ul className="space-y-1.5 sm:space-y-3 mb-4 sm:mb-7 text-left">

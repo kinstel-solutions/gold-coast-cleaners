@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Sparkles, Waves, Sun } from "lucide-react";
+import { Sparkles, Bug, Leaf, Waves } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -38,9 +38,10 @@ const formSchema = z.object({
 });
 
 const serviceOptions = [
-  { id: "bond", label: "Bond Clean", icon: Sparkles },
-  { id: "carpet", label: "Carpet Clean", icon: Waves },
-  { id: "others", label: "Others", icon: Sun },
+  { id: "bond", label: "Bond Cleaning", icon: Sparkles },
+  { id: "carpet", label: "Carpet Cleaning", icon: Waves },
+  { id: "pest", label: "Pest Control", icon: Bug },
+  { id: "spring", label: "Spring Cleaning", icon: Leaf },
 ];
 
 interface HeroQuoteFormProps {
@@ -51,7 +52,7 @@ interface HeroQuoteFormProps {
 
 export function HeroQuoteForm({
   redirectOnSubmit = true,
-  title = "Get a Free Quote",
+  title = "Request a Quote",
   onSuccess,
 }: HeroQuoteFormProps = {}) {
   const router = useRouter();
@@ -190,7 +191,7 @@ export function HeroQuoteForm({
         </div>
       ) : (
         <>
-          <h3 className="text-xl font-bold text-slate-900 mb-4">{title}</h3>
+          <h3 className="text-2xl font-bold text-center text-slate-900 mb-6">{title}</h3>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
@@ -212,40 +213,38 @@ export function HeroQuoteForm({
                 )}
               />
 
-              <div className="grid grid-cols-2 gap-3">
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input
-                          placeholder="Email Address"
-                          className="bg-white/50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:bg-white/80 focus:border-primary"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input
-                          placeholder="Phone Number"
-                          className="bg-white/50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:bg-white/80 focus:border-primary"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        placeholder="Email Address"
+                        className="bg-white/50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:bg-white/80 focus:border-primary"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        placeholder="Phone Number"
+                        className="bg-white/50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:bg-white/80 focus:border-primary"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={form.control}
@@ -253,7 +252,7 @@ export function HeroQuoteForm({
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="sr-only">Services</FormLabel>
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-4 gap-2">
                       {serviceOptions.map((service) => {
                         const isSelected = field.value?.includes(service.id);
                         return (
@@ -266,18 +265,18 @@ export function HeroQuoteForm({
                               field.onChange(newValue);
                             }}
                             className={cn(
-                              "cursor-pointer rounded-lg border p-3 flex flex-col items-center justify-center gap-2 text-center transition-all duration-200 h-24",
+                              "cursor-pointer rounded-lg border p-1 sm:p-2 flex flex-col items-center justify-center gap-1.5 sm:gap-2 text-center transition-all duration-200 h-20 sm:h-24",
                               isSelected
                                 ? "border-primary bg-primary/10 text-primary shadow-sm"
                                 : "border-slate-200 hover:border-primary/50 bg-white/50 text-slate-700 hover:bg-white/80",
                             )}>
                             <service.icon
                               className={cn(
-                                "h-6 w-6",
+                                "h-4 w-4 sm:h-5 sm:w-5 shrink-0",
                                 isSelected ? "text-primary" : "text-slate-500",
                               )}
                             />
-                            <span className="text-xs font-semibold leading-tight">
+                            <span className="text-[10px] sm:text-xs font-semibold leading-[1.2] w-full px-0.5 break-words">
                               {service.label}
                             </span>
                           </div>

@@ -115,7 +115,7 @@ export default function TermsOfServicePage() {
         <ul className="list-disc pl-6 space-y-2 mb-6">
           <li>No refund claims will be considered after Service completion and our departure from the property.</li>
           <li>Before engaging a third party for service, the Customer must agree to a re-clean or inspection for unsatisfactory work.</li>
-          <li>The Bond Cleaning guarantee is specific to Bond Cleaning services only. Carpet cleaning and pest control are warranted by the respective contractors.</li>
+          <li>The Bond Cleaning guarantee is specific to Bond Cleaning services only. Carpet cleaning and pest control service/flea treatment are warranted by the respective contractors.</li>
           <li>While utmost care is taken during the Service, accidental breakage might occur for older items susceptible to wear and tear. Damage beyond this needs to be reported in writing with relevant photos.</li>
           <li>Claims against Us will not cover incidental costs, including rent or bond loss resulting from the service.</li>
           <li>Damage claims require proof from either party indicating that the damage occurred during the service. Responsibility lies with the contractor in case of fault. Both parties agree to share details and grant property access for the claim process, including quotes for replacement/repair.</li>

@@ -45,7 +45,7 @@ export const SERVICES = [
     imagePlaceholder: "spring-cleaning",
   },
   {
-    title: "Pest Control",
+    title: "Pest Control Service/Flea Treatment",
     description:
       "Professional pest management services to keep your home safe and bug-free.",
     href: "/services#pest-control",
