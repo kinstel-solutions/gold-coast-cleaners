@@ -6,7 +6,7 @@ import { SiteLogo } from "@/components/SiteLogo";
 import { Menu, Phone, Calendar, ChevronDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -124,7 +124,7 @@ export function Header() {
           <Button
             asChild
             className={cn(
-              "hidden xl:flex items-center gap-3 rounded-full bg-primary text-white border-2 border-primary hover:bg-slate-900 hover:border-slate-900 hover:text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 pl-1 pr-6 py-1 h-12 sm:h-14 cursor-pointer",
+              "hidden xl:flex items-center gap-3 rounded-full bg-primary text-white hover:bg-slate-900 hover:text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 pl-1 pr-6 py-1 h-11 sm:h-12 cursor-pointer",
             )}>
             <a
               href={SITE_PHONE_HREF}
@@ -143,13 +143,13 @@ export function Header() {
               <Button
                 variant="outline"
                 className={cn(
-                  "group rounded-full border-2 border-slate-900 bg-white text-slate-900 shadow-md transition-all duration-300 hover:bg-primary hover:border-primary hover:text-white hover:-translate-y-0.5",
-                  "pl-1 pr-5 sm:pr-6 py-1 h-12 sm:h-14 cursor-pointer flex items-center gap-3",
+                  "group rounded-full border-none bg-white text-slate-900 shadow-md transition-all duration-300 hover:bg-primary hover:text-white hover:-translate-y-0.5",
+                  "pl-0.5 pr-3 sm:pr-6 py-1 h-9 sm:h-11 lg:h-12 cursor-pointer flex items-center gap-1.5 sm:gap-3",
                 )}>
-                <div className="bg-white rounded-full p-2.5 flex items-center justify-center border border-slate-200 group-hover:border-transparent group-hover:shadow-sm shrink-0 transition-all">
-                  <Calendar className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+                <div className="bg-white rounded-full p-1.5 sm:p-2.5 flex items-center justify-center border border-slate-200 group-hover:border-transparent group-hover:shadow-sm shrink-0 transition-all">
+                  <Calendar className="h-3.5 w-3.5 sm:h-5 sm:w-5 text-primary" />
                 </div>
-                <span className="font-bold text-sm sm:text-base whitespace-nowrap">Get a Quote</span>
+                <span className="font-bold text-[10px] sm:text-sm lg:text-base whitespace-nowrap">Get a Quote</span>
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px] md:max-w-[550px] p-0 border-none bg-transparent shadow-none">
@@ -178,6 +178,10 @@ export function Header() {
             <SheetContent
               side="right"
               className="w-[300px] sm:w-[400px]">
+              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+              <SheetDescription className="sr-only">
+                Quick access to our services, about us, and contact information.
+              </SheetDescription>
               <div className="flex flex-col h-full overflow-y-auto">
                 <div className="flex items-center gap-2 mb-8">
                   <SiteLogo
