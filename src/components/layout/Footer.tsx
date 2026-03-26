@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import { SiteLogo } from "@/components/SiteLogo";
 import { Instagram, Facebook, Mail, MapPin, Phone } from "lucide-react";
 import {
@@ -41,6 +42,19 @@ export function Footer() {
               Your trusted partner for reliable and professional cleaning
               services on the Gold Coast.
             </p>
+            <div className="mt-2">
+              <a
+                href="//www.dmca.com/Protection/Status.aspx?ID=50756c15-b210-4f2d-a364-a581edd70b3e"
+                title="DMCA.com Protection Status"
+                className="dmca-badge"
+                target="_blank"
+                rel="noopener noreferrer">
+                <img
+                  src="https://images.dmca.com/Badges/DMCA_logo-bw200w.png?ID=50756c15-b210-4f2d-a364-a581edd70b3e"
+                  alt="DMCA.com Protection Status"
+                />
+              </a>
+            </div>
           </div>
 
           <div>
@@ -146,6 +160,7 @@ export function Footer() {
           </div>
         </div>
       </div>
+      <Script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js" strategy="afterInteractive" />
     </footer>
   );
 }
