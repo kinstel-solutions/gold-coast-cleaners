@@ -1,4 +1,4 @@
-import { SITE_NAME, SITE_EMAIL } from "@/lib/constants";
+import { SITE_NAME, SITE_EMAIL_PRIMARY } from "@/lib/constants";
 
 export const metadata = {
   title: `Terms of Service | ${SITE_NAME}`,
@@ -121,7 +121,7 @@ export default function TermsOfServicePage() {
           <li>Damage claims require proof from either party indicating that the damage occurred during the service. Responsibility lies with the contractor in case of fault. Both parties agree to share details and grant property access for the claim process, including quotes for replacement/repair.</li>
           <li>If fridge/freezer cleaning is required, the Customer must empty and defrost it beforehand. Additional charges may apply.</li>
           <li>Any incidents involving accidents, breakage, property damage, or theft due to a cleaner’s action must be reported within 24 hours of the Service’s completion.</li>
-          <li>To file a complaint, please send a written message to <a href={`mailto:${SITE_EMAIL}`} className="text-primary hover:underline">{SITE_EMAIL}</a>.</li>
+          <li>To file a complaint, please send a written message to <a href={`mailto:${SITE_EMAIL_PRIMARY}`} className="text-primary hover:underline">{SITE_EMAIL_PRIMARY}</a>.</li>
           <li>Complaints need to be lodged within 24 hours of the completed Service. Provide your name, contact number, complaint date, a detailed explanation including relevant documents and notes, and your desired resolution.</li>
           <li>Failure to follow our complaints procedure empowers us to dismiss or take no further action at our discretion.</li>
         </ul>

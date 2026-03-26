@@ -6,8 +6,10 @@ import {
   NAVIGATION_LINKS,
   OPENING_HOURS,
   SERVICES,
-  SITE_EMAIL,
-  SITE_EMAIL_HREF,
+  SITE_EMAIL_PRIMARY,
+  SITE_EMAIL_PRIMARY_HREF,
+  SITE_EMAIL_SECONDARY,
+  SITE_EMAIL_SECONDARY_HREF,
   SITE_NAME,
   SITE_PHONE_HREF,
   SITE_PHONE_NUMBER,
@@ -95,20 +97,33 @@ export function Footer() {
                 <span>{SITE_ADDRESS}</span>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-primary" />
+                <div className="relative flex h-5 w-5 items-center justify-center">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-40"></span>
+                  <Phone className="relative h-5 w-5 text-primary drop-shadow-md" />
+                </div>
                 <a
                   href={SITE_PHONE_HREF}
-                  className="hover:text-primary transition-colors">
+                  className="text-lg font-bold text-primary hover:text-primary/80 transition-all drop-shadow-sm hover:scale-105">
                   {SITE_PHONE_NUMBER}
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-primary" />
-                <a
-                  href={SITE_EMAIL_HREF}
-                  className="hover:text-primary transition-colors">
-                  {SITE_EMAIL}
-                </a>
+              <li className="flex flex-col gap-2 pt-1">
+                <div className="flex items-center gap-2">
+                  <Mail className="h-4 w-4 text-primary shrink-0" />
+                  <a
+                    href={SITE_EMAIL_PRIMARY_HREF}
+                    className="hover:text-primary transition-colors text-sm break-all">
+                    {SITE_EMAIL_PRIMARY}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="h-4 w-4 text-primary shrink-0 opacity-0" />
+                  <a
+                    href={SITE_EMAIL_SECONDARY_HREF}
+                    className="hover:text-primary transition-colors text-sm break-all">
+                    {SITE_EMAIL_SECONDARY}
+                  </a>
+                </div>
               </li>
               <li className="pt-2">
                 <p className="font-medium">{OPENING_HOURS.days}</p>
