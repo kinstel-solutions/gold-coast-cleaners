@@ -37,7 +37,7 @@ export function Footer() {
               className="flex items-center gap-2 font-bold text-xl">
               <SiteLogo
                 priority
-                className="h-24 w-auto"
+                className="w-48 sm:w-56 lg:w-64 max-w-full h-auto"
               />
             </Link>
             <p className="text-muted-foreground">
