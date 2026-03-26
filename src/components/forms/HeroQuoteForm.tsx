@@ -39,7 +39,7 @@ const formSchema = z.object({
 
 const serviceOptions = [
   { id: "bond", label: "Bond Cleaning", icon: Sparkles },
-  { id: "carpet", label: "Carpet Cleaning", icon: Waves },
+  { id: "carpet", label: "Carpet Steam Cleaning", icon: Waves },
   { id: "pest", label: "Pest Control", icon: Bug },
   { id: "spring", label: "Spring Cleaning", icon: Leaf },
 ];

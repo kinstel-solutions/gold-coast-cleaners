@@ -40,7 +40,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Our Services",
   description:
-    "Professional cleaning and maintenance services on the Gold Coast including bond cleaning, carpet cleaning, pest control service/flea treatment, painting, and more.",
+    "Professional cleaning and maintenance services on the Gold Coast including bond cleaning, carpet steam cleaning, pest control service/flea treatment, painting, and more.",
 };
 
 const bondStandOuts = [
@@ -332,7 +332,8 @@ export default function ServicesPage() {
         <div className="relative h-full flex items-center justify-center text-center">
           <div className="container text-primary-foreground pt-16">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              Expert Bond Cleaning, Spring Cleaning & Pest Control Service/Flea Treatment
+              Expert Bond Cleaning, Spring Cleaning & Pest Control Service/Flea
+              Treatment
             </h1>
             <p className="mt-4 mx-auto max-w-3xl text-lg md:text-xl text-primary-foreground/90">
               Explore our comprehensive range of cleaning and maintenance
@@ -478,13 +479,19 @@ export default function ServicesPage() {
                       ))}
                     </div>
                     <div className="mt-8 flex justify-center lg:justify-start">
-                      <Button asChild size="lg" className="rounded-full shadow-lg group">
-                        <Link href={
-                          service.id === "bond-cleaning" || service.id === "carpet-cleaning"
-                            ? "#promo-banner"
-                            : `/contact?service=${encodeURIComponent(service.title)}`
-                        }>
-                          {service.id === "bond-cleaning" || service.id === "carpet-cleaning"
+                      <Button
+                        asChild
+                        size="lg"
+                        className="rounded-full shadow-lg group">
+                        <Link
+                          href={
+                            service.id === "bond-cleaning" ||
+                            service.id === "carpet-cleaning"
+                              ? "#promo-banner"
+                              : `/contact?service=${encodeURIComponent(service.title)}`
+                          }>
+                          {service.id === "bond-cleaning" ||
+                          service.id === "carpet-cleaning"
                             ? "View 25% Off Promo"
                             : `Get a Quote for ${service.title}`}
                           <CheckCircle className="ml-2 h-4 w-4 transform group-hover:scale-110 transition-transform" />
@@ -521,7 +528,9 @@ export default function ServicesPage() {
         );
       })}
 
-      <section id="promo-banner" className="py-16 sm:py-24 bg-primary/5 scroll-mt-24">
+      <section
+        id="promo-banner"
+        className="py-16 sm:py-24 bg-primary/5 scroll-mt-24">
         <div className="container">
           <div className="bg-white/95 backdrop-blur-md rounded-3xl overflow-hidden shadow-2xl border border-primary/20 max-w-5xl mx-auto flex flex-col md:flex-row transform transition-all duration-300 hover:shadow-primary/30">
             {/* Left side Image */}
@@ -535,12 +544,12 @@ export default function ServicesPage() {
                 />
               )}
             </div>
-            
+
             {/* Right side Content */}
             <div className="w-full md:w-1/2 bg-primary/5 px-4 py-12 flex flex-col items-center justify-center text-center relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10" />
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/10 rounded-full blur-xl -ml-10 -mb-10" />
-              
+
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-400/10 text-slate-800 text-sm font-bold shadow-sm mb-6 relative z-10 border border-yellow-400/20">
                 <div className="flex">
                   <Star className="h-4 w-4 fill-current text-yellow-500" />
@@ -551,31 +560,41 @@ export default function ServicesPage() {
                 </div>
                 #1 Rated Bond Cleaners on the Gold Coast
               </div>
-              
+
               <div className="flex flex-col items-center text-primary relative z-10">
-                <span className="text-xl sm:text-2xl font-bold tracking-[0.2em] uppercase text-primary/80">Save Up To</span>
+                <span className="text-xl sm:text-2xl font-bold tracking-[0.2em] uppercase text-primary/80">
+                  Save Up To
+                </span>
                 <div className="flex items-baseline gap-1 mt-1">
-                  <span className="text-8xl md:text-9xl font-black leading-none tracking-tighter drop-shadow-sm">25</span>
+                  <span className="text-8xl md:text-9xl font-black leading-none tracking-tighter drop-shadow-sm">
+                    20
+                  </span>
                   <span className="text-6xl font-bold">%</span>
-                  <span className="text-3xl md:text-4xl font-bold tracking-tight ml-2">OFF</span>
+                  <span className="text-3xl md:text-4xl font-bold tracking-tight ml-2">
+                    OFF
+                  </span>
                 </div>
               </div>
 
               <p className="text-lg md:text-xl text-slate-700 font-medium mt-4 max-w-sm relative z-10 px-4 leading-relaxed">
-                On <span className="text-primary font-bold">Bond & Carpet</span> cleaning packages.
+                On{" "}
+                <span className="text-primary font-bold">
+                  Bond & Carpet Steam
+                </span>{" "}
+                cleaning packages.
               </p>
-              
+
               <div className="bg-white/80 backdrop-blur text-primary border border-primary/20 px-5 py-2 rounded-full mt-6 mb-8 text-sm md:text-base font-semibold tracking-wide shadow-sm relative z-10">
                 ⏳ Hurry! Offer valid for 30 days & first 20 customers only.
               </div>
-              
-              <Button 
-                asChild 
+
+              <Button
+                asChild
                 size="lg"
                 className="w-full max-w-sm rounded-full bg-primary hover:bg-primary/90 text-white py-7 text-lg font-bold tracking-wider shadow-xl transition-all hover:-translate-y-1">
                 <Link href="/booking">Claim 25% Off Now</Link>
               </Button>
-              
+
               <p className="text-sm text-slate-600 mt-5 relative z-10 flex items-center gap-2 font-medium">
                 <CheckCircle className="h-4 w-4 text-green-500" />
                 100% Bond Back Guarantee

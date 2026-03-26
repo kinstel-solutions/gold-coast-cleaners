@@ -157,7 +157,7 @@ export const COMMON_ADDONS = {
   },
   carpet_cleaning: {
     id: "carpet_cleaning",
-    label: "Carpet Cleaning",
+    label: "Carpet Steam Cleaning",
     description: "Deep steam cleaning per room.",
   },
   oven_cleaning: {

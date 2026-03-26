@@ -42,7 +42,7 @@ export function HeroSection() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
                   </span>
-                  🎉Special Offer: Upto 20% Off | Bond & Carpet Cleaning!
+                  🎉Special Offer: Upto 20% Off | Bond & Carpet Steam Cleaning!
                 </div>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white mb-3 sm:mb-5 drop-shadow-lg leading-tight">
                   Bond Cleaning & Complete Property Care in{" "}
