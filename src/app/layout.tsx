@@ -9,6 +9,7 @@ import { FloatingCallButton } from "@/components/layout/FloatingCallButton";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SERVICES } from "@/lib/constants";
+import { PromoPopup } from "@/components/home/PromoPopup";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-heading" });
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     "Bond Cleaning Gold Coast",
     "End of Lease Cleaning Gold Coast",
     "Exit Cleaning Gold Coast",
-    "Carpet Cleaning Gold Coast",
+    "Carpet Steam Cleaning Gold Coast",
     "Deep Cleaning Gold Coast",
   ],
   openGraph: {
@@ -87,6 +88,7 @@ export default function RootLayout({
         <main className="flex-grow">{children}</main>
         <Footer />
         <FloatingCallButton />
+        <PromoPopup />
         <Toaster />
         <Analytics />
         <GoogleAnalytics gaId="G-FLZ538CG8H" />

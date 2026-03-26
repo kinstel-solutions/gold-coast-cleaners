@@ -96,7 +96,7 @@ export default function TermsOfServicePage() {
         <h2 className="text-2xl font-semibold mt-8 mb-4">7. Bond Return Guarantee</h2>
         <ul className="list-disc pl-6 space-y-2 mb-6">
           <li>Our Bond Cleaning Guarantee ensures free rectification of any cleaning issue identified by the Managing Agent (in accordance with the Residential Tenancies and Rooming Act 2008) within the scope of these Terms and Conditions and our Inclusions and Exclusions.</li>
-          <li>This guarantee is specific to the Service you’ve engaged us for. For example, if you’ve hired us for a Bond Clean but not carpet cleaning, the Bond Cleaning Guarantee only pertains to the bond clean, excluding carpets.</li>
+          <li>This guarantee is specific to the Service you’ve engaged us for. For example, if you’ve hired us for a Bond Clean but not carpet steam cleaning, the Bond Cleaning Guarantee only pertains to the bond clean, excluding carpets.</li>
           <li>Some items, such as ceilings, garage walls, or deep stains requiring third-party professionals, are not covered by our Bond Cleaning Guarantee.</li>
           <li>A re-clean is applicable upon receipt of a Managing Agent’s report detailing cleaning issues along with images.</li>
           <li>A notice period of 24-72 working hours from the Managing Agent’s report reception is required to reschedule a re-clean, if necessary.</li>
@@ -106,7 +106,7 @@ export default function TermsOfServicePage() {
           <li>All re-cleans are subject to these Terms and Conditions.</li>
           <li>The Bond Return Guarantee only applies if you contact us within 7 calendar days of the completed Service.</li>
           <li>The Bond Return Guarantee does not cover natural events over time, such as settled dust, watermarks, or open windows.</li>
-          <li>The Bond Return Guarantee becomes void if the property is not vacant after our cleaners’ service, except for authorized carpet cleaning or with written agreement from us.</li>
+          <li>The Bond Return Guarantee becomes void if the property is not vacant after our cleaners’ service, except for authorized carpet steam cleaning or with written agreement from us.</li>
           <li>For the Bond Return Guarantee to apply, the bond clean must occur after furniture removal, with no occupants, and all necessary maintenance completed.</li>
           <li>We are not liable for Acts of God like floods, storms, fires, earthquakes, or cyclones.</li>
         </ul>
@@ -115,7 +115,7 @@ export default function TermsOfServicePage() {
         <ul className="list-disc pl-6 space-y-2 mb-6">
           <li>No refund claims will be considered after Service completion and our departure from the property.</li>
           <li>Before engaging a third party for service, the Customer must agree to a re-clean or inspection for unsatisfactory work.</li>
-          <li>The Bond Cleaning guarantee is specific to Bond Cleaning services only. Carpet cleaning and pest control service/flea treatment are warranted by the respective contractors.</li>
+          <li>The Bond Cleaning guarantee is specific to Bond Cleaning services only. Carpet steam cleaning and pest control service/flea treatment are warranted by the respective contractors.</li>
           <li>While utmost care is taken during the Service, accidental breakage might occur for older items susceptible to wear and tear. Damage beyond this needs to be reported in writing with relevant photos.</li>
           <li>Claims against Us will not cover incidental costs, including rent or bond loss resulting from the service.</li>
           <li>Damage claims require proof from either party indicating that the damage occurred during the service. Responsibility lies with the contractor in case of fault. Both parties agree to share details and grant property access for the claim process, including quotes for replacement/repair.</li>
