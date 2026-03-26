@@ -132,7 +132,7 @@ export function Header() {
               <div className="bg-white rounded-full p-2.5 flex items-center justify-center shadow-sm shrink-0">
                 <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-primary fill-current" />
               </div>
-              <span className="font-bold text-base whitespace-nowrap">{SITE_PHONE_NUMBER}</span>
+              <span className="font-bold text-lg sm:text-xl whitespace-nowrap">{SITE_PHONE_NUMBER}</span>
             </a>
           </Button>
 

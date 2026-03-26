@@ -111,7 +111,7 @@ export function OurServices() {
             asChild
             size="lg"
             className="rounded-full px-6 py-5 sm:px-10 sm:py-7 text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 bg-primary hover:bg-primary/90">
-            <Link href="/contact">View All Services & Get a Quote</Link>
+            <Link href="/services">View All Services</Link>
           </Button>
         </div>
       </div>

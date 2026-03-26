@@ -1,4 +1,4 @@
-import { SITE_NAME, SITE_EMAIL } from "@/lib/constants";
+import { SITE_NAME, SITE_EMAIL_PRIMARY } from "@/lib/constants";
 
 export const metadata = {
   title: `Privacy Policy | ${SITE_NAME}`,
@@ -50,7 +50,7 @@ export default function PrivacyPolicyPage() {
         <h2 className="text-2xl font-semibold mt-8 mb-4">4. Contact Information</h2>
         <p>
           To ask questions or comment about this privacy policy and our privacy practices, contact us at:{" "}
-          <a href={`mailto:${SITE_EMAIL}`} className="text-primary hover:underline">{SITE_EMAIL}</a>.
+          <a href={`mailto:${SITE_EMAIL_PRIMARY}`} className="text-primary hover:underline">{SITE_EMAIL_PRIMARY}</a>.
         </p>
       </div>
     </div>

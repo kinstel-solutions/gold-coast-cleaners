@@ -3,8 +3,10 @@ import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import { HeroQuoteForm } from "@/components/forms/HeroQuoteForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  SITE_EMAIL,
-  SITE_EMAIL_HREF,
+  SITE_EMAIL_PRIMARY,
+  SITE_EMAIL_PRIMARY_HREF,
+  SITE_EMAIL_SECONDARY,
+  SITE_EMAIL_SECONDARY_HREF,
   SITE_PHONE_HREF,
   SITE_PHONE_NUMBER,
   OPENING_HOURS,
@@ -67,14 +69,24 @@ export default function ContactPage() {
                       {SITE_PHONE_NUMBER}
                     </span>
                   </a>
-                  <a
-                    href={SITE_EMAIL_HREF}
-                    className="flex items-center gap-3 group">
-                    <Mail className="h-5 w-5 text-primary" />
-                    <span className="text-muted-foreground group-hover:text-primary transition-colors">
-                      {SITE_EMAIL}
-                    </span>
-                  </a>
+                  <div className="flex flex-col gap-2">
+                    <a
+                      href={SITE_EMAIL_PRIMARY_HREF}
+                      className="flex items-center gap-3 group">
+                      <Mail className="h-5 w-5 text-primary" />
+                      <span className="text-muted-foreground group-hover:text-primary transition-colors break-all">
+                        {SITE_EMAIL_PRIMARY}
+                      </span>
+                    </a>
+                    <a
+                      href={SITE_EMAIL_SECONDARY_HREF}
+                      className="flex items-center gap-3 group">
+                      <Mail className="h-5 w-5 text-transparent" />
+                      <span className="text-muted-foreground group-hover:text-primary transition-colors break-all">
+                        {SITE_EMAIL_SECONDARY}
+                      </span>
+                    </a>
+                  </div>
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                     <span className="text-muted-foreground">
