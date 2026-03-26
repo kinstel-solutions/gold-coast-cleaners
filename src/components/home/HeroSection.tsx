@@ -42,7 +42,7 @@ export function HeroSection() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
                   </span>
-                  🎉 Special Offer: 25% Off Bond & Carpet Cleaning!
+                  🎉Special Offer: Upto 20% Off | Bond & Carpet Cleaning!
                 </div>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white mb-3 sm:mb-5 drop-shadow-lg leading-tight">
                   Bond Cleaning & Complete Property Care in{" "}
@@ -53,8 +53,8 @@ export function HeroSection() {
                 </h1>
                 <p className="text-sm sm:text-base md:text-lg text-white/90 mb-5 sm:mb-6 max-w-2xl leading-relaxed mx-auto lg:mx-0">
                   Top-rated end of lease bond cleaning, spring cleaning, and
-                  pest control service/flea treatment. Helping you secure your full bond refund,
-                  guaranteed.
+                  pest control service/flea treatment. Helping you secure your
+                  full bond refund, guaranteed.
                 </p>
                 <ul className="space-y-1.5 sm:space-y-3 mb-4 sm:mb-7 text-left">
                   {[
