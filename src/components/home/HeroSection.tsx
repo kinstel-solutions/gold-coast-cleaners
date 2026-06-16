@@ -26,11 +26,11 @@ export function HeroSection() {
       <div className="relative h-20 sm:h-24 shrink-0" />
 
       {/* Content — flex-1 fills the remaining viewport below the spacer */}
-      <div className="relative flex-1 flex items-center py-8 lg:py-12">
+      <div className="relative flex-1 flex items-center py-8 lg:pt-24 lg:pb-12">
         <div className="container px-4 md:px-6 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center w-full">
             {/* Right Column: Quote Form */}
-            <div className="w-full max-w-md mx-auto lg:ml-auto animate-in fade-in slide-in-from-right-8 duration-500 delay-75 order-2">
+            <div className="w-full max-w-md mx-auto lg:ml-0 animate-in fade-in slide-in-from-right-8 duration-500 delay-75 order-2">
               <HeroQuoteForm />
             </div>
 

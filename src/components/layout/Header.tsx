@@ -45,6 +45,7 @@ export function Header() {
   }, []);
 
   const isHome = pathname === "/";
+  const isLandingPage = pathname?.startsWith("/lp/");
   // Use scroll state if on home, otherwise always show solid background
   const showSolidBackground = isScrolled || !isHome;
 
@@ -70,54 +71,56 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1 bg-white/40 backdrop-blur-sm px-4 py-2 rounded-full border border-slate-200/50 shadow-sm">
-          {NAVIGATION_LINKS.map((link) => {
-            if (link.name === "Services") {
+        {!isLandingPage && (
+          <nav className="hidden lg:flex items-center gap-1 bg-white/40 backdrop-blur-sm px-4 py-2 rounded-full border border-slate-200/50 shadow-sm">
+            {NAVIGATION_LINKS.map((link) => {
+              if (link.name === "Services") {
+                return (
+                  <DropdownMenu key={link.name}>
+                    <DropdownMenuTrigger asChild>
+                      <button
+                        className={cn(
+                          "relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-1 outline-none",
+                          "text-slate-600 hover:text-primary hover:bg-slate-50",
+                        )}>
+                        {link.name}
+                        <ChevronDown className="h-3 w-3" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                      align="center"
+                      className="w-56 p-2 rounded-xl border border-primary/10 bg-white/95 backdrop-blur-md shadow-xl">
+                      {SERVICES.map((service) => (
+                        <DropdownMenuItem
+                          key={service.href}
+                          asChild>
+                          <Link
+                            href={service.href}
+                            className="w-full cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-primary/5 hover:text-primary focus:bg-primary/5 focus:text-primary">
+                            {service.title}
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                );
+              }
               return (
-                <DropdownMenu key={link.name}>
-                  <DropdownMenuTrigger asChild>
-                    <button
-                      className={cn(
-                        "relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-1 outline-none",
-                        "text-slate-600 hover:text-primary hover:bg-slate-50",
-                      )}>
-                      {link.name}
-                      <ChevronDown className="h-3 w-3" />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    align="center"
-                    className="w-56 p-2 rounded-xl border border-primary/10 bg-white/95 backdrop-blur-md shadow-xl">
-                    {SERVICES.map((service) => (
-                      <DropdownMenuItem
-                        key={service.href}
-                        asChild>
-                        <Link
-                          href={service.href}
-                          className="w-full cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-primary/5 hover:text-primary focus:bg-primary/5 focus:text-primary">
-                          {service.title}
-                        </Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
+                    pathname === link.href
+                      ? "bg-primary/10 text-primary font-semibold"
+                      : "text-slate-600 hover:text-primary hover:bg-slate-50",
+                  )}>
+                  {link.name}
+                </Link>
               );
-            }
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
-                  pathname === link.href
-                    ? "bg-primary/10 text-primary font-semibold"
-                    : "text-slate-600 hover:text-primary hover:bg-slate-50",
-                )}>
-                {link.name}
-              </Link>
-            );
-          })}
-        </nav>
+            })}
+          </nav>
+        )}
 
         {/* Action Buttons */}
         <div className="flex items-center gap-3">
@@ -136,6 +139,23 @@ export function Header() {
             </a>
           </Button>
 
+          {isLandingPage && (
+            <Button
+              asChild
+              className={cn(
+                "flex sm:hidden items-center gap-2 rounded-full bg-primary text-white hover:bg-slate-900 hover:text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 pl-1 pr-4 py-1 h-9 cursor-pointer",
+              )}>
+              <a
+                href={SITE_PHONE_HREF}
+                aria-label="Call Us">
+                <div className="bg-white rounded-full p-1.5 flex items-center justify-center shadow-sm shrink-0">
+                  <Phone className="h-3.5 w-3.5 text-primary fill-current" />
+                </div>
+                <span className="font-bold text-sm whitespace-nowrap">{SITE_PHONE_NUMBER}</span>
+              </a>
+            </Button>
+          )}
+
           <Dialog
             open={isBookModalOpen}
             onOpenChange={setIsBookModalOpen}>
@@ -144,7 +164,8 @@ export function Header() {
                 variant="outline"
                 className={cn(
                   "group rounded-full border-none bg-white text-slate-900 shadow-md transition-all duration-300 hover:bg-primary hover:text-white hover:-translate-y-0.5",
-                  "pl-0.5 pr-3 sm:pr-6 py-1 h-9 sm:h-11 lg:h-12 cursor-pointer flex items-center gap-1.5 sm:gap-3",
+                  "pl-0.5 pr-3 sm:pr-6 py-1 h-9 sm:h-11 lg:h-12 cursor-pointer items-center gap-1.5 sm:gap-3",
+                  isLandingPage ? "hidden sm:flex" : "flex"
                 )}>
                 <div className="bg-white rounded-full p-1.5 sm:p-2.5 flex items-center justify-center border border-slate-200 group-hover:border-transparent group-hover:shadow-sm shrink-0 transition-all">
                   <Calendar className="h-3.5 w-3.5 sm:h-5 sm:w-5 text-primary" />
@@ -163,101 +184,103 @@ export function Header() {
           </Dialog>
 
           {/* Mobile Menu */}
-          <Sheet
-            open={sheetOpen}
-            onOpenChange={setSheetOpen}>
-            <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className={cn("lg:hidden ml-1 text-slate-900")}>
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle navigation menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent
-              side="right"
-              className="w-[300px] sm:w-[400px]">
-              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-              <SheetDescription className="sr-only">
-                Quick access to our services, about us, and contact information.
-              </SheetDescription>
-              <div className="flex flex-col h-full overflow-y-auto">
-                <div className="flex items-center gap-2 mb-8">
-                  <SiteLogo
-                    className="h-10"
-                    variant="dark"
-                  />
-                </div>
+          {!isLandingPage && (
+            <Sheet
+              open={sheetOpen}
+              onOpenChange={setSheetOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={cn("lg:hidden ml-1 text-slate-900")}>
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle navigation menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent
+                side="right"
+                className="w-[300px] sm:w-[400px]">
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                <SheetDescription className="sr-only">
+                  Quick access to our services, about us, and contact information.
+                </SheetDescription>
+                <div className="flex flex-col h-full overflow-y-auto">
+                  <div className="flex items-center gap-2 mb-8">
+                    <SiteLogo
+                      className="h-10"
+                      variant="dark"
+                    />
+                  </div>
 
-                <nav className="flex flex-col gap-2">
-                  {NAVIGATION_LINKS.map((link) => {
-                    if (link.name === "Services") {
+                  <nav className="flex flex-col gap-2">
+                    {NAVIGATION_LINKS.map((link) => {
+                      if (link.name === "Services") {
+                        return (
+                          <div
+                            key={link.name}
+                            className="flex flex-col gap-1">
+                            <div className="p-4 rounded-xl text-slate-900 font-semibold mb-1">
+                              {link.name}
+                            </div>
+                            <div className="pl-6 flex flex-col gap-1 border-l-2 border-primary/10 ml-6">
+                              {SERVICES.map((service) => (
+                                <Link
+                                  key={service.href}
+                                  href={service.href}
+                                  onClick={() => setSheetOpen(false)}
+                                  className={cn(
+                                    "p-3 rounded-lg transition-all text-sm font-medium",
+                                    pathname === service.href
+                                      ? "bg-primary/5 text-primary"
+                                      : "text-slate-600 hover:text-primary hover:bg-slate-50",
+                                  )}>
+                                  {service.title}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      }
                       return (
-                        <div
-                          key={link.name}
-                          className="flex flex-col gap-1">
-                          <div className="p-4 rounded-xl text-slate-900 font-semibold mb-1">
-                            {link.name}
-                          </div>
-                          <div className="pl-6 flex flex-col gap-1 border-l-2 border-primary/10 ml-6">
-                            {SERVICES.map((service) => (
-                              <Link
-                                key={service.href}
-                                href={service.href}
-                                onClick={() => setSheetOpen(false)}
-                                className={cn(
-                                  "p-3 rounded-lg transition-all text-sm font-medium",
-                                  pathname === service.href
-                                    ? "bg-primary/5 text-primary"
-                                    : "text-slate-600 hover:text-primary hover:bg-slate-50",
-                                )}>
-                                {service.title}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          onClick={() => setSheetOpen(false)}
+                          className={cn(
+                            "flex items-center justify-between p-4 rounded-xl transition-all",
+                            pathname === link.href
+                              ? "bg-primary/5 text-primary font-semibold border border-primary/20"
+                              : "text-slate-600 hover:bg-slate-50 hover:text-primary",
+                          )}>
+                          {link.name}
+                          {pathname === link.href && (
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          )}
+                        </Link>
                       );
-                    }
-                    return (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        onClick={() => setSheetOpen(false)}
-                        className={cn(
-                          "flex items-center justify-between p-4 rounded-xl transition-all",
-                          pathname === link.href
-                            ? "bg-primary/5 text-primary font-semibold border border-primary/20"
-                            : "text-slate-600 hover:bg-slate-50 hover:text-primary",
-                        )}>
-                        {link.name}
-                        {pathname === link.href && (
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                        )}
-                      </Link>
-                    );
-                  })}
-                </nav>
+                    })}
+                  </nav>
 
-                <div className="mt-auto space-y-4">
-                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-                    <p className="text-sm text-muted-foreground mb-3 text-center">
-                      Ready to get your bond back?
-                    </p>
-                    <Button
-                      asChild
-                      className="w-full gap-2 shadow-sm"
-                      size="lg">
-                      <a href={SITE_PHONE_HREF}>
-                        <Phone className="h-5 w-5 fill-current" />
-                        Call {SITE_PHONE_NUMBER}
-                      </a>
-                    </Button>
+                  <div className="mt-auto space-y-4">
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                      <p className="text-sm text-muted-foreground mb-3 text-center">
+                        Ready to get your bond back?
+                      </p>
+                      <Button
+                        asChild
+                        className="w-full gap-2 shadow-sm"
+                        size="lg">
+                        <a href={SITE_PHONE_HREF}>
+                          <Phone className="h-5 w-5 fill-current" />
+                          Call {SITE_PHONE_NUMBER}
+                        </a>
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SheetContent>
-          </Sheet>
+              </SheetContent>
+            </Sheet>
+          )}
         </div>
       </div>
     </header>
