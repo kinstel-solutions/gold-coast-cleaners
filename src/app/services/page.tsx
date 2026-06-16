@@ -328,18 +328,16 @@ export default function ServicesPage() {
 
   return (
     <>
-      <section className="relative h-[40vh] min-h-[300px] w-full bg-primary/90">
-        <div className="relative h-full flex items-center justify-center text-center">
-          <div className="container text-primary-foreground pt-16">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              Expert Bond Cleaning, Spring Cleaning & Pest Control Service/Flea
-              Treatment
-            </h1>
-            <p className="mt-4 mx-auto max-w-3xl text-lg md:text-xl text-primary-foreground/90">
-              Explore our comprehensive range of cleaning and maintenance
-              solutions tailored for the Gold Coast & Brisbane.
-            </p>
-          </div>
+      <section className="relative w-full bg-primary/90 pt-32 pb-16 sm:pt-40 sm:pb-24 text-center">
+        <div className="container text-primary-foreground">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            Expert Bond Cleaning, Spring Cleaning & Pest Control Service/Flea
+            Treatment
+          </h1>
+          <p className="mt-4 mx-auto max-w-3xl text-base sm:text-lg md:text-xl text-primary-foreground/90">
+            Explore our comprehensive range of cleaning and maintenance
+            solutions tailored for the Gold Coast & Brisbane.
+          </p>
         </div>
       </section>
 
@@ -482,7 +480,7 @@ export default function ServicesPage() {
                       <Button
                         asChild
                         size="lg"
-                        className="rounded-full shadow-lg group">
+                        className="w-full max-w-[90vw] sm:w-auto h-auto py-3 sm:py-4 rounded-full shadow-lg group whitespace-normal text-center">
                         <Link
                           href={
                             service.id === "bond-cleaning" ||

@@ -1,3 +1,6 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE_PHONE_HREF, SITE_WHATSAPP_HREF } from "@/lib/constants";
@@ -13,10 +16,20 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 export function FloatingCallButton() {
+  const pathname = usePathname();
+  const isLandingPage = pathname?.startsWith("/lp/");
+
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-3">
+    <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-4 animate-float">
+      {/* WhatsApp Button */}
       <div className="relative group">
-        <div className="absolute inset-0 rounded-full animate-ping bg-[#25D366] opacity-50 block" />
+        {/* Glow ring */}
+        <div className="absolute -inset-1 rounded-full bg-[#25D366] opacity-30 blur-md group-hover:opacity-50 transition-opacity duration-300" />
+        {/* Tooltip */}
+        <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-sm font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-lg translate-x-2 group-hover:translate-x-0">
+          Chat on WhatsApp
+          <span className="absolute top-1/2 -translate-y-1/2 -right-1 w-2 h-2 bg-slate-900 rotate-45" />
+        </span>
         <a
           href={SITE_WHATSAPP_HREF}
           aria-label="WhatsApp"
@@ -25,24 +38,35 @@ export function FloatingCallButton() {
           rel="noopener noreferrer">
           <Button
             size="icon"
-            className="w-14 h-14 rounded-full shadow-lg bg-[#25D366] hover:bg-[#128C7E] text-white">
+            className="w-[60px] h-[60px] rounded-full shadow-[0_4px_20px_-2px_rgba(37,211,102,0.5)] hover:shadow-[0_6px_30px_-2px_rgba(37,211,102,0.65)] bg-gradient-to-br from-[#25D366] to-[#128C7E] hover:from-[#2EE370] hover:to-[#25D366] text-white transition-all duration-300 transform hover:scale-110">
             <WhatsAppIcon className="h-7 w-7" />
           </Button>
         </a>
       </div>
-      <div className="relative group">
-        <div className="absolute inset-0 rounded-full animate-ping bg-primary opacity-50 block flex items-center justify-center p-0 m-0" />
-        <a
-          href={SITE_PHONE_HREF}
-          aria-label="Call Now"
-          className="relative block">
-          <Button
-            size="icon"
-            className="w-14 h-14 rounded-full shadow-lg bg-primary hover:bg-primary/90">
-            <Phone className="h-6 w-6" />
-          </Button>
-        </a>
-      </div>
+
+      {/* Phone Button */}
+      {!isLandingPage && (
+        <div className="relative group">
+          {/* Glow ring */}
+          <div className="absolute -inset-1 rounded-full bg-primary opacity-30 blur-md group-hover:opacity-50 transition-opacity duration-300" />
+          {/* Tooltip */}
+          <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-sm font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-lg translate-x-2 group-hover:translate-x-0">
+            Call Us Now
+            <span className="absolute top-1/2 -translate-y-1/2 -right-1 w-2 h-2 bg-slate-900 rotate-45" />
+          </span>
+          <a
+            href={SITE_PHONE_HREF}
+            aria-label="Call Now"
+            className="relative block">
+            <Button
+              size="icon"
+              className="w-[60px] h-[60px] rounded-full shadow-[0_4px_20px_-2px_rgba(11,45,110,0.45)] hover:shadow-[0_6px_30px_-2px_rgba(11,45,110,0.6)] bg-gradient-to-br from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white transition-all duration-300 transform hover:scale-110">
+              <Phone className="h-6 w-6 animate-wiggle" />
+            </Button>
+          </a>
+        </div>
+      )}
     </div>
   );
 }
+

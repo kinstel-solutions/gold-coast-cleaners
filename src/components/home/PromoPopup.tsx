@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Check, X, Gift } from "lucide-react";
@@ -8,7 +9,9 @@ import { SITE_PHONE_HREF, SITE_PHONE_NUMBER } from "@/lib/constants";
 import Link from "next/link";
 
 export function PromoPopup() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const isLandingPage = pathname?.startsWith("/lp/");
 
   useEffect(() => {
     // Check if the user has seen the popup recently
@@ -92,7 +95,7 @@ export function PromoPopup() {
                   className="w-full rounded-full font-bold shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 transition-all duration-300 h-12 sm:h-14 text-base" 
                   onClick={handleClose}
                 >
-                  <Link href="/contact#quote-form">
+                  <Link href={isLandingPage ? "#quote-form" : "/contact#quote-form"}>
                     Claim 20% Off Now
                   </Link>
                 </Button>
