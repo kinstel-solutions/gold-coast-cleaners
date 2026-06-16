@@ -484,12 +484,12 @@ export default function ServicesPage() {
                         <Link
                           href={
                             service.id === "bond-cleaning" ||
-                            service.id === "carpet-cleaning"
+                              service.id === "carpet-cleaning"
                               ? "#promo-banner"
                               : `/contact?service=${encodeURIComponent(service.title)}`
                           }>
                           {service.id === "bond-cleaning" ||
-                          service.id === "carpet-cleaning"
+                            service.id === "carpet-cleaning"
                             ? "View 25% Off Promo"
                             : `Get a Quote for ${service.title}`}
                           <CheckCircle className="ml-2 h-4 w-4 transform group-hover:scale-110 transition-transform" />
