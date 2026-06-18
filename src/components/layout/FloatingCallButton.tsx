@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE_PHONE_HREF, SITE_WHATSAPP_HREF } from "@/lib/constants";
+import { sendGTMEvent } from "@next/third-parties/google";
+
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg
@@ -35,7 +37,14 @@ export function FloatingCallButton() {
           aria-label="WhatsApp"
           className="relative block"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+          onClick={() =>
+            sendGTMEvent({
+              event: "whatsapp_click",
+              placement: "floating_btn",
+              journey_string: pathname,
+            })
+          }>
           <Button
             size="icon"
             className="w-[60px] h-[60px] rounded-full shadow-[0_4px_20px_-2px_rgba(37,211,102,0.5)] hover:shadow-[0_6px_30px_-2px_rgba(37,211,102,0.65)] bg-gradient-to-br from-[#25D366] to-[#128C7E] hover:from-[#2EE370] hover:to-[#25D366] text-white transition-all duration-300 transform hover:scale-110">
@@ -57,7 +66,14 @@ export function FloatingCallButton() {
           <a
             href={SITE_PHONE_HREF}
             aria-label="Call Now"
-            className="relative block">
+            className="relative block"
+            onClick={() =>
+              sendGTMEvent({
+                event: "phone_call",
+                placement: "floating_btn",
+                journey_string: pathname,
+              })
+            }>
             <Button
               size="icon"
               className="w-[60px] h-[60px] rounded-full shadow-[0_4px_20px_-2px_rgba(11,45,110,0.45)] hover:shadow-[0_6px_30px_-2px_rgba(11,45,110,0.6)] bg-gradient-to-br from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white transition-all duration-300 transform hover:scale-110">

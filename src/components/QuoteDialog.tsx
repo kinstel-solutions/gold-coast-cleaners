@@ -14,9 +14,10 @@ import { HeroQuoteForm } from './forms/HeroQuoteForm';
 
 type QuoteDialogProps = {
   trigger: React.ReactNode;
+  placement?: string;
 };
 
-export function QuoteDialog({ trigger }: QuoteDialogProps) {
+export function QuoteDialog({ trigger, placement }: QuoteDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -31,7 +32,7 @@ export function QuoteDialog({ trigger }: QuoteDialogProps) {
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">
-          <HeroQuoteForm />
+          <HeroQuoteForm placement={placement} />
         </div>
       </DialogContent>
     </Dialog>

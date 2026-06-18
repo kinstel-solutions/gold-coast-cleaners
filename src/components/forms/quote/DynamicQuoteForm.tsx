@@ -24,9 +24,11 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
+import { sendGTMEvent } from "@next/third-parties/google";
 
-export function DynamicQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
+export function DynamicQuoteForm({ onSuccess, placement = "booking_form" }: { onSuccess?: () => void; placement?: string }) {
+  const pathname = usePathname();
   const { toast } = useToast();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
@@ -205,6 +207,20 @@ export function DynamicQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
           title: "🎉 Request Sent Successfully!",
           description: "Our team will be in touch shortly.",
         });
+        
+        sendGTMEvent({
+          event: "submit_final_booking",
+          placement: placement,
+          journey_string: pathname,
+          value: priceRange?.min ?? 0,
+          currency: "AUD",
+          user_data: {
+            user_email: contactInfo.email ?? "",
+            user_phone: contactInfo.phone ?? "",
+            user_name: contactInfo.name ?? "",
+          },
+        });
+
         setIsSubmitted(true);
         onSuccess?.();
       } else {
@@ -375,6 +391,13 @@ export function DynamicQuoteForm({ onSuccess }: { onSuccess?: () => void }) {
           </p>
           <a
             href="tel:0756201066"
+            onClick={() =>
+              sendGTMEvent({
+                event: "phone_call",
+                placement: placement,
+                journey_string: pathname,
+              })
+            }
             className="flex items-center text-sm font-medium text-primary hover:underline">
             <PhoneCall className="mr-2 h-4 w-4" />
             Prefer to talk? Call 07 5620 1066

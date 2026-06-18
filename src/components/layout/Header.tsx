@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SiteLogo } from "@/components/SiteLogo";
 import { Menu, Phone, Calendar, ChevronDown } from "lucide-react";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet";
@@ -131,7 +132,14 @@ export function Header() {
             )}>
             <a
               href={SITE_PHONE_HREF}
-              aria-label="Call Us">
+              aria-label="Call Us"
+              onClick={() =>
+                sendGTMEvent({
+                  event: "phone_call",
+                  placement: "header",
+                  journey_string: pathname,
+                })
+              }>
               <div className="bg-white rounded-full p-2.5 flex items-center justify-center shadow-sm shrink-0">
                 <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-primary fill-current" />
               </div>
@@ -147,7 +155,14 @@ export function Header() {
               )}>
               <a
                 href={SITE_PHONE_HREF}
-                aria-label="Call Us">
+                aria-label="Call Us"
+                onClick={() =>
+                  sendGTMEvent({
+                    event: "phone_call",
+                    placement: "header",
+                    journey_string: pathname,
+                  })
+                }>
                 <div className="bg-white rounded-full p-1.5 flex items-center justify-center shadow-sm shrink-0">
                   <Phone className="h-3.5 w-3.5 text-primary fill-current" />
                 </div>
@@ -175,10 +190,11 @@ export function Header() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px] md:max-w-[550px] p-0 border-none bg-transparent shadow-none">
               <DialogTitle className="sr-only">Get a Quote</DialogTitle>
-              <HeroQuoteForm
+               <HeroQuoteForm
                 title="Quick Request"
                 redirectOnSubmit={true}
                 onSuccess={() => setIsBookModalOpen(false)}
+                placement="header_modal"
               />
             </DialogContent>
           </Dialog>
@@ -270,7 +286,15 @@ export function Header() {
                         asChild
                         className="w-full gap-2 shadow-sm"
                         size="lg">
-                        <a href={SITE_PHONE_HREF}>
+                        <a
+                          href={SITE_PHONE_HREF}
+                          onClick={() =>
+                            sendGTMEvent({
+                              event: "phone_call",
+                              placement: "header",
+                              journey_string: pathname,
+                            })
+                          }>
                           <Phone className="h-5 w-5 fill-current" />
                           Call {SITE_PHONE_NUMBER}
                         </a>

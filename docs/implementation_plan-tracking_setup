@@ -1,0 +1,99 @@
+# Implementation Plan - Google Tag Manager (GTM) Migration and Custom Event Tracking
+
+Migrate the application from Google Analytics to Google Tag Manager (GTM) using the `@next/third-parties/google` package. We will implement global custom event tracking (contextual telemetry via `journey_string` path and first-party user data for Enhanced Conversions).
+
+## Proposed Changes
+
+### 1. Root Layout
+
+#### [MODIFY] [layout.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/app/layout.tsx)
+- Remove `GoogleAnalytics` import and usage.
+- Import `GoogleTagManager` from `@next/third-parties/google`.
+- Render `<GoogleTagManager gtmId="GTM-KZVN2H5N" />` right after the body tag.
+
+---
+
+### 2. A. Call and WhatsApp Events
+
+We will track all floating buttons, headers, footers, popups, and section CTAs. We will use the `sendGTMEvent` helper to dispatch the event with `placement` and `journey_string` (representing the current pathname).
+
+#### [MODIFY] [FloatingCallButton.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/layout/FloatingCallButton.tsx)
+- Import `sendGTMEvent` from `@next/third-parties/google`.
+- Add `onClick` to the WhatsApp link to track the `whatsapp_click` event (`placement: 'floating_btn'`).
+- Add `onClick` to the Phone link to track the `phone_call` event (`placement: 'floating_btn'`).
+
+#### [MODIFY] [Header.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/layout/Header.tsx)
+- Import `sendGTMEvent` from `@next/third-parties/google`.
+- Add `onClick` to all call button anchors to track the `phone_call` event (`placement: 'header'`).
+- Pass the `placement="header_modal"` prop to the nested `HeroQuoteForm`.
+
+#### [MODIFY] [Footer.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/layout/Footer.tsx)
+- Convert to a Client Component by adding `"use client";` at the top.
+- Import `usePathname` from `next/navigation` and `sendGTMEvent` from `@next/third-parties/google`.
+- Add `onClick` to the phone anchor to track the `phone_call` event (`placement: 'footer'`).
+
+#### [MODIFY] [PromoPopup.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/home/PromoPopup.tsx)
+- Import `sendGTMEvent` from `@next/third-parties/google`.
+- Add `onClick` to the phone call anchor to track `phone_call` (`placement: 'promo_popup'`).
+
+#### [MODIFY] [HeroSection.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/home/HeroSection.tsx)
+- Convert to a Client Component by adding `"use client";`.
+- Import `usePathname` from `next/navigation` and `sendGTMEvent` from `@next/third-parties/google`.
+- Add `onClick` to the Phone CTA to track `phone_call` (`placement: 'hero_section'`).
+- Pass `placement="hero_form"` to `HeroQuoteForm`.
+
+#### [MODIFY] [CtaStrip.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/home/CtaStrip.tsx)
+- Import `usePathname` from `next/navigation` and `sendGTMEvent` from `@next/third-parties/google`.
+- Add `onClick` to the phone call anchor to track `phone_call` (`placement: 'cta_strip'`).
+- Pass `placement="cta_strip_modal"` to `QuoteDialog`.
+
+---
+
+### 3. B. Form Events
+
+We will track successful form submissions (excluding invalid/incomplete attempts) and pass Enhanced Conversions fields (`user_email`, `user_phone`, `user_name`).
+
+#### [MODIFY] [HeroQuoteForm.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/forms/HeroQuoteForm.tsx)
+- Accept `placement` as a prop (defaults to `"hero_form"` / `"lp_hero_form"` dynamically using `usePathname`).
+- Import `usePathname` from `next/navigation` and `sendGTMEvent` from `@next/third-parties/google`.
+- On successful validation and submission (`response.success`), fire `submit_partial_lead` with the schema:
+  - `placement`: prop/computed value
+  - `journey_string`: current pathname
+  - `services_requested`: array of selected service IDs
+  - `user_data`: `{ user_email, user_phone }`
+
+#### [MODIFY] [QuoteDialog.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/QuoteDialog.tsx)
+- Accept an optional `placement` prop and forward it to `HeroQuoteForm`.
+
+#### [MODIFY] [DynamicQuoteForm.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/forms/quote/DynamicQuoteForm.tsx)
+- Import `usePathname` from `next/navigation` and `sendGTMEvent` from `@next/third-parties/google`.
+- Accept an optional `placement` prop (defaults to `"booking_form"`).
+- On successful server validation and submission (`res.success`), fire `submit_final_booking` with the schema:
+  - `placement`: prop/computed value
+  - `journey_string`: current pathname
+  - `value`: minimum estimated price (from `priceRange.min`)
+  - `currency`: `'AUD'`
+  - `user_data`: `{ user_email, user_phone, user_name }`
+
+---
+
+### 4. C. Promo/Modal Events
+
+We will track visibility and actions on the promo popup dialog.
+
+#### [MODIFY] [PromoPopup.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/home/PromoPopup.tsx)
+- Add a `useEffect` listening to `isOpen`. When `isOpen` becomes `true`, fire `promo_viewed` event (`placement: 'promo_popup'`).
+- Add `onClick` on the claim button to fire `promo_clicked` event (`placement: 'promo_popup'`) and call `handleClose()`.
+
+---
+
+## Verification Plan
+
+### Automated Tests
+- Run `npm run typecheck` to verify TypeScript builds correctly.
+- Run `npm run lint` to verify coding standards are met.
+
+### Manual Verification
+- Start local development server with `npm run dev`.
+- Open the site in a local browser, inspect the document to check if `<GoogleTagManager>` is properly loaded.
+- Fill out form fields to test successful submissions, checking in console or simulated `window.dataLayer` that the GTM events (`submit_partial_lead`, `submit_final_booking`, `phone_call`, `whatsapp_click`, `promo_viewed`, `promo_clicked`) are pushed with correct schemas.

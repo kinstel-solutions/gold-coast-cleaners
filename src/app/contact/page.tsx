@@ -45,6 +45,7 @@ export default function ContactPage() {
                   <HeroQuoteForm
                     title="Send us a message"
                     redirectOnSubmit={false}
+                    placement="contact_form"
                   />
                 </Suspense>
               </CardContent>

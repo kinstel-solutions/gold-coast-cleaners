@@ -6,7 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { FloatingCallButton } from "@/components/layout/FloatingCallButton";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SERVICES } from "@/lib/constants";
 import { PromoPopup } from "@/components/home/PromoPopup";
@@ -91,7 +91,7 @@ export default function RootLayout({
         <PromoPopup />
         <Toaster />
         <Analytics />
-        <GoogleAnalytics gaId="G-FLZ538CG8H" />
+        <GoogleTagManager gtmId="GTM-KZVN2H5N" />
       </body>
     </html>
   );

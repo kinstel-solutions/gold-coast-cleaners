@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Check, X, Gift } from "lucide-react";
 import { SITE_PHONE_HREF, SITE_PHONE_NUMBER } from "@/lib/constants";
 import Link from "next/link";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 export function PromoPopup() {
   const pathname = usePathname();
@@ -26,6 +27,16 @@ export function PromoPopup() {
       return () => clearTimeout(timer);
     }
   }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      sendGTMEvent({
+        event: "promo_viewed",
+        placement: "promo_popup",
+        journey_string: pathname,
+      });
+    }
+  }, [isOpen, pathname]);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -93,7 +104,14 @@ export function PromoPopup() {
                   asChild 
                   size="lg" 
                   className="w-full rounded-full font-bold shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 transition-all duration-300 h-12 sm:h-14 text-base" 
-                  onClick={handleClose}
+                  onClick={() => {
+                    sendGTMEvent({
+                      event: "promo_clicked",
+                      placement: "promo_popup",
+                      journey_string: pathname,
+                    });
+                    handleClose();
+                  }}
                 >
                   <Link href={isLandingPage ? "#quote-form" : "/contact#quote-form"}>
                     Claim 20% Off Now
@@ -105,7 +123,15 @@ export function PromoPopup() {
                   size="lg" 
                   className="w-full rounded-full transition-all hover:bg-secondary/50 font-semibold h-12"
                 >
-                  <a href={SITE_PHONE_HREF}>
+                  <a
+                    href={SITE_PHONE_HREF}
+                    onClick={() =>
+                      sendGTMEvent({
+                        event: "phone_call",
+                        placement: "promo_popup",
+                        journey_string: pathname,
+                      })
+                    }>
                     Or Call {SITE_PHONE_NUMBER}
                   </a>
                 </Button>

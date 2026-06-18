@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { sendGTMEvent } from "@next/third-parties/google";
 import Script from "next/script";
 import { SiteLogo } from "@/components/SiteLogo";
 import { Instagram, Facebook, Mail, MapPin, Phone } from "lucide-react";
@@ -20,6 +24,7 @@ import {
 import { AgencyCredit } from "@/components/AgencyCredit";
 
 export function Footer() {
+  const pathname = usePathname();
   const serviceLinks = SERVICES.map((service) => ({
     name: service.title,
     href: service.href,
@@ -103,6 +108,13 @@ export function Footer() {
                 </div>
                 <a
                   href={SITE_PHONE_HREF}
+                  onClick={() =>
+                    sendGTMEvent({
+                      event: "phone_call",
+                      placement: "footer",
+                      journey_string: pathname,
+                    })
+                  }
                   className="text-lg font-bold text-primary hover:text-primary/80 transition-all drop-shadow-sm hover:scale-105">
                   {SITE_PHONE_NUMBER}
                 </a>
