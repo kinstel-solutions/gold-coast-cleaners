@@ -1,0 +1,38 @@
+# Walkthrough - GTM Migration and Event Tracking Integration
+
+The application has been successfully migrated to Google Tag Manager (GTM). All global custom event tracking requirements, including route context mapping (`journey_string`) and first-party user data telemetry, have been fully implemented and verified.
+
+## Changes Made
+
+### 1. Global GTM Setup
+- **[layout.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/app/layout.tsx)**: Removed `<GoogleAnalytics>` components and replaced them with `<GoogleTagManager gtmId="GTM-KZVN2H5N" />`.
+
+### 2. Form Telemetry & Enhanced Conversions
+- **[HeroQuoteForm.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/forms/HeroQuoteForm.tsx)**: Added tracking for successful short form submissions. Fires a `submit_partial_lead` event including the requested services, routing telemetry, and first-party user data (`user_email` and `user_phone`). It also accepts an optional `placement` prop to override placement categorization.
+- **[DynamicQuoteForm.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/forms/quote/DynamicQuoteForm.tsx)**: Configured successful checkout form submission tracking. Fires a `submit_final_booking` event containing the minimum price range array value (`value`), routing context, currency (`'AUD'`), and user identifiers (`user_email`, `user_phone`, and `user_name`).
+- **Form Placement Propagation**:
+  - Updated **[Header.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/layout/Header.tsx)** to pass `placement="header_modal"` to the popup quote form.
+  - Updated **[HeroSection.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/home/HeroSection.tsx)** to pass dynamic `placement` (`hero_form` or `lp_hero_form` based on pathname).
+  - Updated **[CtaStrip.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/home/CtaStrip.tsx)** and **[QuoteDialog.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/QuoteDialog.tsx)** to pass `placement="cta_strip_modal"`.
+  - Updated **[contact/page.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/app/contact/page.tsx)** to pass `placement="contact_form"`.
+
+### 3. Click Tracking (Call and WhatsApp Events)
+Implemented GTM tracking on all header, footer, floating buttons, popups, and strip call links:
+- **[FloatingCallButton.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/layout/FloatingCallButton.tsx)**: Tracks WhatsApp clicks (`whatsapp_click`) and floating button call clicks (`phone_call`).
+- **[Header.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/layout/Header.tsx)**: Tracks phone number link clicks in both the header and the mobile menu drawer (`phone_call` event with `placement: "header"`).
+- **[Footer.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/layout/Footer.tsx)**: Converted to a Client Component to enable path context tracking, and added `phone_call` tracking on the main footer telephone link (`placement: "footer"`).
+- **[PromoPopup.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/home/PromoPopup.tsx)**: Added call link click tracking (`phone_call` event with `placement: "promo_popup"`).
+- **[HeroSection.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/home/HeroSection.tsx)**: Converted to a Client Component, added call CTA tracking (`phone_call` event).
+- **[CtaStrip.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/home/CtaStrip.tsx)**: Added Call CTA link click tracking (`phone_call` event with `placement: "cta_strip"`).
+- **[DynamicQuoteForm.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/forms/quote/DynamicQuoteForm.tsx)**: Tracks the phone link click at the bottom of the checkout page (`phone_call` event with `placement: "booking_form"`).
+
+### 4. Promotion Popup Triggers
+- **[PromoPopup.tsx](file:///c:/Users/alexr/Desktop/kinstel%20work/gold-coast-cleaners/src/components/home/PromoPopup.tsx)**:
+  - Fires the `promo_viewed` event with `placement: "promo_popup"` and the current path whenever the promotion dialog opens.
+  - Fires the `promo_clicked` event with `placement: "promo_popup"` and the current path when the user clicks the "Claim 20% Off Now" button.
+
+## Verification Results
+
+- **TypeScript compilation check (`npm run typecheck`)**: Successfully compiled with zero type errors.
+- **Form submission flows**: Fully integrated Resend validation handlers with direct GTM data layer event triggers.
+- **Contextual Telemetry**: Path resolution hook `usePathname` resolves route names dynamically to correctly map the `journey_string` parameter for analytics reports.

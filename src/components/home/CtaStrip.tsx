@@ -5,8 +5,11 @@ import { Button } from '../ui/button';
 import { QuoteDialog } from '../QuoteDialog';
 import { SITE_PHONE_HREF } from '@/lib/constants';
 import { useInView } from '@/hooks/use-in-view';
+import { usePathname } from 'next/navigation';
+import { sendGTMEvent } from '@next/third-parties/google';
 
 export function CtaStrip() {
+  const pathname = usePathname();
   const [contentRef, contentInView] = useInView({ threshold: 0.2 });
 
   return (
@@ -23,6 +26,7 @@ export function CtaStrip() {
         </p>
         <div className={`flex flex-col sm:flex-row justify-center gap-6 fill-mode-both ${contentInView ? 'animate-in fade-in slide-in-from-bottom-6 duration-500 delay-200 opacity-100' : 'opacity-0'}`}>
           <QuoteDialog
+            placement="cta_strip_modal"
             trigger={
               <Button size="lg" className="rounded-full px-6 py-5 sm:px-10 sm:py-7 text-base sm:text-lg bg-white text-primary hover:bg-white/90 shadow-xl border-2 border-transparent transition-all transform hover:-translate-y-1">
                 Get a Free Quote
@@ -30,7 +34,15 @@ export function CtaStrip() {
             }
           />
           <Button asChild size="lg" variant="outline" className="rounded-full px-6 py-5 sm:px-10 sm:py-7 text-base sm:text-lg bg-transparent border-2 border-white text-white hover:bg-white/20 hover:text-white hover:border-white transition-all transform hover:-translate-y-1">
-            <a href={SITE_PHONE_HREF}>
+            <a
+              href={SITE_PHONE_HREF}
+              onClick={() =>
+                sendGTMEvent({
+                  event: "phone_call",
+                  placement: "cta_strip",
+                  journey_string: pathname,
+                })
+              }>
               <Phone className="mr-2 h-5 w-5" />
               Call Now
             </a>

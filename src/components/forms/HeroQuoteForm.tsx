@@ -1,7 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+import { sendGTMEvent } from "@next/third-parties/google";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -48,17 +49,24 @@ interface HeroQuoteFormProps {
   redirectOnSubmit?: boolean;
   title?: string;
   onSuccess?: () => void;
+  placement?: string;
 }
 
 export function HeroQuoteForm({
   redirectOnSubmit = true,
   title = "Request a Quote",
   onSuccess,
+  placement,
 }: HeroQuoteFormProps = {}) {
   const router = useRouter();
+  const pathname = usePathname();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const defaultPlacement = pathname?.startsWith("/lp/") ? "lp_hero_form" : "hero_form";
+  const finalPlacement = placement || defaultPlacement;
+
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -91,6 +99,17 @@ export function HeroQuoteForm({
         });
         return;
       }
+
+      sendGTMEvent({
+        event: "submit_partial_lead",
+        placement: finalPlacement,
+        journey_string: pathname,
+        services_requested: values.services,
+        user_data: {
+          user_email: values.email,
+          user_phone: values.phone,
+        },
+      });
 
       if (redirectOnSubmit) {
         toast({

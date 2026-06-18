@@ -1,9 +1,16 @@
+"use client";
+
 import { Check, Phone } from "lucide-react";
 import { Button } from "../ui/button";
 import { SITE_PHONE_HREF } from "@/lib/constants";
 import { HeroQuoteForm } from "../forms/HeroQuoteForm";
+import { usePathname } from "next/navigation";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 export function HeroSection() {
+  const pathname = usePathname();
+  const placement = pathname?.startsWith("/lp/") ? "lp_hero_form" : "hero_form";
+
   return (
     <section className="relative min-h-[100dvh] w-full flex flex-col overflow-hidden">
       {/* Background video */}
@@ -31,7 +38,7 @@ export function HeroSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center w-full">
             {/* Right Column: Quote Form */}
             <div className="w-full max-w-md mx-auto lg:ml-0 animate-in fade-in slide-in-from-right-8 duration-500 delay-75 order-2">
-              <HeroQuoteForm />
+              <HeroQuoteForm placement={placement} />
             </div>
 
             {/* Left Column: Text Content */}
@@ -84,7 +91,15 @@ export function HeroSection() {
                     size="lg"
                     variant="outline"
                     className="w-full sm:w-auto rounded-full text-sm sm:text-base px-6 py-5 bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:text-white transition-all hover:-translate-y-0.5">
-                    <a href={SITE_PHONE_HREF}>
+                    <a
+                      href={SITE_PHONE_HREF}
+                      onClick={() =>
+                        sendGTMEvent({
+                          event: "phone_call",
+                          placement: placement,
+                          journey_string: pathname,
+                        })
+                      }>
                       <Phone className="mr-2 h-4 w-4" />
                       Call Now
                     </a>
