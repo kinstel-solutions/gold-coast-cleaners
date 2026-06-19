@@ -27,7 +27,7 @@ export function HeroSection() {
                 🎉Special Offer: Upto 20% Off
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-4 drop-shadow-sm leading-tight max-w-3xl">
-                Professional Bond Cleaning in{" "}
+                Hassle Free Bond Cleaning in{" "}
                 <span className="bg-[length:200%_auto] animate-shimmer bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary whitespace-nowrap">
                   Gold Coast
                 </span>
@@ -43,7 +43,6 @@ export function HeroSection() {
                   "7 days job guarantee",
                   "Experienced Local Cleaners",
                   "REIQ Approved Checklist",
-
                 ].map((item) => (
                   <li
                     key={item}
@@ -65,7 +64,7 @@ export function HeroSection() {
                     <Button
                       size="lg"
                       className="rounded-full text-base px-8 py-6 bg-primary text-white hover:bg-primary/90 shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer">
-                      Get Quote
+                      Get Instant Quote
                     </Button>
                   }
                 />
