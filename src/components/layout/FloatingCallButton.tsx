@@ -47,7 +47,7 @@ export function FloatingCallButton() {
           }>
           <Button
             size="icon"
-            className="w-[60px] h-[60px] rounded-full shadow-[0_4px_20px_-2px_rgba(37,211,102,0.5)] hover:shadow-[0_6px_30px_-2px_rgba(37,211,102,0.65)] bg-gradient-to-br from-[#25D366] to-[#128C7E] hover:from-[#2EE370] hover:to-[#25D366] text-white transition-all duration-300 transform hover:scale-110">
+            className="w-[60px] h-[60px] rounded-full shadow-[0_4px_20px_-2px_rgba(37,211,102,0.5)] hover:shadow-[0_6px_30px_-2px_rgba(37,211,102,0.65)] bg-gradient-to-br from-[#25D366] to-[#128C7E] hover:from-[#2EE370] hover:to-[#25D366] text-white transition-all duration-300 transform hover:scale-110 animate-pulse-glow-whatsapp">
             <WhatsAppIcon className="h-7 w-7" />
           </Button>
         </a>
@@ -57,7 +57,7 @@ export function FloatingCallButton() {
       {!isLandingPage && (
         <div className="relative group">
           {/* Glow ring */}
-          <div className="absolute -inset-1 rounded-full bg-primary opacity-30 blur-md group-hover:opacity-50 transition-opacity duration-300" />
+          <div className="absolute -inset-1 rounded-full bg-primary opacity-30 blur-md group-hover:opacity-50 transition-opacity duration-300 animate-pulse-glow" />
           {/* Tooltip */}
           <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-sm font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-lg translate-x-2 group-hover:translate-x-0">
             Call Us Now
@@ -76,8 +76,8 @@ export function FloatingCallButton() {
             }>
             <Button
               size="icon"
-              className="w-[60px] h-[60px] rounded-full shadow-[0_4px_20px_-2px_rgba(11,45,110,0.45)] hover:shadow-[0_6px_30px_-2px_rgba(11,45,110,0.6)] bg-gradient-to-br from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white transition-all duration-300 transform hover:scale-110">
-              <Phone className="h-6 w-6 animate-wiggle" />
+              className="w-[60px] h-[60px] rounded-full shadow-[0_4px_20px_-2px_rgba(11,45,110,0.45)] hover:shadow-[0_6px_30px_-2px_rgba(11,45,110,0.6)] bg-gradient-to-br from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white transition-all duration-300 transform hover:scale-110 animate-pulse-glow">
+              <Phone className="h-6 w-6" />
             </Button>
           </a>
         </div>
