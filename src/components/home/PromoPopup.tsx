@@ -103,7 +103,7 @@ export function PromoPopup() {
                 <Button 
                   asChild 
                   size="lg" 
-                  className="w-full rounded-full font-bold shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 transition-all duration-300 h-12 sm:h-14 text-base" 
+                  className="relative overflow-hidden w-full rounded-full font-bold shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 transition-all duration-300 h-12 sm:h-14 text-base" 
                   onClick={() => {
                     sendGTMEvent({
                       event: "promo_clicked",
@@ -114,14 +114,17 @@ export function PromoPopup() {
                   }}
                 >
                   <Link href={isLandingPage ? "#quote-form" : "/contact#quote-form"}>
-                    Claim 20% Off Now
+                    <span>Claim 20% Off Now</span>
+                    <div className="absolute inset-0 bg-white text-primary flex items-center justify-center font-bold text-base animate-invert-sweep">
+                      Claim 20% Off Now
+                    </div>
                   </Link>
                 </Button>
                 <Button 
                   variant="outline" 
                   asChild 
                   size="lg" 
-                  className="w-full rounded-full transition-all hover:bg-secondary/50 font-semibold h-12"
+                  className="relative overflow-hidden w-full rounded-full transition-all hover:bg-secondary/50 font-semibold h-12 animate-pulse-glow"
                 >
                   <a
                     href={SITE_PHONE_HREF}
@@ -132,7 +135,8 @@ export function PromoPopup() {
                         journey_string: pathname,
                       })
                     }>
-                    Or Call {SITE_PHONE_NUMBER}
+                    <div className="animate-shimmer-sweep-sync" />
+                    <span className="relative z-10">Or Call {SITE_PHONE_NUMBER}</span>
                   </a>
                 </Button>
               </div>

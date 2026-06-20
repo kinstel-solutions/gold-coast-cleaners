@@ -128,7 +128,7 @@ export function Header() {
           <Button
             asChild
             className={cn(
-              "hidden xl:flex items-center gap-3 rounded-full bg-primary text-white hover:bg-slate-900 hover:text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 pl-1 pr-6 py-1 h-11 sm:h-12 cursor-pointer",
+              "hidden xl:flex items-center gap-3 rounded-full bg-primary text-white hover:bg-slate-900 hover:text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 pl-1 pr-6 py-1 h-11 sm:h-12 cursor-pointer animate-pulse-glow relative overflow-hidden",
             )}>
             <a
               href={SITE_PHONE_HREF}
@@ -140,6 +140,7 @@ export function Header() {
                   journey_string: pathname,
                 })
               }>
+              <div className="animate-shimmer-sweep-sync" />
               <div className="bg-white rounded-full p-2.5 flex items-center justify-center shadow-sm shrink-0">
                 <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-primary fill-current" />
               </div>

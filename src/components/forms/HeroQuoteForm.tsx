@@ -340,10 +340,10 @@ export function HeroQuoteForm({
                 )}
               />
 
-              <Button
+               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full text-lg font-bold py-6 shadow-lg shadow-accent/20 hover:shadow-accent/40 transition-all flex items-center justify-center">
+                className="relative overflow-hidden w-full text-lg font-bold py-6 shadow-lg shadow-accent/20 hover:shadow-accent/40 transition-all flex items-center justify-center">
                 {isSubmitting ? (
                   <span className="flex items-center">
                     <svg
@@ -366,7 +366,12 @@ export function HeroQuoteForm({
                     Processing...
                   </span>
                 ) : (
-                  "Get Free Quote"
+                  <>
+                    <span>Get Free Quote</span>
+                    <div className="absolute inset-0 bg-white text-primary flex items-center justify-center font-bold text-lg animate-invert-sweep">
+                      Get Free Quote
+                    </div>
+                  </>
                 )}
               </Button>
             </form>
