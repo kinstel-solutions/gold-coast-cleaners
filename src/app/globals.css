@@ -108,30 +108,24 @@ h6 {
 
 @keyframes pulse-glow {
   0% {
-    transform: scale(0.96);
-    box-shadow: 0 0 0 0 rgba(11, 45, 110, 0.5);
+    box-shadow: 0 0 0 0 rgba(11, 45, 110, 0.6);
   }
   70% {
-    transform: scale(1.02);
-    box-shadow: 0 0 0 10px rgba(11, 45, 110, 0);
+    box-shadow: 0 0 0 12px rgba(11, 45, 110, 0);
   }
   100% {
-    transform: scale(0.96);
     box-shadow: 0 0 0 0 rgba(11, 45, 110, 0);
   }
 }
 
 @keyframes pulse-glow-whatsapp {
   0% {
-    transform: scale(0.96);
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
   }
   70% {
-    transform: scale(1.02);
-    box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+    box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
   }
   100% {
-    transform: scale(0.96);
     box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
   }
 }
@@ -155,5 +149,38 @@ h6 {
 
 .animate-heartbeat {
   animation: heartbeat 3s infinite ease-in-out;
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    left: -150%;
+  }
+  50% {
+    left: 150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+.animate-shimmer-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  animation: shimmer-sweep 2.5s infinite ease-in-out;
 }
 

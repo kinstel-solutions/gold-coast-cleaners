@@ -151,7 +151,7 @@ export function Header() {
             <Button
               asChild
               className={cn(
-                "flex sm:hidden items-center gap-2 rounded-full bg-primary text-white hover:bg-slate-900 hover:text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 pl-1 pr-4 py-1 h-9 cursor-pointer",
+                "flex sm:hidden items-center gap-2 rounded-full bg-primary text-white hover:bg-slate-900 hover:text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 pl-1 pr-4 py-1 h-9 cursor-pointer animate-pulse-glow",
               )}>
               <a
                 href={SITE_PHONE_HREF}

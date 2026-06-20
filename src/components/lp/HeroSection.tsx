@@ -63,7 +63,7 @@ export function HeroSection() {
                   trigger={
                     <Button
                       size="lg"
-                      className="rounded-full text-base px-8 py-6 bg-primary text-white hover:bg-primary/90 shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer">
+                      className="rounded-full text-base px-8 py-6 bg-primary text-white hover:bg-primary/90 shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer animate-shimmer-sweep">
                       Get Instant Quote
                     </Button>
                   }
