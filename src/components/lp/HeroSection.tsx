@@ -39,7 +39,7 @@ export function HeroSection() {
 
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-8 text-left max-w-md lg:max-w-2xl w-full">
                 {[
-                  "100% Bond Back Focused",
+                  "100% Bond Back guarantee",
                   "7 days job guarantee",
                   "Experienced Local Cleaners",
                   "REIQ Approved Checklist",
