@@ -184,3 +184,97 @@ h6 {
   animation: shimmer-sweep 2.5s infinite ease-in-out;
 }
 
+@keyframes border-beam {
+  0% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+
+
+.animate-border-beam {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent !important;
+  background-clip: padding-box;
+}
+
+.animate-border-beam::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  background: conic-gradient(
+    from 0deg,
+    hsl(var(--accent)) 0%,
+    hsl(var(--primary)) 25%,
+    transparent 50%,
+    transparent 100%
+  );
+  transform: translate(-50%, -50%);
+  animation: border-beam 3s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.animate-border-beam::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: white;
+  border-radius: 9999px;
+  z-index: 1;
+  pointer-events: none;
+  transition: background-color 0.3s ease;
+}
+
+.animate-border-beam > * {
+  position: relative;
+  z-index: 2;
+}
+
+.animate-border-beam:hover::after {
+  background: hsl(var(--primary));
+}
+
+@keyframes shimmer-sweep-sync {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+.animate-shimmer-sweep-sync {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 119, 204, 0) 0%,
+    rgba(0, 119, 204, 0.35) 50%,
+    rgba(0, 119, 204, 0) 100%
+  );
+  transform: skewX(-25deg);
+  animation: shimmer-sweep-sync 1.5s infinite linear;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.animate-border-beam:hover .animate-shimmer-sweep-sync {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+
