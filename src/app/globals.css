@@ -336,6 +336,31 @@ h6 {
   animation: invert-sweep 2.5s infinite linear;
 }
 
+/* CSS Marquee Styles */
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.animate-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee-track:hover {
+  animation-play-state: paused;
+}
+
 
 
 
