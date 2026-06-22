@@ -19,13 +19,16 @@ export function HeroSection() {
           {/* Text Content */}
           <div className="animate-in fade-in slide-in-from-bottom-8 duration-500 text-center lg:text-left">
             <div className="bg-white/95 md:bg-transparent border border-slate-200/80 md:border-none py-6 px-6 sm:p-7 md:p-0 rounded-3xl md:rounded-none shadow-2xl md:shadow-none flex flex-col items-center lg:items-start">
-              <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-sm md:text-lg text-white font-semibold shadow-md animate-in fade-in zoom-in duration-500 delay-300">
+              <button
+                onClick={() => window.dispatchEvent(new Event("open-promo-popup"))}
+                className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-sm md:text-lg text-white font-semibold shadow-md animate-in fade-in zoom-in duration-500 delay-300 hover:bg-primary/90 transition-all hover:scale-105 cursor-pointer text-left"
+              >
                 <span className="flex h-2.5 w-2.5 relative">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
                 </span>
                 🎉Special Offer: Upto 20% Off
-              </div>
+              </button>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-4 drop-shadow-sm leading-tight max-w-3xl">
                 Hassle Free Bond Cleaning in{" "}
                 <span className="bg-[length:200%_auto] animate-shimmer bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary whitespace-nowrap">

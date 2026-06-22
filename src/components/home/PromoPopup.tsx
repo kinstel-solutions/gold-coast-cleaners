@@ -29,6 +29,16 @@ export function PromoPopup() {
   }, []);
 
   useEffect(() => {
+    const handleOpenPromo = () => {
+      setIsOpen(true);
+    };
+    window.addEventListener("open-promo-popup", handleOpenPromo);
+    return () => {
+      window.removeEventListener("open-promo-popup", handleOpenPromo);
+    };
+  }, []);
+
+  useEffect(() => {
     if (isOpen) {
       sendGTMEvent({
         event: "promo_viewed",
