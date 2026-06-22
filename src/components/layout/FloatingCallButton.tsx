@@ -1,11 +1,11 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Phone } from "lucide-react";
+import { Phone, MessageSquare, X, MessageCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SITE_PHONE_HREF, SITE_WHATSAPP_HREF } from "@/lib/constants";
+import { SITE_PHONE_HREF, SITE_WHATSAPP_HREF, SITE_PHONE_NUMBER } from "@/lib/constants";
 import { sendGTMEvent } from "@next/third-parties/google";
-
+import { useState, useEffect, useRef } from "react";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg
@@ -19,70 +19,150 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 export function FloatingCallButton() {
   const pathname = usePathname();
-  const isLandingPage = pathname?.startsWith("/lp/");
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const smsHref = "sms:+61485878343?body=Hi%2C%20I%20would%20like%20to%20get%20a%20quote%20for%20cleaning%20services.";
+  const emailHref = "mailto:jamesbondcleaningau@gmail.com";
+
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-4 animate-float">
-      {/* WhatsApp Button */}
-      <div className="relative group">
-        {/* Glow ring */}
-        <div className="absolute -inset-1 rounded-full bg-[#25D366] opacity-30 blur-md group-hover:opacity-50 transition-opacity duration-300" />
-        {/* Tooltip */}
-        <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-sm font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-lg translate-x-2 group-hover:translate-x-0">
-          Chat on WhatsApp
-          <span className="absolute top-1/2 -translate-y-1/2 -right-1 w-2 h-2 bg-slate-900 rotate-45" />
-        </span>
-        <a
-          href={SITE_WHATSAPP_HREF}
-          aria-label="WhatsApp"
-          className="relative block"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() =>
-            sendGTMEvent({
-              event: "whatsapp_click",
-              placement: "floating_btn",
-              journey_string: pathname,
-            })
-          }>
-          <Button
-            size="icon"
-            className="w-[60px] h-[60px] rounded-full shadow-[0_4px_20px_-2px_rgba(37,211,102,0.5)] hover:shadow-[0_6px_30px_-2px_rgba(37,211,102,0.65)] bg-gradient-to-br from-[#25D366] to-[#128C7E] hover:from-[#2EE370] hover:to-[#25D366] text-white transition-all duration-300 transform hover:scale-110 animate-pulse-glow-whatsapp">
-            <WhatsAppIcon className="h-7 w-7" />
-          </Button>
-        </a>
-      </div>
-
-      {/* Phone Button */}
-      {!isLandingPage && (
-        <div className="relative group">
-          {/* Glow ring */}
-          <div className="absolute -inset-1 rounded-full bg-primary opacity-30 blur-md group-hover:opacity-50 transition-opacity duration-300 animate-pulse-glow" />
-          {/* Tooltip */}
-          <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-sm font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-lg translate-x-2 group-hover:translate-x-0">
-            Call Us Now
-            <span className="absolute top-1/2 -translate-y-1/2 -right-1 w-2 h-2 bg-slate-900 rotate-45" />
+    <div ref={containerRef} className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+      {/* Expanded Menu Options */}
+      <div 
+        className={`flex flex-col gap-3 transition-all duration-300 ease-out origin-bottom ${
+          isOpen 
+            ? "opacity-100 translate-y-0 scale-100 pointer-events-auto" 
+            : "opacity-0 translate-y-4 scale-75 pointer-events-none"
+        }`}
+      >
+        {/* Phone Call Option */}
+        <div className="relative group flex items-center gap-2">
+          <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
+            Call: {SITE_PHONE_NUMBER}
           </span>
           <a
             href={SITE_PHONE_HREF}
-            aria-label="Call Now"
-            className="relative block"
-            onClick={() =>
+            onClick={() => {
               sendGTMEvent({
                 event: "phone_call",
-                placement: "floating_btn",
+                placement: "floating_menu",
                 journey_string: pathname,
-              })
-            }>
-            <Button
-              size="icon"
-              className="w-[60px] h-[60px] rounded-full shadow-[0_4px_20px_-2px_rgba(11,45,110,0.45)] hover:shadow-[0_6px_30px_-2px_rgba(11,45,110,0.6)] bg-gradient-to-br from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white transition-all duration-300 transform hover:scale-110 animate-pulse-glow">
-              <Phone className="h-6 w-6" />
-            </Button>
+              });
+              setIsOpen(false);
+            }}
+            className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-500 text-white shadow-lg transition-transform hover:scale-105"
+          >
+            <Phone className="h-5 w-5" />
           </a>
         </div>
-      )}
+
+        {/* SMS Option */}
+        <div className="relative group flex items-center gap-2">
+          <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
+            Text / SMS Us
+          </span>
+          <a
+            href={smsHref}
+            onClick={() => {
+              sendGTMEvent({
+                event: "sms_click",
+                placement: "floating_menu",
+                journey_string: pathname,
+              });
+              setIsOpen(false);
+            }}
+            className="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500 hover:bg-amber-400 text-white shadow-lg transition-transform hover:scale-105"
+          >
+            <MessageSquare className="h-5 w-5" />
+          </a>
+        </div>
+
+        {/* Email Option */}
+        <div className="relative group flex items-center gap-2">
+          <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
+            Email Us
+          </span>
+          <a
+            href={emailHref}
+            onClick={() => {
+              sendGTMEvent({
+                event: "email_click",
+                placement: "floating_menu",
+                journey_string: pathname,
+              });
+              setIsOpen(false);
+            }}
+            className="flex items-center justify-center w-12 h-12 rounded-full bg-rose-600 hover:bg-rose-500 text-white shadow-lg transition-transform hover:scale-105"
+          >
+            <Mail className="h-5 w-5" />
+          </a>
+        </div>
+
+        {/* WhatsApp Option */}
+        <div className="relative group flex items-center gap-2">
+          <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
+            WhatsApp Chat
+          </span>
+          <a
+            href={SITE_WHATSAPP_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => {
+              sendGTMEvent({
+                event: "whatsapp_click",
+                placement: "floating_menu",
+                journey_string: pathname,
+              });
+              setIsOpen(false);
+            }}
+            className="flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#2EE370] text-white shadow-lg transition-transform hover:scale-105"
+          >
+            <WhatsAppIcon className="h-6 w-6" />
+          </a>
+        </div>
+      </div>
+
+      {/* Main Toggle Button */}
+      <div className="relative group">
+        {/* Glow ring */}
+        <div className={`absolute -inset-1 rounded-full bg-primary opacity-30 blur-md transition-opacity duration-300 ${
+          isOpen ? "opacity-10" : "group-hover:opacity-50 animate-pulse-glow"
+        }`} />
+        
+        {/* Tooltip (only when closed) */}
+        {!isOpen && (
+          <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-sm font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-lg translate-x-2 group-hover:translate-x-0">
+            Contact Us
+            <span className="absolute top-1/2 -translate-y-1/2 -right-1 w-2 h-2 bg-slate-900 rotate-45" />
+          </span>
+        )}
+
+        <Button
+          onClick={toggleMenu}
+          size="icon"
+          aria-label="Contact options"
+          className={`w-[60px] h-[60px] rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 ${
+            isOpen 
+              ? "bg-slate-800 text-white hover:bg-slate-700 rotate-90" 
+              : "bg-primary hover:bg-primary/90 text-white"
+          }`}
+        >
+          {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-7 w-7" />}
+        </Button>
+      </div>
     </div>
   );
 }
-
