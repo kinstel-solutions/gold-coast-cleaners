@@ -42,7 +42,7 @@ export function FloatingCallButton() {
     <div ref={containerRef} className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
       {/* Expanded Menu Options */}
       <div 
-        className={`flex flex-col gap-3 transition-all duration-300 ease-out origin-bottom ${
+        className={`flex flex-col items-end gap-3 transition-all duration-300 ease-out origin-bottom ${
           isOpen 
             ? "opacity-100 translate-y-0 scale-100 pointer-events-auto" 
             : "opacity-0 translate-y-4 scale-75 pointer-events-none"
