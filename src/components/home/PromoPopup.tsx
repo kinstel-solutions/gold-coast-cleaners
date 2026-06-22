@@ -22,7 +22,7 @@ export function PromoPopup() {
       // Delay the popup so it doesn't immediately interrupt the user
       const timer = setTimeout(() => {
         setIsOpen(true);
-      }, 3500); // 3.5 seconds delay
+      }, 20000); // 20 seconds delay
       
       return () => clearTimeout(timer);
     }
