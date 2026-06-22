@@ -39,10 +39,10 @@ export function FloatingCallButton() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <div ref={containerRef} className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+    <div ref={containerRef} className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 pointer-events-none">
       {/* Expanded Menu Options */}
       <div 
-        className={`flex flex-col gap-3 transition-all duration-300 ease-out origin-bottom ${
+        className={`flex flex-col items-end gap-3 transition-all duration-300 ease-out origin-bottom ${
           isOpen 
             ? "opacity-100 translate-y-0 scale-100 pointer-events-auto" 
             : "opacity-0 translate-y-4 scale-75 pointer-events-none"
@@ -136,7 +136,7 @@ export function FloatingCallButton() {
       </div>
 
       {/* Main Toggle Button */}
-      <div className="relative group">
+      <div className="relative group pointer-events-auto">
         {/* Glow ring */}
         <div className={`absolute -inset-1 rounded-full bg-primary opacity-30 blur-md transition-opacity duration-300 ${
           isOpen ? "opacity-10" : "group-hover:opacity-50 animate-pulse-glow"
