@@ -44,13 +44,16 @@ export function HeroSection() {
             {/* Left Column: Text Content */}
             <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-500 order-1 text-center lg:text-left mx-auto lg:mx-0">
               <div className="backdrop-blur-sm bg-black/40 border border-white/10 p-4 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl shadow-2xl">
-                <div className="mb-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/90 border border-primary/50 text-primary-foreground font-semibold shadow-lg backdrop-blur-md animate-in fade-in zoom-in duration-500 delay-300">
+                <button
+                  onClick={() => window.dispatchEvent(new Event("open-promo-popup"))}
+                  className="mb-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/90 border border-primary/50 text-primary-foreground font-semibold shadow-lg backdrop-blur-md animate-in fade-in zoom-in duration-500 delay-300 hover:bg-primary transition-all hover:scale-105 cursor-pointer text-left text-sm md:text-base"
+                >
                   <span className="flex h-2.5 w-2.5 relative">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
                   </span>
                   🎉Special Offer: Upto 20% Off | Bond & Carpet Steam Cleaning!
-                </div>
+                </button>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white mb-3 sm:mb-5 drop-shadow-lg leading-tight">
                   Bond Cleaning & Complete Property Care in{" "}
                   <br className="hidden sm:block" />
