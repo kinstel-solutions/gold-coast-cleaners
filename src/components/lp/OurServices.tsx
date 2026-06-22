@@ -7,7 +7,6 @@ import { ArrowRight } from "lucide-react";
 import { SERVICES } from "@/lib/constants";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Button } from "../ui/button";
-import { QuoteDialog } from "../QuoteDialog";
 import {
   Card,
   CardContent,
@@ -93,16 +92,15 @@ export function OurServices() {
                   </CardDescription>
                 </CardContent>
                 <CardFooter>
-                  <QuoteDialog
-                    trigger={
-                      <Button
-                        variant="ghost"
-                        className="p-0 text-primary group-hover:text-accent transition-colors font-semibold text-lg hover:bg-transparent flex items-center gap-2">
-                        Get Quote{" "}
-                        <ArrowRight className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    }
-                  />
+                  <Button
+                    asChild
+                    variant="ghost"
+                    className="p-0 text-primary group-hover:text-accent transition-colors font-semibold text-lg hover:bg-transparent flex items-center gap-2">
+                    <a href="#quote-form">
+                      Get Quote{" "}
+                      <ArrowRight className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  </Button>
                 </CardFooter>
               </Card>
             );
@@ -122,15 +120,14 @@ export function OurServices() {
         )}
 
         <div className="mt-12 sm:mt-20 text-center">
-          <QuoteDialog
-            trigger={
-              <Button
-                size="lg"
-                className="rounded-full px-6 py-5 sm:px-10 sm:py-7 text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 bg-primary hover:bg-primary/90">
-                Get a Free Quote
-              </Button>
-            }
-          />
+          <Button
+            asChild
+            size="lg"
+            className="rounded-full px-6 py-5 sm:px-10 sm:py-7 text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 bg-primary hover:bg-primary/90">
+            <a href="#quote-form">
+              Get a Free Quote
+            </a>
+          </Button>
         </div>
       </div>
     </section>

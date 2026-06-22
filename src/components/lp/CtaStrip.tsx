@@ -1,10 +1,40 @@
 "use client";
 
+import { useEffect } from "react";
 import { useInView } from "@/hooks/use-in-view";
 import { HeroQuoteForm } from "../forms/HeroQuoteForm";
 
 export function CtaStrip() {
   const [contentRef, contentInView] = useInView({ threshold: 0.1 });
+
+  useEffect(() => {
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest("a");
+      if (anchor && anchor.getAttribute("href") === "#quote-form") {
+        e.preventDefault();
+        
+        // Scroll to form
+        const element = document.getElementById("quote-form");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          
+          // Focus the input
+          setTimeout(() => {
+            const input = document.getElementById("form-name-input");
+            if (input) {
+              input.focus();
+            }
+          }, 800); // Allow smooth scroll animation to finish
+        }
+      }
+    };
+    
+    document.addEventListener("click", handleAnchorClick);
+    return () => {
+      document.removeEventListener("click", handleAnchorClick);
+    };
+  }, []);
 
   return (
     <section id="quote-form" className="relative py-16 sm:py-24 overflow-hidden bg-primary">
