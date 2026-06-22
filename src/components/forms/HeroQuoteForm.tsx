@@ -222,6 +222,7 @@ export function HeroQuoteForm({
                   <FormItem>
                     <FormControl>
                       <Input
+                        id="form-name-input"
                         placeholder="Full Name"
                         className="bg-white/50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:bg-white/80 focus:border-primary"
                         {...field}

@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Star, Quote } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
 import { Button } from "../ui/button";
-import { QuoteDialog } from "../QuoteDialog";
 
 const testimonials = [
   {
@@ -159,13 +158,14 @@ export function Testimonials() {
         </div>
       </div>
       <div className="mt-12 text-center">
-        <QuoteDialog
-          trigger={
-            <Button size="lg" className="rounded-full px-6 py-5 sm:px-10 sm:py-7 text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 bg-primary hover:bg-primary/90">
-              Get a Free Quote
-            </Button>
-          }
-        />
+        <Button
+          asChild
+          size="lg"
+          className="rounded-full px-6 py-5 sm:px-10 sm:py-7 text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 bg-primary hover:bg-primary/90">
+          <a href="#quote-form">
+            Get a Free Quote
+          </a>
+        </Button>
       </div>
     </section>
   );

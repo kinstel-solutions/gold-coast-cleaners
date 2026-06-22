@@ -2,7 +2,6 @@
 
 import { Check } from "lucide-react";
 import { Button } from "../ui/button";
-import { QuoteDialog } from "../QuoteDialog";
 
 export function HeroSection() {
   return (
@@ -62,18 +61,17 @@ export function HeroSection() {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start w-full sm:w-auto">
-                <QuoteDialog
-                  trigger={
-                    <Button
-                      size="lg"
-                      className="relative overflow-hidden rounded-full text-base px-8 py-6 bg-primary text-white hover:bg-primary/90 shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer w-full sm:w-auto">
-                      <span>Get Instant Quote</span>
-                      <div className="absolute inset-0 bg-white text-primary flex items-center justify-center font-semibold text-base animate-invert-sweep">
-                        Get Instant Quote
-                      </div>
-                    </Button>
-                  }
-                />
+                <Button
+                  asChild
+                  size="lg"
+                  className="relative overflow-hidden rounded-full text-base px-8 py-6 bg-primary text-white hover:bg-primary/90 shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer w-full sm:w-auto">
+                  <a href="#quote-form">
+                    <span>Get Instant Quote</span>
+                    <div className="absolute inset-0 bg-white text-primary flex items-center justify-center font-semibold text-base animate-invert-sweep">
+                      Get Instant Quote
+                    </div>
+                  </a>
+                </Button>
                 
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-medium text-xs sm:text-sm shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-700 delay-300">
                   <span className="relative flex h-2 w-2">
