@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { DynamicQuoteForm } from "@/components/forms/quote/DynamicQuoteForm";
+import { BookingClientWrapper } from "./BookingClientWrapper";
 
 export const metadata = {
   title: "Book Your Clean | James Bond Cleaning",
@@ -8,21 +9,23 @@ export const metadata = {
 
 export default function BookingPage() {
   return (
-    <div className="container py-16 sm:py-24 max-w-3xl">
-      <div className="mb-10 text-center">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4 text-primary">
-          Complete Your Booking
-        </h1>
-        <p className="text-lg text-muted-foreground">
-          Please provide a few more details so we can give you an accurate quote
-          and confirm your slot.
-        </p>
+    <BookingClientWrapper>
+      <div className="container py-16 sm:py-24 max-w-3xl">
+        <div className="mb-10 text-center">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4 text-primary">
+            Complete Your Booking
+          </h1>
+          <p className="text-lg text-muted-foreground">
+            Please provide a few more details so we can give you an accurate quote
+            and confirm your slot.
+          </p>
+        </div>
+        <div className="bg-card border rounded-xl shadow-sm p-6 md:p-8">
+          <Suspense fallback={<div>Loading form...</div>}>
+            <DynamicQuoteForm />
+          </Suspense>
+        </div>
       </div>
-      <div className="bg-card border rounded-xl shadow-sm p-6 md:p-8">
-        <Suspense fallback={<div>Loading form...</div>}>
-          <DynamicQuoteForm />
-        </Suspense>
-      </div>
-    </div>
+    </BookingClientWrapper>
   );
 }

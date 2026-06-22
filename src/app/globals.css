@@ -105,3 +105,262 @@ h6 {
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(11, 45, 110, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(11, 45, 110, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(11, 45, 110, 0);
+  }
+}
+
+@keyframes pulse-glow-whatsapp {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s infinite ease-in-out;
+}
+
+.animate-pulse-glow-whatsapp {
+  animation: pulse-glow-whatsapp 2.5s infinite ease-in-out;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 3s infinite ease-in-out;
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: skewX(-25deg) translateX(-150%);
+  }
+  100% {
+    transform: skewX(-25deg) translateX(150%);
+  }
+}
+
+.animate-shimmer-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg) translateX(-150%);
+  animation: shimmer-sweep 2.5s infinite linear;
+}
+
+@keyframes border-beam {
+  0% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+
+
+.animate-border-beam {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent !important;
+  background-clip: padding-box;
+}
+
+.animate-border-beam::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  background: conic-gradient(
+    from 0deg,
+    hsl(var(--accent)) 0%,
+    hsl(var(--primary)) 25%,
+    transparent 50%,
+    transparent 100%
+  );
+  transform: translate(-50%, -50%);
+  animation: border-beam 3s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.animate-border-beam::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: white;
+  border-radius: 9999px;
+  z-index: 1;
+  pointer-events: none;
+  transition: background-color 0.3s ease;
+}
+
+.animate-border-beam > * {
+  position: relative;
+  z-index: 2;
+}
+
+.animate-border-beam:hover::after {
+  background: hsl(var(--primary));
+}
+
+@keyframes shimmer-sweep-sync {
+  0% {
+    transform: skewX(-25deg) translateX(-150%);
+  }
+  100% {
+    transform: skewX(-25deg) translateX(150%);
+  }
+}
+
+.animate-shimmer-sweep-sync {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 119, 204, 0) 0%,
+    rgba(0, 119, 204, 0.35) 50%,
+    rgba(0, 119, 204, 0) 100%
+  );
+  transform: skewX(-25deg) translateX(-150%);
+  animation: shimmer-sweep-sync 1.5s infinite linear;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.animate-border-beam:hover .animate-shimmer-sweep-sync {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* Ensure white shimmer sweep on dark primary buttons */
+.bg-primary .animate-shimmer-sweep-sync {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+@keyframes invert-sweep {
+  0% {
+    -webkit-mask-position: 150% 0;
+    mask-position: 150% 0;
+  }
+  100% {
+    -webkit-mask-position: -50% 0;
+    mask-position: -50% 0;
+  }
+}
+
+.animate-invert-sweep {
+  position: absolute;
+  inset: 0;
+  background-color: white;
+  color: hsl(var(--primary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  font-weight: 600;
+  
+  /* Mask gradient with wide fade boundaries running at 115deg angle */
+  -webkit-mask-image: linear-gradient(
+    115deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 1) 48%,
+    rgba(0, 0, 0, 1) 52%,
+    rgba(0, 0, 0, 0) 65%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    115deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 1) 48%,
+    rgba(0, 0, 0, 1) 52%,
+    rgba(0, 0, 0, 0) 65%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  
+  -webkit-mask-size: 300% 100%;
+  mask-size: 300% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  
+  animation: invert-sweep 2.5s infinite linear;
+}
+
+/* CSS Marquee Styles */
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.animate-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+
+
+

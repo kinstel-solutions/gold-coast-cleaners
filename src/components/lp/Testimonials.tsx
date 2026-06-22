@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Star, Quote } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
@@ -77,45 +76,6 @@ function StarRating() {
 
 export function Testimonials() {
   const [headerRef, headerInView] = useInView({ threshold: 0.2 });
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    let animationFrameId: number;
-    let accumulatedScroll = 0;
-    const speed = 0.6; // Pixels per frame (adjust for speed)
-
-    const scroll = () => {
-      const container = scrollRef.current;
-      if (container && !isPaused) {
-        accumulatedScroll += speed;
-        
-        // When accumulated scroll reaches >= 1, we add it to the real scrollLeft
-        if (accumulatedScroll >= 1) {
-          const scrollToAdd = Math.floor(accumulatedScroll);
-          container.scrollLeft += scrollToAdd;
-          accumulatedScroll -= scrollToAdd;
-          
-          // Seamless infinite loop:
-          // The scrollable width of ONE full set is exactly half of the total scrollWidth
-          const halfWidth = container.scrollWidth / 2;
-          
-          if (container.scrollLeft >= halfWidth) {
-            // Jump back instantly to the first set
-            container.scrollLeft -= halfWidth;
-          } else if (container.scrollLeft <= 0) {
-            // If the user swiped manually backwards past 0, jump to the second set seamlessly
-            container.scrollLeft += halfWidth;
-          }
-        }
-      }
-      animationFrameId = requestAnimationFrame(scroll);
-    };
-
-    animationFrameId = requestAnimationFrame(scroll);
-
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isPaused]);
 
   return (
     <section className="py-12 sm:py-32 bg-slate-50 relative overflow-hidden">
@@ -141,67 +101,60 @@ export function Testimonials() {
         </div>
       </div>
 
-      {/* Scrollable on mobile, auto-marquee on desktop */}
-      <div className="relative group">
+      {/* CSS marquee container */}
+      <div className="relative group overflow-hidden">
         {/* Fade edges */}
         <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
-        {/* Outer scrollable container */}
-        <div 
-          ref={scrollRef}
-          className="overflow-x-auto scrollbar-none w-full pb-4"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          onTouchStart={() => setIsPaused(true)}
-          onTouchEnd={() => setIsPaused(false)}
-        >
-          <div className="flex w-max">
-          {marqueeItems.map((t, i) => (
-            <div
-              key={`${t.name}-${i}`}
-              className="flex-shrink-0 w-[280px] sm:w-[360px] mr-4 sm:mr-6 snap-center">
-              <div className="h-full rounded-2xl sm:rounded-3xl border border-primary/10 bg-white shadow-lg hover:shadow-xl hover:border-primary/30 transition-all duration-300 flex flex-col relative overflow-hidden group/card">
-                {/* Top color bar */}
-                <div className="h-2 w-full bg-gradient-to-r from-primary to-accent" />
-                
-                <div className="p-6 sm:p-8 flex flex-col gap-6 flex-grow relative">
-                  {/* Decorative quote icon */}
-                  <Quote className="absolute top-6 right-6 h-12 w-12 text-primary/5 group-hover/card:text-primary/10 transition-colors duration-500 z-0" />
+        
+        <div className="animate-marquee-container">
+          <div className="animate-marquee-track">
+            {marqueeItems.map((t, i) => (
+              <div
+                key={`${t.name}-${i}`}
+                className="flex-shrink-0 w-[280px] sm:w-[360px] mr-4 sm:mr-6">
+                <div className="h-full rounded-2xl sm:rounded-3xl border border-primary/10 bg-white shadow-lg hover:shadow-xl hover:border-primary/30 transition-all duration-300 flex flex-col relative overflow-hidden group/card">
+                  {/* Top color bar */}
+                  <div className="h-2 w-full bg-gradient-to-r from-primary to-accent" />
+                  
+                  <div className="p-6 sm:p-8 flex flex-col gap-6 flex-grow relative">
+                    {/* Decorative quote icon */}
+                    <Quote className="absolute top-6 right-6 h-12 w-12 text-primary/5 group-hover/card:text-primary/10 transition-colors duration-500 z-0" />
 
-                  {/* Profile Section */}
-                  <div className="flex items-center gap-4 relative z-10">
-                    <div className="relative h-14 w-14 rounded-full overflow-hidden border-2 border-white shadow-sm shrink-0">
-                      <Image
-                        src={t.avatarUrl}
-                        alt={t.name}
-                        fill
-                        className="object-cover"
-                        sizes="56px"
-                      />
+                    {/* Profile Section */}
+                    <div className="flex items-center gap-4 relative z-10">
+                      <div className="relative h-14 w-14 rounded-full overflow-hidden border-2 border-white shadow-sm shrink-0">
+                        <Image
+                          src={t.avatarUrl}
+                          alt={t.name}
+                          fill
+                          className="object-cover"
+                          sizes="56px"
+                        />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-bold text-slate-900 text-lg leading-tight">
+                          {t.name}
+                        </span>
+                        <span className="text-xs font-medium text-primary mt-1 bg-primary/5 self-start px-2 py-0.5 rounded-md">
+                          {t.service}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex flex-col">
-                      <span className="font-bold text-slate-900 text-lg leading-tight">
-                        {t.name}
-                      </span>
-                      <span className="text-xs font-medium text-primary mt-1 bg-primary/5 self-start px-2 py-0.5 rounded-md">
-                        {t.service}
-                      </span>
+
+                    {/* Rating */}
+                    <div className="relative z-10">
+                      <StarRating />
                     </div>
-                  </div>
 
-                  {/* Rating */}
-                  <div className="relative z-10">
-                    <StarRating />
+                    {/* Quote Text */}
+                    <p className="text-slate-700 leading-relaxed text-[16px] flex-grow relative z-10 font-playfair italic">
+                      "{t.quote}"
+                    </p>
                   </div>
-
-                  {/* Quote Text */}
-                  <p className="text-slate-700 leading-relaxed text-[16px] flex-grow relative z-10 font-playfair italic">
-                    "{t.quote}"
-                  </p>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
           </div>
         </div>
       </div>

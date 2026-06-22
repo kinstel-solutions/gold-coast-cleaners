@@ -39,7 +39,7 @@ export function HeroSection() {
 
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-8 text-left max-w-md lg:max-w-2xl w-full">
                 {[
-                  "100% Bond Back Focused",
+                  "100% Bond Back guarantee",
                   "7 days job guarantee",
                   "Experienced Local Cleaners",
                   "REIQ Approved Checklist",
@@ -63,8 +63,11 @@ export function HeroSection() {
                   trigger={
                     <Button
                       size="lg"
-                      className="rounded-full text-base px-8 py-6 bg-primary text-white hover:bg-primary/90 shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer">
-                      Get Instant Quote
+                      className="relative overflow-hidden rounded-full text-base px-8 py-6 bg-primary text-white hover:bg-primary/90 shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer">
+                      <span>Get Instant Quote</span>
+                      <div className="absolute inset-0 bg-white text-primary flex items-center justify-center font-semibold text-base animate-invert-sweep">
+                        Get Instant Quote
+                      </div>
                     </Button>
                   }
                 />

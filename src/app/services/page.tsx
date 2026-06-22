@@ -480,7 +480,7 @@ export default function ServicesPage() {
                       <Button
                         asChild
                         size="lg"
-                        className="w-full max-w-[90vw] sm:w-auto h-auto py-3 sm:py-4 rounded-full shadow-lg group whitespace-normal text-center">
+                        className="w-full max-w-[90vw] sm:w-auto h-auto py-3 sm:py-4 rounded-full shadow-lg group whitespace-normal text-center relative overflow-hidden transition-all duration-300 hover:-translate-y-0.5">
                         <Link
                           href={
                             service.id === "bond-cleaning" ||
@@ -488,11 +488,14 @@ export default function ServicesPage() {
                               ? "#promo-banner"
                               : `/contact?service=${encodeURIComponent(service.title)}`
                           }>
-                          {service.id === "bond-cleaning" ||
-                            service.id === "carpet-cleaning"
-                            ? "View 25% Off Promo"
-                            : `Get a Quote for ${service.title}`}
-                          <CheckCircle className="ml-2 h-4 w-4 transform group-hover:scale-110 transition-transform" />
+                          <div className="animate-shimmer-sweep-sync" />
+                          <span className="relative z-10 flex items-center justify-center">
+                            {service.id === "bond-cleaning" ||
+                              service.id === "carpet-cleaning"
+                              ? "View 25% Off Promo"
+                              : `Get a Quote for ${service.title}`}
+                            <CheckCircle className="ml-2 h-4 w-4 transform group-hover:scale-110 transition-transform" />
+                          </span>
                         </Link>
                       </Button>
                     </div>
@@ -589,8 +592,13 @@ export default function ServicesPage() {
               <Button
                 asChild
                 size="lg"
-                className="w-full max-w-sm rounded-full bg-primary hover:bg-primary/90 text-white py-7 text-lg font-bold tracking-wider shadow-xl transition-all hover:-translate-y-1">
-                <Link href="/booking">Claim 25% Off Now</Link>
+                className="relative overflow-hidden w-full max-w-sm rounded-full bg-primary hover:bg-primary/90 text-white py-7 text-lg font-bold tracking-wider shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <Link href="/booking">
+                  <span>Claim 25% Off Now</span>
+                  <div className="absolute inset-0 bg-white text-primary flex items-center justify-center font-bold text-lg animate-invert-sweep tracking-wider">
+                    Claim 25% Off Now
+                  </div>
+                </Link>
               </Button>
 
               <p className="text-sm text-slate-600 mt-5 relative z-10 flex items-center gap-2 font-medium">

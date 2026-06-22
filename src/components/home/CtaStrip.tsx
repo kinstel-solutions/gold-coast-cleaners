@@ -28,12 +28,13 @@ export function CtaStrip() {
           <QuoteDialog
             placement="cta_strip_modal"
             trigger={
-              <Button size="lg" className="rounded-full px-6 py-5 sm:px-10 sm:py-7 text-base sm:text-lg bg-white text-primary hover:bg-white/90 shadow-xl border-2 border-transparent transition-all transform hover:-translate-y-1">
-                Get a Free Quote
+              <Button size="lg" className="relative overflow-hidden rounded-full px-6 py-5 sm:px-10 sm:py-7 text-base sm:text-lg bg-white text-primary hover:bg-white/90 shadow-xl border-2 border-transparent transition-all transform hover:-translate-y-1 animate-border-beam">
+                <div className="animate-shimmer-sweep-sync" />
+                <span>Get a Free Quote</span>
               </Button>
             }
           />
-          <Button asChild size="lg" variant="outline" className="rounded-full px-6 py-5 sm:px-10 sm:py-7 text-base sm:text-lg bg-transparent border-2 border-white text-white hover:bg-white/20 hover:text-white hover:border-white transition-all transform hover:-translate-y-1">
+          <Button asChild size="lg" variant="outline" className="relative overflow-hidden rounded-full px-6 py-5 sm:px-10 sm:py-7 text-base sm:text-lg bg-transparent border-2 border-white text-white hover:bg-white/20 hover:text-white hover:border-white transition-all transform hover:-translate-y-1 animate-pulse-glow">
             <a
               href={SITE_PHONE_HREF}
               onClick={() =>
@@ -43,8 +44,11 @@ export function CtaStrip() {
                   journey_string: pathname,
                 })
               }>
-              <Phone className="mr-2 h-5 w-5" />
-              Call Now
+              <div className="animate-shimmer-sweep-sync" />
+              <div className="relative z-10 flex items-center justify-center">
+                <Phone className="mr-2 h-5 w-5" />
+                Call Now
+              </div>
             </a>
           </Button>
         </div>

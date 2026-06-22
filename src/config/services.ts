@@ -1,7 +1,7 @@
 import { ServiceId, PricingRange } from "@/types/quote";
 
 export const FEATURE_FLAGS = {
-  instantPricing: true,
+  instantPricing: false,
   addOnsEnabled: true,
   progressBar: true,
   trustBadges: true,

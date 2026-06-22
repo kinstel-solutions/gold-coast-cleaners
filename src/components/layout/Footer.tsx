@@ -41,7 +41,6 @@ export function Footer() {
               aria-label="Home"
               className="flex items-center gap-2 font-bold text-xl">
               <SiteLogo
-                priority
                 className="w-48 sm:w-56 lg:w-64 max-w-full h-auto"
               />
             </Link>
@@ -59,6 +58,11 @@ export function Footer() {
                 <img
                   src="https://images.dmca.com/Badges/DMCA_logo-bw200w.png?ID=50756c15-b210-4f2d-a364-a581edd70b3e"
                   alt="DMCA.com Protection Status"
+                  loading="lazy"
+                  decoding="async"
+                  width="135"
+                  height="20"
+                  className="w-32 h-auto"
                 />
               </a>
             </div>
@@ -187,7 +191,7 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <Script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js" strategy="afterInteractive" />
+      <Script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js" strategy="lazyOnload" />
     </footer>
   );
 }

@@ -11,11 +11,24 @@ import { Analytics } from "@vercel/analytics/react";
 import { SERVICES } from "@/lib/constants";
 import { PromoPopup } from "@/components/home/PromoPopup";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
-const outfit = Outfit({ subsets: ["latin"], variable: "--font-heading" });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "optional",
+  preload: false,
+});
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+  weight: "700",
+  preload: true,
+});
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
+  display: "optional",
+  preload: false,
 });
 
 export const metadata: Metadata = {
