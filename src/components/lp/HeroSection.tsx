@@ -61,12 +61,12 @@ export function HeroSection() {
               </ul>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start w-full sm:w-auto">
                 <QuoteDialog
                   trigger={
                     <Button
                       size="lg"
-                      className="relative overflow-hidden rounded-full text-base px-8 py-6 bg-primary text-white hover:bg-primary/90 shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer">
+                      className="relative overflow-hidden rounded-full text-base px-8 py-6 bg-primary text-white hover:bg-primary/90 shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer w-full sm:w-auto">
                       <span>Get Instant Quote</span>
                       <div className="absolute inset-0 bg-white text-primary flex items-center justify-center font-semibold text-base animate-invert-sweep">
                         Get Instant Quote
@@ -74,6 +74,14 @@ export function HeroSection() {
                     </Button>
                   }
                 />
+                
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-medium text-xs sm:text-sm shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-700 delay-300">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  Urgent / Last-Minute Slots Available This Week
+                </div>
               </div>
             </div>
           </div>
