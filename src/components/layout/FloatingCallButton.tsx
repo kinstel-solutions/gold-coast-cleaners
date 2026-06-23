@@ -1,7 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Phone, MessageSquare, X, MessageCircle, Mail } from "lucide-react";
+import Link from "next/link";
+import { Phone, Calendar, X, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE_PHONE_HREF, SITE_WHATSAPP_HREF, SITE_PHONE_NUMBER } from "@/lib/constants";
 import { sendGTMEvent } from "@next/third-parties/google";
@@ -32,9 +33,6 @@ export function FloatingCallButton() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
-  const smsHref = "sms:+61485878343?body=Hi%2C%20I%20would%20like%20to%20get%20a%20quote%20for%20cleaning%20services.";
-  const emailHref = "mailto:jamesbondcleaningau@gmail.com";
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -69,46 +67,25 @@ export function FloatingCallButton() {
           </a>
         </div>
 
-        {/* SMS Option */}
+        {/* Book Online Option */}
         <div className="relative group flex items-center gap-2">
           <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
-            Text / SMS Us
+            Book Online
           </span>
-          <a
-            href={smsHref}
+          <Link
+            href="/booking"
             onClick={() => {
               sendGTMEvent({
-                event: "sms_click",
+                event: "booking_click",
                 placement: "floating_menu",
                 journey_string: pathname,
               });
               setIsOpen(false);
             }}
-            className="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500 hover:bg-amber-400 text-white shadow-lg transition-transform hover:scale-105"
+            className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg transition-transform hover:scale-105"
           >
-            <MessageSquare className="h-5 w-5" />
-          </a>
-        </div>
-
-        {/* Email Option */}
-        <div className="relative group flex items-center gap-2">
-          <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
-            Email Us
-          </span>
-          <a
-            href={emailHref}
-            onClick={() => {
-              sendGTMEvent({
-                event: "email_click",
-                placement: "floating_menu",
-                journey_string: pathname,
-              });
-              setIsOpen(false);
-            }}
-            className="flex items-center justify-center w-12 h-12 rounded-full bg-rose-600 hover:bg-rose-500 text-white shadow-lg transition-transform hover:scale-105"
-          >
-            <Mail className="h-5 w-5" />
-          </a>
+            <Calendar className="h-5 w-5" />
+          </Link>
         </div>
 
         {/* WhatsApp Option */}

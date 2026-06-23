@@ -492,7 +492,7 @@ export default function ServicesPage() {
                           <span className="relative z-10 flex items-center justify-center">
                             {service.id === "bond-cleaning" ||
                               service.id === "carpet-cleaning"
-                              ? "View 25% Off Promo"
+                              ? "View 20% Off Promo"
                               : `Get a Quote for ${service.title}`}
                             <CheckCircle className="ml-2 h-4 w-4 transform group-hover:scale-110 transition-transform" />
                           </span>
@@ -580,13 +580,13 @@ export default function ServicesPage() {
               <p className="text-lg md:text-xl text-slate-700 font-medium mt-4 max-w-sm relative z-10 px-4 leading-relaxed">
                 On{" "}
                 <span className="text-primary font-bold">
-                  Bond & Carpet Steam
+                  Bond & Carpet Steam cleaning
                 </span>{" "}
-                cleaning packages.
+                packages.
               </p>
 
               <div className="bg-white/80 backdrop-blur text-primary border border-primary/20 px-5 py-2 rounded-full mt-6 mb-8 text-sm md:text-base font-semibold tracking-wide shadow-sm relative z-10">
-                ⏳ Hurry! Offer valid for 30 days & first 20 customers only.
+                ⏳ Hurry! Limited Period Offer.
               </div>
 
               <Button
@@ -594,16 +594,19 @@ export default function ServicesPage() {
                 size="lg"
                 className="relative overflow-hidden w-full max-w-sm rounded-full bg-primary hover:bg-primary/90 text-white py-7 text-lg font-bold tracking-wider shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <Link href="/booking">
-                  <span>Claim 25% Off Now</span>
+                  <span>Claim 20% Off Now</span>
                   <div className="absolute inset-0 bg-white text-primary flex items-center justify-center font-bold text-lg animate-invert-sweep tracking-wider">
-                    Claim 25% Off Now
+                    Claim 20% Off Now
                   </div>
                 </Link>
               </Button>
 
               <p className="text-sm text-slate-600 mt-5 relative z-10 flex items-center gap-2 font-medium">
                 <CheckCircle className="h-4 w-4 text-green-500" />
-                100% Bond Back Guarantee
+                100% Bond Back Guarantee*
+              </p>
+              <p className="text-[10px] text-slate-500 mt-3 relative z-10 italic">
+                *Terms & conditions apply.
               </p>
             </div>
           </div>
