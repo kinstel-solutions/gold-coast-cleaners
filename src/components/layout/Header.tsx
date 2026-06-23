@@ -180,13 +180,13 @@ export function Header() {
               <Button
                 variant="outline"
                 className={cn(
-                  "group rounded-full border-none bg-white text-slate-900 shadow-md transition-all duration-300 hover:bg-primary hover:text-white hover:-translate-y-0.5 animate-border-beam",
-                  "pl-0.5 pr-3 sm:pr-6 py-1 h-9 sm:h-11 lg:h-12 cursor-pointer items-center gap-1.5 sm:gap-3",
+                  "group rounded-full border-none bg-amber-400 text-primary font-extrabold shadow-md transition-all duration-300 hover:bg-primary hover:text-white hover:-translate-y-0.5 relative overflow-hidden animate-pulse-glow-amber",
+                  "pl-1 pr-3 sm:pr-6 py-1 h-9 sm:h-11 lg:h-12 cursor-pointer items-center gap-1.5 sm:gap-3",
                   isLandingPage ? "hidden sm:flex" : "flex"
                 )}>
                 <div className="animate-shimmer-sweep-sync" />
-                <div className="bg-white rounded-full p-1.5 sm:p-2.5 flex items-center justify-center border border-slate-200 group-hover:border-transparent group-hover:shadow-sm shrink-0 transition-all">
-                  <Calendar className="h-3.5 w-3.5 sm:h-5 sm:w-5 text-primary" />
+                <div className="bg-primary rounded-full p-1.5 sm:p-2 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-white">
+                  <Calendar className="h-3.5 w-3.5 sm:h-5 sm:w-5 text-white transition-colors duration-300 group-hover:text-primary" />
                 </div>
                 <span className="font-bold text-[10px] sm:text-sm lg:text-base whitespace-nowrap">Get a Quote</span>
               </Button>

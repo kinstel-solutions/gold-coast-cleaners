@@ -586,7 +586,7 @@ export default function ServicesPage() {
               </p>
 
               <div className="bg-white/80 backdrop-blur text-primary border border-primary/20 px-5 py-2 rounded-full mt-6 mb-8 text-sm md:text-base font-semibold tracking-wide shadow-sm relative z-10">
-                ⏳ Hurry! Offer valid for 30 days & first 20 customers only.
+                ⏳ Hurry! Limited Period Offer.
               </div>
 
               <Button
@@ -603,7 +603,10 @@ export default function ServicesPage() {
 
               <p className="text-sm text-slate-600 mt-5 relative z-10 flex items-center gap-2 font-medium">
                 <CheckCircle className="h-4 w-4 text-green-500" />
-                100% Bond Back Guarantee
+                100% Bond Back Guarantee*
+              </p>
+              <p className="text-[10px] text-slate-500 mt-3 relative z-10 italic">
+                *Terms & conditions apply.
               </p>
             </div>
           </div>
