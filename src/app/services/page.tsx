@@ -580,9 +580,9 @@ export default function ServicesPage() {
               <p className="text-lg md:text-xl text-slate-700 font-medium mt-4 max-w-sm relative z-10 px-4 leading-relaxed">
                 On{" "}
                 <span className="text-primary font-bold">
-                  Bond & Carpet Steam
+                  Bond & Carpet Steam cleaning
                 </span>{" "}
-                cleaning packages.
+                packages.
               </p>
 
               <div className="bg-white/80 backdrop-blur text-primary border border-primary/20 px-5 py-2 rounded-full mt-6 mb-8 text-sm md:text-base font-semibold tracking-wide shadow-sm relative z-10">
