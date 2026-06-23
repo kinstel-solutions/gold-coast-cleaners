@@ -492,7 +492,7 @@ export default function ServicesPage() {
                           <span className="relative z-10 flex items-center justify-center">
                             {service.id === "bond-cleaning" ||
                               service.id === "carpet-cleaning"
-                              ? "View 25% Off Promo"
+                              ? "View 20% Off Promo"
                               : `Get a Quote for ${service.title}`}
                             <CheckCircle className="ml-2 h-4 w-4 transform group-hover:scale-110 transition-transform" />
                           </span>
@@ -594,9 +594,9 @@ export default function ServicesPage() {
                 size="lg"
                 className="relative overflow-hidden w-full max-w-sm rounded-full bg-primary hover:bg-primary/90 text-white py-7 text-lg font-bold tracking-wider shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <Link href="/booking">
-                  <span>Claim 25% Off Now</span>
+                  <span>Claim 20% Off Now</span>
                   <div className="absolute inset-0 bg-white text-primary flex items-center justify-center font-bold text-lg animate-invert-sweep tracking-wider">
-                    Claim 25% Off Now
+                    Claim 20% Off Now
                   </div>
                 </Link>
               </Button>
