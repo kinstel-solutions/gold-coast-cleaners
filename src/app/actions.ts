@@ -26,9 +26,10 @@ export async function submitPartialLead(payload: {
   email: string;
   phone: string;
   services: string[];
+  location?: string;
 }): Promise<ActionResponse> {
   try {
-    const { name, email, phone, services } = payload;
+    const { name, email, phone, services, location } = payload;
     const servicesStr = services.join(", ");
 
     // 1. Admin Notification
@@ -56,6 +57,12 @@ export async function submitPartialLead(payload: {
               <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><strong>Phone:</strong></td>
               <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">${phone}</td>
             </tr>
+            ${location ? `
+            <tr>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><strong>Location:</strong></td>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">${location}</td>
+            </tr>
+            ` : ""}
             <tr>
               <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><strong>Interested Services:</strong></td>
               <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">${servicesStr}</td>
@@ -180,6 +187,7 @@ export async function submitQuote(
             <tr><td style="padding: 5px 0;"><strong>Email:</strong></td><td>${bookingDetails.email}</td></tr>
             <tr><td style="padding: 5px 0;"><strong>Phone:</strong></td><td>${bookingDetails.phone}</td></tr>
             <tr><td style="padding: 5px 0;"><strong>Property Type:</strong></td><td>${bookingDetails.propertyType || "N/A"}</td></tr>
+            <tr><td style="padding: 5px 0;"><strong>Address:</strong></td><td>${bookingDetails.address || "N/A"}</td></tr>
             <tr><td style="padding: 5px 0;"><strong>Preferred Date:</strong></td><td>${
               bookingDetails.cleaningDate
                 ? new Date(bookingDetails.cleaningDate).toDateString()

@@ -10,7 +10,26 @@ interface Step1Props {
 }
 
 export function Step1ServiceSelection({ values, onChange }: Step1Props) {
-  const services = Object.values(SERVICE_CONFIGS);
+  const serviceOrder: ServiceId[] = [
+    "BOND_CLEANING",
+    "CARPET_STEAM_CLEANING",
+    "PEST_CONTROL",
+    "SPRING_CLEANING",
+    "OVEN_BBQ_CLEANING",
+    "DEEP_CLEANING",
+    "BUILDER_CLEANING",
+    "AIRBNB_CLEANING",
+    "PRESSURE_WASHING",
+  ];
+
+  const services = Object.values(SERVICE_CONFIGS).sort((a, b) => {
+    const idxA = serviceOrder.indexOf(a.id);
+    const idxB = serviceOrder.indexOf(b.id);
+    if (idxA === -1 && idxB === -1) return 0;
+    if (idxA === -1) return 1;
+    if (idxB === -1) return -1;
+    return idxA - idxB;
+  });
 
   const toggleSelection = (id: ServiceId) => {
     if (values.includes(id)) {

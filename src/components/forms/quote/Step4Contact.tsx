@@ -27,6 +27,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { SERVICE_CONFIGS, FEATURE_FLAGS } from "@/config/services";
+import { Checkbox } from "@/components/ui/checkbox";
+import Link from "next/link";
 
 interface Step4Props {
   data: Partial<ContactInfo>;
@@ -246,7 +248,18 @@ export function Step4Contact({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="message">Message (Optional)</Label>
+          <Label htmlFor="address">Address</Label>
+          <Input
+            id="address"
+            placeholder="e.g. 123 Main St, Surfers Paradise QLD 4217"
+            value={data.address || ""}
+            onChange={(e) => onChange("address", e.target.value)}
+            className="py-6 rounded-xl"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="message">Special Instructions</Label>
           <Textarea
             id="message"
             placeholder="Tell us about any specific requirements or property access instructions..."
@@ -254,6 +267,37 @@ export function Step4Contact({
             onChange={(e) => onChange("message", e.target.value)}
             className="rounded-xl resize-none min-h-[100px]"
           />
+        </div>
+
+        <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md p-1 mt-6">
+          <Checkbox
+            id="terms"
+            checked={data.terms || false}
+            onCheckedChange={(checked) => onChange("terms", !!checked)}
+            className={cn(formErrors.terms && "border-destructive")}
+          />
+          <div className="space-y-1 leading-none">
+            <Label htmlFor="terms" className="text-sm text-slate-600 font-normal cursor-pointer">
+              I agree to the{" "}
+              <Link
+                href="/terms"
+                target="_blank"
+                className="underline hover:text-primary transition-colors">
+                Terms & Conditions
+              </Link>{" "}
+              and{" "}
+              <Link
+                href="/privacy"
+                target="_blank"
+                className="underline hover:text-primary transition-colors">
+                Privacy Policy
+              </Link>
+              .
+            </Label>
+            {formErrors.terms && (
+              <p className="text-sm text-destructive mt-1">{formErrors.terms}</p>
+            )}
+          </div>
         </div>
       </div>
     </div>
