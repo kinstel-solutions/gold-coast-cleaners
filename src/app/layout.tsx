@@ -98,7 +98,7 @@ export default function RootLayout({
           playfair.variable,
         )}>
         <Header />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow pb-20 md:pb-0">{children}</main>
         <Footer />
         <FloatingCallButton />
         <PromoPopup />

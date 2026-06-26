@@ -83,7 +83,7 @@ export default function Home() {
   };
 
   return (
-    <div className="pb-20 md:pb-0">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -97,6 +97,6 @@ export default function Home() {
 
       <StatsSection />
       <CtaStrip />
-    </div>
+    </>
   );
 }

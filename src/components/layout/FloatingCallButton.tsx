@@ -23,8 +23,6 @@ export function FloatingCallButton() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  
-  const isGoldCoast = pathname === "/lp/gold-coast";
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -43,10 +41,7 @@ export function FloatingCallButton() {
     <>
       <div 
         ref={containerRef} 
-        className={cn(
-          "fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 pointer-events-none",
-          isGoldCoast && "hidden md:flex"
-        )}
+        className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 pointer-events-none hidden md:flex"
       >
         {/* Expanded Menu Options */}
         <div 
@@ -97,31 +92,6 @@ export function FloatingCallButton() {
               <Calendar className="h-5 w-5" />
             </Link>
           </div>
-
-          {/* WhatsApp Option */}
-          {!isGoldCoast && (
-            <div className="relative group flex items-center gap-2">
-              <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
-                WhatsApp Chat
-              </span>
-              <a
-                href={SITE_WHATSAPP_HREF}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => {
-                  sendGTMEvent({
-                    event: "whatsapp_click",
-                    placement: "floating_menu",
-                    journey_string: pathname,
-                  });
-                  setIsOpen(false);
-                }}
-                className="flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#2EE370] text-white shadow-lg transition-transform hover:scale-105"
-              >
-                <WhatsAppIcon className="h-6 w-6" />
-              </a>
-            </div>
-          )}
         </div>
 
         {/* Main Toggle Button */}
@@ -154,40 +124,38 @@ export function FloatingCallButton() {
         </div>
       </div>
 
-      {/* Mobile Sticky Bottom Bar (Only visible on /lp/gold-coast on mobile screens) */}
-      {isGoldCoast && (
-        <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#0B2D6E]/80 backdrop-blur-md border-t border-white/10 px-4 py-2.5 flex gap-3 md:hidden shadow-[0_-4px_16px_rgba(11,45,110,0.35)] pointer-events-auto">
-          <a
-            href={SITE_PHONE_HREF}
-            onClick={() => {
-              sendGTMEvent({
-                event: "phone_call",
-                placement: "mobile_sticky_bar",
-                journey_string: pathname,
-              });
-            }}
-            className="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-white text-primary font-semibold text-center transition-all hover:scale-[1.02] shadow-md"
-          >
-            <Phone className="h-4 w-4 shrink-0 text-primary" />
-            <span className="text-primary">Call Now</span>
-          </a>
-          <Link
-            href="/booking"
-            onClick={() => {
-              sendGTMEvent({
-                event: "booking_click",
-                placement: "mobile_sticky_bar",
-                journey_string: pathname,
-              });
-            }}
-            className="relative overflow-hidden flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-center transition-all hover:scale-[1.02] shadow-md border border-white/5 animate-pulse-glow-white"
-          >
-            <div className="animate-shimmer-sweep-sync" />
-            <Sparkles className="h-4 w-4 shrink-0" />
-            <span>Get Quote</span>
-          </Link>
-        </div>
-      )}
+      {/* Mobile Sticky Bottom Bar (Visible across the site on mobile screens) */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#0B2D6E]/80 backdrop-blur-md border-t border-white/10 px-4 py-2.5 flex gap-3 md:hidden shadow-[0_-4px_16px_rgba(11,45,110,0.35)] pointer-events-auto">
+        <a
+          href={SITE_PHONE_HREF}
+          onClick={() => {
+            sendGTMEvent({
+              event: "phone_call",
+              placement: "mobile_sticky_bar",
+              journey_string: pathname,
+            });
+          }}
+          className="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-white text-primary font-semibold text-center transition-all hover:scale-[1.02] shadow-md"
+        >
+          <Phone className="h-4 w-4 shrink-0 text-primary" />
+          <span className="text-primary">Call Now</span>
+        </a>
+        <Link
+          href="/booking"
+          onClick={() => {
+            sendGTMEvent({
+              event: "booking_click",
+              placement: "mobile_sticky_bar",
+              journey_string: pathname,
+            });
+          }}
+          className="relative overflow-hidden flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-center transition-all hover:scale-[1.02] shadow-md border border-white/5 animate-pulse-glow-white"
+        >
+          <div className="animate-shimmer-sweep-sync" />
+          <Sparkles className="h-4 w-4 shrink-0" />
+          <span>Get Quote</span>
+        </Link>
+      </div>
     </>
   );
 }
