@@ -12,21 +12,49 @@ import { sendGTMEvent } from "@next/third-parties/google";
 export function PromoPopup() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [isFillingForm, setIsFillingForm] = useState(false);
   const isLandingPage = pathname?.startsWith("/lp/");
+
+  useEffect(() => {
+    const handleFocus = (e: FocusEvent) => {
+      const target = e.target as HTMLElement;
+      if (
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT" ||
+          target.closest("form"))
+      ) {
+        setIsFillingForm(true);
+      }
+    };
+    document.addEventListener("focusin", handleFocus);
+    return () => document.removeEventListener("focusin", handleFocus);
+  }, []);
 
   useEffect(() => {
     // Check if the user has seen the popup recently
     const hasSeenPopup = sessionStorage.getItem("promo-popup-seen");
     
-    if (!hasSeenPopup) {
+    if (!hasSeenPopup && !isFillingForm) {
       // Delay the popup so it doesn't immediately interrupt the user
       const timer = setTimeout(() => {
-        setIsOpen(true);
+        const activeElement = typeof document !== "undefined" ? document.activeElement : null;
+        const isCurrentlyTyping = activeElement && (
+          activeElement.tagName === "INPUT" || 
+          activeElement.tagName === "TEXTAREA" || 
+          activeElement.tagName === "SELECT" ||
+          activeElement.closest("form")
+        );
+
+        if (!isCurrentlyTyping) {
+          setIsOpen(true);
+        }
       }, 20000); // 20 seconds delay
       
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [isFillingForm]);
 
   useEffect(() => {
     const handleOpenPromo = () => {

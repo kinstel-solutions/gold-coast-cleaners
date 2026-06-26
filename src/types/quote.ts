@@ -32,6 +32,12 @@ export const ContactInfoSchema = z.object({
   cleaningDate: z.date().optional(),
   address: z.string().optional(),
   message: z.string().optional(),
+  terms: z
+    .boolean()
+    .default(false)
+    .refine((val) => val === true, {
+      message: "You must agree to the terms & conditions.",
+    }),
 });
 export type ContactInfo = z.infer<typeof ContactInfoSchema>;
 

@@ -2,11 +2,12 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Phone, Calendar, X, MessageCircle } from "lucide-react";
+import { Phone, Calendar, X, MessageCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE_PHONE_HREF, SITE_WHATSAPP_HREF, SITE_PHONE_NUMBER } from "@/lib/constants";
 import { sendGTMEvent } from "@next/third-parties/google";
 import { useState, useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg
@@ -22,6 +23,8 @@ export function FloatingCallButton() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  const isGoldCoast = pathname === "/lp/gold-coast";
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -37,109 +40,154 @@ export function FloatingCallButton() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <div ref={containerRef} className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 pointer-events-none">
-      {/* Expanded Menu Options */}
+    <>
       <div 
-        className={`flex flex-col items-end gap-3 transition-all duration-300 ease-out origin-bottom ${
-          isOpen 
-            ? "opacity-100 translate-y-0 scale-100 pointer-events-auto" 
-            : "opacity-0 translate-y-4 scale-75 pointer-events-none"
-        }`}
+        ref={containerRef} 
+        className={cn(
+          "fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 pointer-events-none",
+          isGoldCoast && "hidden md:flex"
+        )}
       >
-        {/* Phone Call Option */}
-        <div className="relative group flex items-center gap-2">
-          <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
-            Call: {SITE_PHONE_NUMBER}
-          </span>
+        {/* Expanded Menu Options */}
+        <div 
+          className={`flex flex-col items-end gap-3 transition-all duration-300 ease-out origin-bottom ${
+            isOpen 
+              ? "opacity-100 translate-y-0 scale-100 pointer-events-auto" 
+              : "opacity-0 translate-y-4 scale-75 pointer-events-none"
+          }`}
+        >
+          {/* Phone Call Option */}
+          <div className="relative group flex items-center gap-2">
+            <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
+              Call: {SITE_PHONE_NUMBER}
+            </span>
+            <a
+              href={SITE_PHONE_HREF}
+              onClick={() => {
+                sendGTMEvent({
+                  event: "phone_call",
+                  placement: "floating_menu",
+                  journey_string: pathname,
+                });
+                setIsOpen(false);
+              }}
+              className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-500 text-white shadow-lg transition-transform hover:scale-105"
+            >
+              <Phone className="h-5 w-5" />
+            </a>
+          </div>
+
+          {/* Book Online Option */}
+          <div className="relative group flex items-center gap-2">
+            <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
+              Book Online
+            </span>
+            <Link
+              href="/booking"
+              onClick={() => {
+                sendGTMEvent({
+                  event: "booking_click",
+                  placement: "floating_menu",
+                  journey_string: pathname,
+                });
+                setIsOpen(false);
+              }}
+              className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg transition-transform hover:scale-105"
+            >
+              <Calendar className="h-5 w-5" />
+            </Link>
+          </div>
+
+          {/* WhatsApp Option */}
+          {!isGoldCoast && (
+            <div className="relative group flex items-center gap-2">
+              <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
+                WhatsApp Chat
+              </span>
+              <a
+                href={SITE_WHATSAPP_HREF}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  sendGTMEvent({
+                    event: "whatsapp_click",
+                    placement: "floating_menu",
+                    journey_string: pathname,
+                  });
+                  setIsOpen(false);
+                }}
+                className="flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#2EE370] text-white shadow-lg transition-transform hover:scale-105"
+              >
+                <WhatsAppIcon className="h-6 w-6" />
+              </a>
+            </div>
+          )}
+        </div>
+
+        {/* Main Toggle Button */}
+        <div className="relative group pointer-events-auto">
+          {/* Glow ring */}
+          <div className={`absolute -inset-1 rounded-full bg-primary opacity-30 blur-md transition-opacity duration-300 ${
+            isOpen ? "opacity-10" : "group-hover:opacity-50 animate-pulse-glow"
+          }`} />
+          
+          {/* Tooltip (only when closed) */}
+          {!isOpen && (
+            <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-sm font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-lg translate-x-2 group-hover:translate-x-0">
+              Contact Us
+              <span className="absolute top-1/2 -translate-y-1/2 -right-1 w-2 h-2 bg-slate-900 rotate-45" />
+            </span>
+          )}
+
+          <Button
+            onClick={toggleMenu}
+            size="icon"
+            aria-label="Contact options"
+            className={`w-[60px] h-[60px] rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 ${
+              isOpen 
+                ? "bg-slate-800 text-white hover:bg-slate-700 rotate-90" 
+                : "bg-primary hover:bg-primary/90 text-white"
+            }`}
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-7 w-7" />}
+          </Button>
+        </div>
+      </div>
+
+      {/* Mobile Sticky Bottom Bar (Only visible on /lp/gold-coast on mobile screens) */}
+      {isGoldCoast && (
+        <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#0B2D6E]/80 backdrop-blur-md border-t border-white/10 px-4 py-2.5 flex gap-3 md:hidden shadow-[0_-4px_16px_rgba(11,45,110,0.35)] pointer-events-auto">
           <a
             href={SITE_PHONE_HREF}
             onClick={() => {
               sendGTMEvent({
                 event: "phone_call",
-                placement: "floating_menu",
+                placement: "mobile_sticky_bar",
                 journey_string: pathname,
               });
-              setIsOpen(false);
             }}
-            className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-500 text-white shadow-lg transition-transform hover:scale-105"
+            className="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-white text-primary font-semibold text-center transition-all hover:scale-[1.02] shadow-md"
           >
-            <Phone className="h-5 w-5" />
+            <Phone className="h-4 w-4 shrink-0 text-primary" />
+            <span className="text-primary">Call Now</span>
           </a>
-        </div>
-
-        {/* Book Online Option */}
-        <div className="relative group flex items-center gap-2">
-          <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
-            Book Online
-          </span>
           <Link
             href="/booking"
             onClick={() => {
               sendGTMEvent({
                 event: "booking_click",
-                placement: "floating_menu",
+                placement: "mobile_sticky_bar",
                 journey_string: pathname,
               });
-              setIsOpen(false);
             }}
-            className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg transition-transform hover:scale-105"
+            className="relative overflow-hidden flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-center transition-all hover:scale-[1.02] shadow-md border border-white/5 animate-pulse-glow-white"
           >
-            <Calendar className="h-5 w-5" />
+            <div className="animate-shimmer-sweep-sync" />
+            <Sparkles className="h-4 w-4 shrink-0" />
+            <span>Get Quote</span>
           </Link>
         </div>
-
-        {/* WhatsApp Option */}
-        <div className="relative group flex items-center gap-2">
-          <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
-            WhatsApp Chat
-          </span>
-          <a
-            href={SITE_WHATSAPP_HREF}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => {
-              sendGTMEvent({
-                event: "whatsapp_click",
-                placement: "floating_menu",
-                journey_string: pathname,
-              });
-              setIsOpen(false);
-            }}
-            className="flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#2EE370] text-white shadow-lg transition-transform hover:scale-105"
-          >
-            <WhatsAppIcon className="h-6 w-6" />
-          </a>
-        </div>
-      </div>
-
-      {/* Main Toggle Button */}
-      <div className="relative group pointer-events-auto">
-        {/* Glow ring */}
-        <div className={`absolute -inset-1 rounded-full bg-primary opacity-30 blur-md transition-opacity duration-300 ${
-          isOpen ? "opacity-10" : "group-hover:opacity-50 animate-pulse-glow"
-        }`} />
-        
-        {/* Tooltip (only when closed) */}
-        {!isOpen && (
-          <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-sm font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-lg translate-x-2 group-hover:translate-x-0">
-            Contact Us
-            <span className="absolute top-1/2 -translate-y-1/2 -right-1 w-2 h-2 bg-slate-900 rotate-45" />
-          </span>
-        )}
-
-        <Button
-          onClick={toggleMenu}
-          size="icon"
-          aria-label="Contact options"
-          className={`w-[60px] h-[60px] rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 ${
-            isOpen 
-              ? "bg-slate-800 text-white hover:bg-slate-700 rotate-90" 
-              : "bg-primary hover:bg-primary/90 text-white"
-          }`}
-        >
-          {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-7 w-7" />}
-        </Button>
-      </div>
-    </div>
+      )}
+    </>
   );
 }

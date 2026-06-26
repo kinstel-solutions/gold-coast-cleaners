@@ -27,6 +27,7 @@ const formSchema = z.object({
   name: z.string().min(2, { message: "Name is required." }),
   email: z.string().email({ message: "Invalid email address." }),
   phone: z.string().min(8, { message: "Phone number is required." }),
+  location: z.string().optional(),
   services: z
     .array(z.string())
     .min(1, { message: "Select at least one service." }),
@@ -74,6 +75,7 @@ export function HeroQuoteForm({
       name: "",
       email: "",
       phone: "",
+      location: "",
       services: [],
       terms: false,
     },
@@ -88,6 +90,7 @@ export function HeroQuoteForm({
         email: values.email,
         phone: values.phone,
         services: values.services,
+        location: values.location,
       });
 
       if (!response.success) {
@@ -121,6 +124,9 @@ export function HeroQuoteForm({
         params.set("name", values.name);
         params.set("email", values.email);
         params.set("phone", values.phone);
+        if (values.location) {
+          params.set("location", values.location);
+        }
         params.set("services", values.services.join(",")); // Comma separated for URL
 
         router.push(`/booking?${params.toString()}`);
@@ -257,6 +263,23 @@ export function HeroQuoteForm({
                     <FormControl>
                       <Input
                         placeholder="Phone Number"
+                        className="bg-white/50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:bg-white/80 focus:border-primary"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="location"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        placeholder="Suburb / Location"
                         className="bg-white/50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:bg-white/80 focus:border-primary"
                         {...field}
                       />

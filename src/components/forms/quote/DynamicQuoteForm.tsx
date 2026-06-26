@@ -49,13 +49,15 @@ export function DynamicQuoteForm({ onSuccess, placement = "booking_form" }: { on
     const email = searchParams.get("email");
     const phone = searchParams.get("phone");
     const services = searchParams.get("services");
+    const location = searchParams.get("location");
 
-    if (name || email || phone) {
+    if (name || email || phone || location) {
       setContactInfo((prev) => ({
         ...prev,
         ...(name && { name }),
         ...(email && { email }),
         ...(phone && { phone }),
+        ...(location && { address: location }),
       }));
     }
 
