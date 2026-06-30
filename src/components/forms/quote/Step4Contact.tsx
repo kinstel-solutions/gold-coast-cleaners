@@ -1,17 +1,9 @@
-import { useState } from "react";
+
 import { ContactInfo, ServiceId } from "@/types/quote";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { CalendarIcon, ShieldCheck } from "lucide-react";
-import { format } from "date-fns";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
+import { DatePicker } from "@/components/ui/DatePicker";
 import {
   Select,
   SelectContent,
@@ -47,8 +39,6 @@ export function Step4Contact({
   priceRange,
   formErrors,
 }: Step4Props) {
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-
   const selectedConfigNames = serviceIds
     .map((id) => SERVICE_CONFIGS[id]?.name)
     .filter(Boolean)
@@ -203,42 +193,13 @@ export function Step4Contact({
 
           <div className="space-y-2 flex flex-col">
             <Label className="mb-2">Preferred Date</Label>
-            <Popover
-              open={isCalendarOpen}
-              onOpenChange={setIsCalendarOpen}>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  className={cn(
-                    "w-full justify-start text-left font-normal py-6 rounded-xl",
-                    !data.cleaningDate && "text-muted-foreground",
-                    formErrors.cleaningDate && "border-destructive",
-                  )}>
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {data.cleaningDate ? (
-                    format(data.cleaningDate, "PPP")
-                  ) : (
-                    <span>Pick a date</span>
-                  )}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent
-                className="w-auto p-0"
-                align="start">
-                <Calendar
-                  mode="single"
-                  selected={data.cleaningDate}
-                  onSelect={(date) => {
-                    onChange("cleaningDate", date);
-                    setIsCalendarOpen(false);
-                  }}
-                  disabled={(date) =>
-                    date < new Date() || date < new Date("1900-01-01")
-                  }
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover>
+            <DatePicker
+              value={data.cleaningDate}
+              onChange={(date) => onChange("cleaningDate", date)}
+              disabled={(date) => date < new Date()}
+              placeholder="Pick a date"
+              className={cn(formErrors.cleaningDate && "border-destructive")}
+            />
             {formErrors.cleaningDate && (
               <p className="text-sm text-destructive">
                 {formErrors.cleaningDate}
