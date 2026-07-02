@@ -33,6 +33,7 @@ export function PromoPopup() {
   }, []);
 
   useEffect(() => {
+    if (pathname === "/booking") return;
     // Check if the user has seen the popup recently
     const hasSeenPopup = sessionStorage.getItem("promo-popup-seen");
     
@@ -54,9 +55,10 @@ export function PromoPopup() {
       
       return () => clearTimeout(timer);
     }
-  }, [isFillingForm]);
+  }, [isFillingForm, pathname]);
 
   useEffect(() => {
+    if (pathname === "/booking") return;
     const handleOpenPromo = () => {
       setIsOpen(true);
     };
@@ -64,7 +66,7 @@ export function PromoPopup() {
     return () => {
       window.removeEventListener("open-promo-popup", handleOpenPromo);
     };
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     if (isOpen) {
@@ -81,6 +83,8 @@ export function PromoPopup() {
     // Remember that the user has seen it for this session
     sessionStorage.setItem("promo-popup-seen", "true");
   };
+
+  if (pathname === "/booking") return null;
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => {

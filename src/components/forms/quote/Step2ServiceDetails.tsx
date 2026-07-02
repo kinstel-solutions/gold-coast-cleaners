@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { ServiceId } from "@/types/quote";
 import { SERVICE_CONFIGS, FieldDefinition } from "@/config/services";
 import { Label } from "@/components/ui/label";
@@ -27,9 +28,11 @@ export function Step2ServiceDetails({
 }: Step2Props) {
   if (!serviceIds || serviceIds.length === 0) return null;
 
-  const validConfigs = serviceIds
-    .map((id) => SERVICE_CONFIGS[id])
-    .filter((config) => config && config.fields.length > 0);
+  const validConfigs = useMemo(() => {
+    return serviceIds
+      .map((id) => SERVICE_CONFIGS[id])
+      .filter((config) => config && config.fields.length > 0);
+  }, [serviceIds]);
 
   const renderField = (serviceId: string, field: FieldDefinition) => {
     // Defaults to empty string if not yet initialized

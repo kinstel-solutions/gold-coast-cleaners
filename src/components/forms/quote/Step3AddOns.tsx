@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { ServiceId } from "@/types/quote";
 import { SERVICE_CONFIGS, AddOnDefinition } from "@/config/services";
 import { Card } from "@/components/ui/card";
@@ -19,15 +20,17 @@ export function Step3AddOns({
   if (!serviceIds || serviceIds.length === 0) return null;
 
   // Aggregate and deduplicate allowed add-ons from all selected services
-  const allowedAddOns = Array.from(
-    new Map(
-      serviceIds
-        .map((id) => SERVICE_CONFIGS[id])
-        .filter(Boolean)
-        .flatMap((config) => config.allowedAddOns)
-        .map((addOn) => [addOn.id, addOn] as [string, AddOnDefinition]),
-    ).values(),
-  );
+  const allowedAddOns = useMemo(() => {
+    return Array.from(
+      new Map(
+        serviceIds
+          .map((id) => SERVICE_CONFIGS[id])
+          .filter(Boolean)
+          .flatMap((config) => config.allowedAddOns)
+          .map((addOn) => [addOn.id, addOn] as [string, AddOnDefinition]),
+      ).values(),
+    );
+  }, [serviceIds]);
 
   const handleToggle = (id: string) => {
     if (selectedAddOns.includes(id)) {

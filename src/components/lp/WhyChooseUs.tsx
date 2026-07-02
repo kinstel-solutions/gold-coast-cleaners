@@ -1,10 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { Card, CardContent } from "../ui/card";
 import { useInView } from "@/hooks/use-in-view";
-import { Button } from "../ui/button";
 
 const features = [
   {
@@ -30,7 +28,6 @@ const features = [
 export function WhyChooseUs() {
   const [imageRef, imageInView] = useInView({ threshold: 0.2 });
   const [contentRef, contentInView] = useInView({ threshold: 0.1 });
-  const [showAll, setShowAll] = useState(false);
 
   return (
     <section className="py-12 sm:py-32 bg-slate-50 relative overflow-hidden">
@@ -76,11 +73,10 @@ export function WhyChooseUs() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               {features.map((feature, index) => {
-                const isHiddenOnMobile = !showAll && index >= 3;
                 return (
                   <Card
                     key={feature.name}
-                    className={`group border border-primary/20 shadow-sm hover:shadow-2xl hover:border-primary/40 transition-all duration-500 rounded-2xl bg-gradient-to-br from-white/80 to-primary/10 backdrop-blur-md overflow-hidden hover:-translate-y-1 fill-mode-both ${isHiddenOnMobile ? "hidden sm:block" : ""} ${contentInView ? "animate-in fade-in slide-in-from-bottom-8 duration-300 opacity-100" : "opacity-0"}`}
+                    className={`group border border-primary/20 shadow-sm hover:shadow-2xl hover:border-primary/40 transition-all duration-500 rounded-2xl bg-gradient-to-br from-white/80 to-primary/10 backdrop-blur-md overflow-hidden hover:-translate-y-1 fill-mode-both ${contentInView ? "animate-in fade-in slide-in-from-bottom-8 duration-300 opacity-100" : "opacity-0"}`}
                     style={{ animationDelay: `${index * 150 + 100}ms` }}>
                     <CardContent className="p-4 sm:p-6 flex flex-col items-start gap-3 sm:gap-4 text-left relative">
                       <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700" />
@@ -95,18 +91,6 @@ export function WhyChooseUs() {
                 );
               })}
             </div>
-            
-            {!showAll && (
-              <div className="mt-8 text-center sm:hidden">
-                <Button 
-                  onClick={() => setShowAll(true)} 
-                  variant="outline"
-                  className="rounded-full px-8 py-6 text-base font-semibold border-primary/20 hover:bg-primary/5"
-                >
-                  Show More Reasons
-                </Button>
-              </div>
-            )}
           </div>
         </div>
       </div>

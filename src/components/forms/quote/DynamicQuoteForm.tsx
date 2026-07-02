@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useTransition, useEffect } from "react";
+import { useState, useTransition, useEffect, useMemo } from "react";
 import { ServiceId, ContactInfo, QuotePayload } from "@/types/quote";
-import { FEATURE_FLAGS, SERVICE_CONFIGS } from "@/config/services";
+import { FEATURE_FLAGS, SERVICE_CONFIGS, SERVICE_ID_MAP } from "@/config/services";
 import { calculatePriceRange } from "@/lib/pricing";
 import { submitQuote } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
@@ -62,7 +62,6 @@ export function DynamicQuoteForm({ onSuccess, placement = "booking_form" }: { on
     }
 
     if (services) {
-      const { SERVICE_ID_MAP } = require("@/config/services");
       const urlIds = services.split(",");
       const internalIds = urlIds
         .map((id) => SERVICE_ID_MAP[id])
@@ -74,28 +73,34 @@ export function DynamicQuoteForm({ onSuccess, placement = "booking_form" }: { on
     }
   }, [searchParams]);
 
-  const priceRange =
-    serviceIds.length > 0
+  const priceRange = useMemo(() => {
+    return serviceIds.length > 0
       ? calculatePriceRange(serviceIds, serviceData, selectedAddOns)
       : null;
+  }, [serviceIds, serviceData, selectedAddOns]);
+
+  const validConfigs = useMemo(() => {
+    return serviceIds
+      .map((id) => SERVICE_CONFIGS[id])
+      .filter(Boolean);
+  }, [serviceIds]);
 
   // Determine total steps based on config
-  const validConfigs = serviceIds
-    .map((id) => SERVICE_CONFIGS[id])
-    .filter(Boolean);
+  const activeSteps = useMemo(() => {
+    const hasServiceFields = validConfigs.some(
+      (config) => config.fields.length > 0,
+    );
 
-  const hasServiceFields = validConfigs.some(
-    (config) => config.fields.length > 0,
-  );
+    const hasAddOns =
+      validConfigs.some((config) => config.allowedAddOns.length > 0) &&
+      FEATURE_FLAGS.addOnsEnabled;
 
-  const hasAddOns =
-    validConfigs.some((config) => config.allowedAddOns.length > 0) &&
-    FEATURE_FLAGS.addOnsEnabled;
-
-  const activeSteps = ["service"];
-  if (hasServiceFields) activeSteps.push("details");
-  if (hasAddOns) activeSteps.push("addons");
-  activeSteps.push("contact");
+    const steps = ["service"];
+    if (hasServiceFields) steps.push("details");
+    if (hasAddOns) steps.push("addons");
+    steps.push("contact");
+    return steps;
+  }, [validConfigs]);
 
   const currentStepKey = activeSteps[step - 1];
 
