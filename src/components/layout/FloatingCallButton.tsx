@@ -125,37 +125,39 @@ export function FloatingCallButton() {
       </div>
 
       {/* Mobile Sticky Bottom Bar (Visible across the site on mobile screens) */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#0B2D6E]/80 backdrop-blur-md border-t border-white/10 px-4 py-2.5 flex gap-3 md:hidden shadow-[0_-4px_16px_rgba(11,45,110,0.35)] pointer-events-auto">
-        <a
-          href={SITE_PHONE_HREF}
-          onClick={() => {
-            sendGTMEvent({
-              event: "phone_call",
-              placement: "mobile_sticky_bar",
-              journey_string: pathname,
-            });
-          }}
-          className="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-white text-primary font-semibold text-center transition-all hover:scale-[1.02] shadow-md"
-        >
-          <Phone className="h-4 w-4 shrink-0 text-primary" />
-          <span className="text-primary">Call Now</span>
-        </a>
-        <Link
-          href="/booking"
-          onClick={() => {
-            sendGTMEvent({
-              event: "booking_click",
-              placement: "mobile_sticky_bar",
-              journey_string: pathname,
-            });
-          }}
-          className="relative overflow-hidden flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-center transition-all hover:scale-[1.02] shadow-md border border-white/5 animate-pulse-glow-white"
-        >
-          <div className="animate-shimmer-sweep-sync" />
-          <Sparkles className="h-4 w-4 shrink-0" />
-          <span>Get Quote</span>
-        </Link>
-      </div>
+      {pathname !== "/booking" && (
+        <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#0B2D6E]/80 backdrop-blur-md border-t border-white/10 px-4 py-2.5 flex gap-3 md:hidden shadow-[0_-4px_16px_rgba(11,45,110,0.35)] pointer-events-auto">
+          <a
+            href={SITE_PHONE_HREF}
+            onClick={() => {
+              sendGTMEvent({
+                event: "phone_call",
+                placement: "mobile_sticky_bar",
+                journey_string: pathname,
+              });
+            }}
+            className="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-white text-primary font-semibold text-center transition-all hover:scale-[1.02] shadow-md"
+          >
+            <Phone className="h-4 w-4 shrink-0 text-primary" />
+            <span className="text-primary">Call Now</span>
+          </a>
+          <Link
+            href="/booking"
+            onClick={() => {
+              sendGTMEvent({
+                event: "booking_click",
+                placement: "mobile_sticky_bar",
+                journey_string: pathname,
+              });
+            }}
+            className="relative overflow-hidden flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-center transition-all hover:scale-[1.02] shadow-md border border-white/5 animate-pulse-glow-white"
+          >
+            <div className="animate-shimmer-sweep-sync" />
+            <Sparkles className="h-4 w-4 shrink-0" />
+            <span>Get Quote</span>
+          </Link>
+        </div>
+      )}
     </>
   );
 }
