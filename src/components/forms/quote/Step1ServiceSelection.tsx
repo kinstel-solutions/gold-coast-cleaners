@@ -15,11 +15,15 @@ export function Step1ServiceSelection({ values, onChange }: Step1Props) {
     "CARPET_STEAM_CLEANING",
     "PEST_CONTROL",
     "SPRING_CLEANING",
-    "OVEN_BBQ_CLEANING",
     "DEEP_CLEANING",
+    "OVEN_BBQ_CLEANING",
+    "UPHOLSTERY_CLEANING",
     "BUILDER_CLEANING",
     "AIRBNB_CLEANING",
     "PRESSURE_WASHING",
+    "POOL_MAINTENANCE",
+    "REMOVALIST",
+    "PAINTING",
   ];
 
   const services = Object.values(SERVICE_CONFIGS).sort((a, b) => {

@@ -29,7 +29,7 @@ export const ContactInfoSchema = z.object({
   phone: z.string().min(8, "Please enter a valid phone number."),
   email: z.string().email("Please enter a valid email address."),
   propertyType: z.string().optional(),
-  cleaningDate: z.date().optional(),
+  cleaningDate: z.coerce.date().optional(),
   address: z.string().optional(),
   message: z.string().optional(),
   terms: z
