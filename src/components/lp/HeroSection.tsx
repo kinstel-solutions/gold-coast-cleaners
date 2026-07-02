@@ -72,14 +72,6 @@ export function HeroSection() {
                     </div>
                   </a>
                 </Button>
-                
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-medium text-xs sm:text-sm shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-700 delay-300">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                  Urgent / Last-Minute Slots Available This Week
-                </div>
               </div>
               
               <p className="text-[10px] text-slate-400 mt-4 italic text-left">
