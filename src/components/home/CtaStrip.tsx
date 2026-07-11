@@ -3,10 +3,11 @@
 import { Phone } from 'lucide-react';
 import { Button } from '../ui/button';
 import { QuoteDialog } from '../QuoteDialog';
-import { SITE_PHONE_HREF } from '@/lib/constants';
+// import { SITE_PHONE_HREF } from '@/lib/constants';
 import { useInView } from '@/hooks/use-in-view';
 import { usePathname } from 'next/navigation';
 import { sendGTMEvent } from '@next/third-parties/google';
+import { CallbackDialog } from '../CallbackDialog';
 
 export function CtaStrip() {
   const pathname = usePathname();
@@ -34,6 +35,7 @@ export function CtaStrip() {
               </Button>
             }
           />
+          {/* Backup of original CTA Call Now button:
           <Button asChild size="lg" variant="outline" className="relative overflow-hidden rounded-full px-6 py-5 sm:px-10 sm:py-7 text-base sm:text-lg bg-transparent border-2 border-white text-white hover:bg-white/20 hover:text-white hover:border-white transition-all transform hover:-translate-y-1 animate-pulse-glow">
             <a
               href={SITE_PHONE_HREF}
@@ -51,6 +53,19 @@ export function CtaStrip() {
               </div>
             </a>
           </Button>
+          */}
+          <CallbackDialog
+            placement="cta_strip"
+            trigger={
+              <Button size="lg" variant="outline" className="relative overflow-hidden rounded-full px-6 py-5 sm:px-10 sm:py-7 text-base sm:text-lg bg-transparent border-2 border-white text-white hover:bg-white/20 hover:text-white hover:border-white transition-all transform hover:-translate-y-1 animate-pulse-glow cursor-pointer">
+                <div className="animate-shimmer-sweep-sync" />
+                <div className="relative z-10 flex items-center justify-center">
+                  <Phone className="mr-2 h-5 w-5" />
+                  Request Callback
+                </div>
+              </Button>
+            }
+          />
         </div>
       </div>
     </section>

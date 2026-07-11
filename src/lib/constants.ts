@@ -1,15 +1,21 @@
 export const SITE_NAME = "James Bond Cleaning";
-export const SITE_PHONE_NUMBER = "07 5620 1066";
-export const SITE_PHONE_HREF = "tel:0756201066";
-export const SITE_EMAIL_PRIMARY = "support@jamesbondcleaning.au";
-export const SITE_EMAIL_PRIMARY_HREF = "mailto:support@jamesbondcleaning.au";
+
+// Backup of original phone number & email details
+// export const SITE_PHONE_NUMBER = "07 5620 1066";
+// export const SITE_PHONE_HREF = "tel:0756201066";
+// export const SITE_EMAIL_PRIMARY = "support@jamesbondcleaning.au";
+// export const SITE_EMAIL_PRIMARY_HREF = "mailto:support@jamesbondcleaning.au";
+
 export const SITE_EMAIL_SECONDARY = "jamesbondcleaningau@hotmail.com";
 export const SITE_EMAIL_SECONDARY_HREF =
   "mailto:jamesbondcleaningau@hotmail.com";
 export const SITE_WHATSAPP_NUMBER = "+61485878343";
 export const SITE_WHATSAPP_HREF =
   "https://wa.me/61485878343?text=Hi%2C%20I%20would%20like%20to%20get%20a%20quote%20for%20cleaning%20services.";
-export const SITE_ADDRESS = "Cypress Avenue, Surfers Paradise 4217";
+
+// Backup of original address
+// export const SITE_ADDRESS = "Cypress Avenue, Surfers Paradise 4217";
+export const SITE_ADDRESS = "Surfers Paradise 4217";
 export const SITE_INSTAGRAM_HREF =
   "https://www.instagram.com/jamesbondcleaning?igsh=cW9nNXk2OWZ1NzF5";
 export const SITE_FACEBOOK_HREF =

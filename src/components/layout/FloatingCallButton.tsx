@@ -4,10 +4,15 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Phone, Calendar, X, MessageCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SITE_PHONE_HREF, SITE_WHATSAPP_HREF, SITE_PHONE_NUMBER } from "@/lib/constants";
+import {
+  // SITE_PHONE_HREF,
+  SITE_WHATSAPP_HREF,
+  // SITE_PHONE_NUMBER
+} from "@/lib/constants";
 import { sendGTMEvent } from "@next/third-parties/google";
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { CallbackDialog } from "@/components/CallbackDialog";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg
@@ -51,7 +56,7 @@ export function FloatingCallButton() {
               : "opacity-0 translate-y-4 scale-75 pointer-events-none"
           }`}
         >
-          {/* Phone Call Option */}
+          {/* Backup of original Phone Call Option:
           <div className="relative group flex items-center gap-2">
             <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
               Call: {SITE_PHONE_NUMBER}
@@ -70,6 +75,25 @@ export function FloatingCallButton() {
             >
               <Phone className="h-5 w-5" />
             </a>
+          </div>
+          */}
+
+          {/* Request Callback Option */}
+          <div className="relative group flex items-center gap-2">
+            <span className="bg-slate-900 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200">
+              Request Callback
+            </span>
+            <CallbackDialog
+              placement="floating_menu"
+              trigger={
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-500 text-white shadow-lg transition-transform hover:scale-105 cursor-pointer outline-none"
+                >
+                  <Phone className="h-5 w-5" />
+                </button>
+              }
+            />
           </div>
 
           {/* Book Online Option */}
@@ -127,6 +151,7 @@ export function FloatingCallButton() {
       {/* Mobile Sticky Bottom Bar (Visible across the site on mobile screens) */}
       {pathname !== "/booking" && (
         <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#0B2D6E]/80 backdrop-blur-md border-t border-white/10 px-4 py-2.5 flex gap-3 md:hidden shadow-[0_-4px_16px_rgba(11,45,110,0.35)] pointer-events-auto">
+          {/* Backup of original Mobile Sticky Call button:
           <a
             href={SITE_PHONE_HREF}
             onClick={() => {
@@ -141,6 +166,18 @@ export function FloatingCallButton() {
             <Phone className="h-4 w-4 shrink-0 text-primary" />
             <span className="text-primary">Call Now</span>
           </a>
+          */}
+          <CallbackDialog
+            placement="mobile_sticky_bar"
+            trigger={
+              <button
+                className="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-white text-primary font-semibold text-center transition-all hover:scale-[1.02] shadow-md cursor-pointer outline-none"
+              >
+                <Phone className="h-4 w-4 shrink-0 text-primary" />
+                <span className="text-primary">Request Callback</span>
+              </button>
+            }
+          />
           <Link
             href="/booking"
             onClick={() => {

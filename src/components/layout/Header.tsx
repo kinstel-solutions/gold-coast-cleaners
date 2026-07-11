@@ -24,12 +24,13 @@ import { HeroQuoteForm } from "@/components/forms/HeroQuoteForm";
 import {
   NAVIGATION_LINKS,
   SITE_NAME,
-  SITE_PHONE_HREF,
-  SITE_PHONE_NUMBER,
+  // SITE_PHONE_HREF,
+  // SITE_PHONE_NUMBER,
   SERVICES,
 } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import { CallbackDialog } from "@/components/CallbackDialog";
 
 export function Header() {
   const pathname = usePathname();
@@ -125,6 +126,7 @@ export function Header() {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-3">
+          {/* Backup of original Header Call buttons:
           <Button
             asChild
             className={cn(
@@ -171,6 +173,41 @@ export function Header() {
                 <span className="font-bold text-sm whitespace-nowrap">{SITE_PHONE_NUMBER}</span>
               </a>
             </Button>
+          )}
+          */}
+
+          <CallbackDialog
+            placement="header"
+            trigger={
+              <Button
+                className={cn(
+                  "hidden xl:flex items-center gap-3 rounded-full bg-primary text-white hover:bg-slate-900 hover:text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 pl-1 pr-6 py-1 h-11 sm:h-12 cursor-pointer animate-pulse-glow relative overflow-hidden",
+                )}>
+                <div className="animate-shimmer-sweep-sync" />
+                <div className="bg-white rounded-full p-2.5 flex items-center justify-center shadow-sm shrink-0">
+                  <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-primary fill-current" />
+                </div>
+                <span className="font-bold text-base sm:text-lg whitespace-nowrap">Request Callback</span>
+              </Button>
+            }
+          />
+
+          {isLandingPage && (
+            <CallbackDialog
+              placement="header"
+              trigger={
+                <Button
+                  className={cn(
+                    "flex sm:hidden items-center gap-2 rounded-full bg-primary text-white hover:bg-slate-900 hover:text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 pl-1 pr-4 py-1 h-9 cursor-pointer animate-pulse-glow relative overflow-hidden",
+                  )}>
+                  <div className="animate-shimmer-sweep-sync" />
+                  <div className="bg-white rounded-full p-1.5 flex items-center justify-center shadow-sm shrink-0">
+                    <Phone className="h-3.5 w-3.5 text-primary fill-current" />
+                  </div>
+                  <span className="font-bold text-xs whitespace-nowrap">Callback</span>
+                </Button>
+              }
+            />
           )}
 
           {pathname !== "/booking" && (
@@ -287,6 +324,7 @@ export function Header() {
                       <p className="text-sm text-muted-foreground mb-3 text-center">
                         Ready to get your bond back?
                       </p>
+                      {/* Backup of original Mobile Menu call button:
                       <Button
                         asChild
                         className="w-full gap-2 shadow-sm"
@@ -304,6 +342,19 @@ export function Header() {
                           Call {SITE_PHONE_NUMBER}
                         </a>
                       </Button>
+                      */}
+                      <CallbackDialog
+                        placement="header_mobile_menu"
+                        trigger={
+                          <Button
+                            className="w-full gap-2 shadow-sm cursor-pointer"
+                            size="lg"
+                            onClick={() => setSheetOpen(false)}>
+                            <Phone className="h-5 w-5 fill-current" />
+                            Request Callback
+                          </Button>
+                        }
+                      />
                     </div>
                   </div>
                 </div>

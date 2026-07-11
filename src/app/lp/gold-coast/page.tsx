@@ -25,12 +25,13 @@ export default function Home() {
       "https://jamesbondcleaning.au/logos/JBC-logo-JB-with-full-name-noBG.png",
     "@id": "https://jamesbondcleaning.au/#organization",
     url: "https://jamesbondcleaning.au",
-    telephone: "07 5620 1066",
-    email: "support@jamesbondcleaning.au",
+    // Backup of original schema phone, email, and street address:
+    // telephone: "07 5620 1066",
+    // email: "support@jamesbondcleaning.au",
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Unit 501, 18 Cypress Avenue",
+      // streetAddress: "Unit 501, 18 Cypress Avenue",
       addressLocality: "Surfers Paradise",
       addressRegion: "QLD",
       postalCode: "4217",

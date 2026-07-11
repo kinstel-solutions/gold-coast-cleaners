@@ -396,6 +396,7 @@ export function DynamicQuoteForm({ onSuccess, placement = "booking_form" }: { on
             <ShieldCheck className="mr-2 h-4 w-4 text-primary" />
             Fully insured • Bond Back Guarantee • Gold Coast locals
           </p>
+          {/* Backup of original contact helper phone link:
           <a
             href="tel:0756201066"
             onClick={() =>
@@ -409,6 +410,7 @@ export function DynamicQuoteForm({ onSuccess, placement = "booking_form" }: { on
             <PhoneCall className="mr-2 h-4 w-4" />
             Prefer to talk? Call 07 5620 1066
           </a>
+          */}
         </div>
       )}
     </div>
