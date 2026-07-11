@@ -10,18 +10,19 @@ import {
   NAVIGATION_LINKS,
   OPENING_HOURS,
   SERVICES,
-  SITE_EMAIL_PRIMARY,
-  SITE_EMAIL_PRIMARY_HREF,
+  // SITE_EMAIL_PRIMARY,
+  // SITE_EMAIL_PRIMARY_HREF,
   SITE_EMAIL_SECONDARY,
   SITE_EMAIL_SECONDARY_HREF,
   SITE_NAME,
-  SITE_PHONE_HREF,
-  SITE_PHONE_NUMBER,
+  // SITE_PHONE_HREF,
+  // SITE_PHONE_NUMBER,
   SITE_ADDRESS,
   SITE_INSTAGRAM_HREF,
   SITE_FACEBOOK_HREF,
 } from "@/lib/constants";
 import { AgencyCredit } from "@/components/AgencyCredit";
+import { CallbackDialog } from "@/components/CallbackDialog";
 
 export function Footer() {
   const pathname = usePathname();
@@ -105,6 +106,7 @@ export function Footer() {
                 <MapPin className="h-4 w-4 text-primary shrink-0 mt-1" />
                 <span>{SITE_ADDRESS}</span>
               </li>
+              {/* Backup of original Footer phone listing:
               <li className="flex items-center gap-2">
                 <div className="relative flex h-5 w-5 items-center justify-center">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-40"></span>
@@ -123,7 +125,23 @@ export function Footer() {
                   {SITE_PHONE_NUMBER}
                 </a>
               </li>
+              */}
+              <li className="flex items-center gap-2">
+                <div className="relative flex h-5 w-5 items-center justify-center">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-40"></span>
+                  <Phone className="relative h-5 w-5 text-primary drop-shadow-md" />
+                </div>
+                <CallbackDialog
+                  placement="footer"
+                  trigger={
+                    <button className="text-base font-bold text-primary hover:text-primary/80 transition-all drop-shadow-sm hover:scale-105 cursor-pointer outline-none">
+                      Request Callback
+                    </button>
+                  }
+                />
+              </li>
               <li className="flex flex-col gap-2 pt-1">
+                {/* Backup of original Footer primary email:
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-primary shrink-0" />
                   <a
@@ -132,8 +150,9 @@ export function Footer() {
                     {SITE_EMAIL_PRIMARY}
                   </a>
                 </div>
+                */}
                 <div className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-primary shrink-0 opacity-0" />
+                  <Mail className="h-4 w-4 text-primary shrink-0" />
                   <a
                     href={SITE_EMAIL_SECONDARY_HREF}
                     className="hover:text-primary transition-colors text-sm break-all">

@@ -2,7 +2,8 @@
 
 import { Check, Phone } from "lucide-react";
 import { Button } from "../ui/button";
-import { SITE_PHONE_HREF } from "@/lib/constants";
+// import { SITE_PHONE_HREF } from "@/lib/constants";
+import { CallbackDialog } from "../CallbackDialog";
 import { HeroQuoteForm } from "../forms/HeroQuoteForm";
 import { usePathname } from "next/navigation";
 import { sendGTMEvent } from "@next/third-parties/google";
@@ -89,6 +90,7 @@ export function HeroSection() {
 
                 {/* CTAs — on mobile: Call + Get Quote dialog; on lg+ only Call (form is inline) */}
                 <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                  {/* Backup of original call button:
                   <Button
                     asChild
                     size="lg"
@@ -107,6 +109,19 @@ export function HeroSection() {
                       Call Now
                     </a>
                   </Button>
+                  */}
+                  <CallbackDialog
+                    placement={placement}
+                    trigger={
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="w-full sm:w-auto rounded-full text-sm sm:text-base px-6 py-5 bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:text-white transition-all hover:-translate-y-0.5 cursor-pointer">
+                        <Phone className="mr-2 h-4 w-4" />
+                        Request Callback
+                      </Button>
+                    }
+                  />
                 </div>
                 <p className="text-[10px] text-white/50 mt-4 italic text-center lg:text-left">
                   *Terms & conditions apply.

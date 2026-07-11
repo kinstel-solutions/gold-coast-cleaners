@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Check, X, Gift } from "lucide-react";
-import { SITE_PHONE_HREF, SITE_PHONE_NUMBER } from "@/lib/constants";
+// import { SITE_PHONE_HREF, SITE_PHONE_NUMBER } from "@/lib/constants";
+import { CallbackDialog } from "../CallbackDialog";
 import Link from "next/link";
 import { sendGTMEvent } from "@next/third-parties/google";
 
@@ -162,6 +163,7 @@ export function PromoPopup() {
                     </div>
                   </Link>
                 </Button>
+                {/* Backup of original Promo Call button:
                 <Button 
                   variant="outline" 
                   asChild 
@@ -181,6 +183,20 @@ export function PromoPopup() {
                     <span className="relative z-10">Or Call {SITE_PHONE_NUMBER}</span>
                   </a>
                 </Button>
+                */}
+                <CallbackDialog
+                  placement="promo_popup"
+                  trigger={
+                    <Button 
+                      variant="outline" 
+                      size="lg" 
+                      className="relative overflow-hidden w-full rounded-full transition-all hover:bg-secondary/50 font-semibold h-12 animate-pulse-glow cursor-pointer"
+                    >
+                      <div className="animate-shimmer-sweep-sync" />
+                      <span className="relative z-10">Or Request Callback</span>
+                    </Button>
+                  }
+                />
               </div>
               <p className="text-xs text-muted-foreground mt-4 italic">
                 *Terms and conditions apply. Limited time offer.

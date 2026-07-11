@@ -3,15 +3,16 @@ import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import { HeroQuoteForm } from "@/components/forms/HeroQuoteForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  SITE_EMAIL_PRIMARY,
-  SITE_EMAIL_PRIMARY_HREF,
+  // SITE_EMAIL_PRIMARY,
+  // SITE_EMAIL_PRIMARY_HREF,
   SITE_EMAIL_SECONDARY,
   SITE_EMAIL_SECONDARY_HREF,
-  SITE_PHONE_HREF,
-  SITE_PHONE_NUMBER,
+  // SITE_PHONE_HREF,
+  // SITE_PHONE_NUMBER,
   OPENING_HOURS,
   SITE_ADDRESS,
 } from "@/lib/constants";
+import { CallbackDialog } from "@/components/CallbackDialog";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -62,6 +63,7 @@ export default function ContactPage() {
                   <div className="mt-2 h-0.5 w-8 bg-primary/20 group-hover:w-16 transition-all duration-500" />
                 </div>
                 <div className="space-y-4">
+                  {/* Backup of original contact details phone link:
                   <a
                     href={SITE_PHONE_HREF}
                     className="flex items-center gap-3 group">
@@ -70,7 +72,20 @@ export default function ContactPage() {
                       {SITE_PHONE_NUMBER}
                     </span>
                   </a>
+                  */}
+                  <CallbackDialog
+                    placement="contact_page"
+                    trigger={
+                      <button className="flex items-center gap-3 group text-left w-full cursor-pointer outline-none">
+                        <Phone className="h-5 w-5 text-primary" />
+                        <span className="text-muted-foreground group-hover:text-primary transition-colors font-medium">
+                          Request Callback
+                        </span>
+                      </button>
+                    }
+                  />
                   <div className="flex flex-col gap-2">
+                    {/* Backup of original contact details primary email link:
                     <a
                       href={SITE_EMAIL_PRIMARY_HREF}
                       className="flex items-center gap-3 group">
@@ -79,10 +94,11 @@ export default function ContactPage() {
                         {SITE_EMAIL_PRIMARY}
                       </span>
                     </a>
+                    */}
                     <a
                       href={SITE_EMAIL_SECONDARY_HREF}
                       className="flex items-center gap-3 group">
-                      <Mail className="h-5 w-5 text-transparent" />
+                      <Mail className="h-5 w-5 text-primary" />
                       <span className="text-muted-foreground group-hover:text-primary transition-colors break-all">
                         {SITE_EMAIL_SECONDARY}
                       </span>
@@ -122,7 +138,7 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* Full-width Map Section */}
+      {/* Backup of original Full-width Map Section:
       <div className="w-full h-[350px] sm:h-[450px] relative mt-12 bg-slate-50 border-t border-slate-200">
         <iframe
           title="James Bond Cleaning Location on Google Maps"
@@ -136,6 +152,7 @@ export default function ContactPage() {
           className="absolute inset-0 w-full h-full grayscale-[0.1] hover:grayscale-0 transition-all duration-700"
         />
       </div>
+      */}
     </div>
   );
 }

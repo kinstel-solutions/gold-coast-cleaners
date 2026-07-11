@@ -8,10 +8,16 @@ import { SERVICE_CONFIGS } from "@/config/services";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Backup of original admin/from email settings:
+// const ADMIN_EMAILS = process.env.ADMIN_EMAILS
+//   ? process.env.ADMIN_EMAILS.split(",")
+//   : ["support@jamesbondcleaning.au", "kinstelsolutions@gmail.com"];
+// const FROM_EMAIL = process.env.FROM_EMAIL || "support@jamesbondcleaning.au";
+
 const ADMIN_EMAILS = process.env.ADMIN_EMAILS
   ? process.env.ADMIN_EMAILS.split(",")
-  : ["support@jamesbondcleaning.au", "kinstelsolutions@gmail.com"];
-const FROM_EMAIL = process.env.FROM_EMAIL || "support@jamesbondcleaning.au";
+  : ["jamesbondcleaningau@hotmail.com", "kinstelsolutions@gmail.com"];
+const FROM_EMAIL = process.env.FROM_EMAIL || "jamesbondcleaningau@hotmail.com";
 const SENDER_NAME = "James Bond Cleaning";
 const FROM_STRING = `${SENDER_NAME} <${FROM_EMAIL}>`;
 
@@ -232,6 +238,74 @@ export async function submitQuote(
     return {
       message: "Something went wrong sending your request. Please try again.",
       success: false,
+    };
+  }
+}
+
+export async function requestCallback(payload: {
+  name?: string;
+  phone: string;
+  message?: string;
+  sourcePage?: string;
+  placement?: string;
+}): Promise<ActionResponse> {
+  try {
+    const { name, phone, message, sourcePage, placement } = payload;
+    const displayName = name ? name.trim() : "Valued Customer";
+
+    await resend.emails.send({
+      from: FROM_STRING,
+      to: ADMIN_EMAILS,
+      subject: `New Callback Request: ${phone}`,
+      html: `
+        <div style="display:none;font-size:1px;color:#333333;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
+          Callback request from ${displayName} (${phone}) via ${placement || "website"}.
+        </div>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+          <h2 style="color: #0c4a6e; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">New Callback Request</h2>
+          <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <tr>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><strong>Name:</strong></td>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">${displayName}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><strong>Phone Number:</strong></td>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; font-size: 1.1rem; color: #2563eb; font-weight: bold;">
+                ${phone}
+              </td>
+            </tr>
+            ${message ? `
+            <tr>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><strong>Preferred Time:</strong></td>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">${message}</td>
+            </tr>
+            ` : ""}
+            ${sourcePage ? `
+            <tr>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><strong>Source Page:</strong></td>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">${sourcePage}</td>
+            </tr>
+            ` : ""}
+            ${placement ? `
+            <tr>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><strong>Placement Context:</strong></td>
+              <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">${placement}</td>
+            </tr>
+            ` : ""}
+          </table>
+        </div>
+      `,
+    });
+
+    return {
+      success: true,
+      message: "Your callback request has been received. We'll call you shortly!",
+    };
+  } catch (error) {
+    console.error("Resend Error (Callback Request):", error);
+    return {
+      success: false,
+      message: "Failed to submit callback request. Please try again.",
     };
   }
 }
